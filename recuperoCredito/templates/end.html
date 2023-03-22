@@ -1,0 +1,72 @@
+{% extends 'area_personale_base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block title %}Recupero Credito - LegalArs{% endblock title %}
+
+
+{% block metatag %}
+<script src="{% static 'js/enableModal.js' %}"></script>
+{% endblock metatag %}
+
+
+{% block main %}
+<h2 class="text-center">Alcune indicazioni prima di terminare la procedura</h2>
+<p>Affinchè la procedura possa essere avviata da un avvocato è necessario effettuare alcuni versamenti e compilare
+    alcuni documenti che ci permetteranno di agire in qualità di tuoi difensori.</p>
+<p>In particolare dovranno essere effettuati i versamenti per:</p>
+<ul>
+    <li><span class="modal-trigger" data-bs-toggle="modal" data-bs-target="#contributoModal">il contributo
+            unificato</span>, pari a €{{contributo}}</li>
+    {% if bollo %}
+    <li><span class="modal-trigger" data-bs-toggle="modal" data-bs-target="#bolloModal">il bollo</span>, pari a
+        €{{bollo}}</li>
+    {% endif %}
+</ul>
+
+<p>Tieni anche in considerazione che potrebbe essere necessario anche sostenere il costo per un'agenzia che effettui determinati adempimenti in loco.</p>
+<!-- ContributoModal -->
+<div class="modal fade" id="contributoModal" tabindex="-1" aria-labelledby="contributoModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="contributoModalLabel">Contributo unificato</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>La tassazione per le spese degli atti giudiziari si basa sul "contributo unificato di iscrizione a
+                    ruolo" che ha sostituito tutte le altre imposte versate, in passato, per i procedimenti penali,
+                    civili e amministrativi.</p>
+                <p>Questa forma di tassazione ha semplificato in maniera determinante la tassazione gli atti giudiziari
+                    perché di fatto ha eliminato la tassa di iscrizione a ruolo, i diritti di
+                    cancelleria, nonché i diritti di chiamata in causa dell’ufficiale giudiziario.</p>
+                <p>In linea generale, il contributo unificato si applica per ciascun grado di giudizio nel processo
+                    civile, compresa la procedura concorsuale, e di volontaria giurisdizione, e nel processo
+                    amministrativo.</p>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- BolloModal -->
+<div class="modal fade" id="bolloModal" tabindex="-1" aria-labelledby="bolloModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="bolloModalLabel">Bollo</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock main %}

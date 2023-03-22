@@ -1,0 +1,105 @@
+{% extends 'area_personale_base.html' %}
+{% load static %}
+
+{% block title %}Recupero Credito - LegalArs{% endblock title %}
+
+
+{% block metatag %}{% endblock metatag %}
+
+
+{% block main %}
+<div id="step-counter">
+  <div class="step-circle completed">
+    <div class="number">1</div>
+  </div>
+  <div class="step-separator step-separator-green"></div>
+  <div class="step-circle completed">
+    <div class="number">2</div>
+  </div>
+  <div class="step-separator step-separator-green"></div>
+  <div class="step-circle">
+    <div class="number">3</div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row custom-row">
+    <div class="col-lg-8 col-md-12">
+      <h4>Dati sul credito</h4>
+      <p>Ormai abbiamo finito. Inserisci la somma che intendi recuperare.</p>
+      <form method="post">
+        {% csrf_token %}
+        {% for field in credito_form %}
+        <div class="mb-3 mt-3">
+          <label class="label-container mb-2" for="{{field.auto_id}}">{{field.label}} <img class="question-mark"
+              src="{% static 'images/icons/help.svg' %}" alt="" data-bs-toggle="tooltip" data-bs-placement="top"
+              data-bs-custom-class="custom-tooltip" data-bs-title="Bisogno di aiuto? Clicca qui"></label>
+          {{field}}
+        </div>
+        <p class="help-text">{{field.help_text}} <span class="closeHelpText">Chiudi</span></p>
+        {% for error in field.errors %}
+        <p class="text-danger">{{ error }}</p>
+        {% endfor %}
+        {% endfor %}
+        <input class="btn-gold-outline mb-3" type="submit" value="Invia">
+      </form>
+    </div>
+    <div class="col-lg-4 col-md-12 riepilogo-block">
+      <h5>Riepilogo in tempo reale</h5>
+      <ol id="riepilogo-list">
+        <li>Creditore
+          <ul>
+            {% if tipo_creditore == 'Persona Fisica' %}
+            <li>Tipologia: Persona Fisica</li>
+            <li>Nome: {{nome}}</li>
+            <li>Cognome: {{cognome}}</li>
+            <li>Luogo di nascita: {{luogo_di_nascita}}</li>
+            <li>Data di nascita: {{data_di_nascita}}</li>
+            <li>Comune di residenza: {{comune_di_residenza}}</li>
+            <li>Indirizzo di residenza: {{indirizzo_di_residenza}}</li>
+            <li>Indirizzo email: {{email}}</li>
+            <li>Indirizzo PEC: {{pec}}</li>
+            <li>Codice fiscale: {{codice_fiscale}}</li>
+            <li>Partita IVA: {{partita_iva}}</li>
+            {% else %}
+            <li>Tipologia: Persona Giuridica</li>
+            <li>Denominazione sociale: {{cr_denominazione_sociale}}</li>
+            <li>Comune sede principale: {{cr_comune_sede_principale}}</li>
+            <li>Indirizzo sede principale: {{cr_indirizzo_sede_principale}}</li>
+            <li>Indirizzo email: {{cr_email}}</li>
+            <li>Indirizzo PEC: {{cr_pec}}</li>
+            <li>Codice fiscale: {{cr_codice_fiscale}}</li>
+            <li>Partita IVA: {{cr_partita_iva}}</li>
+            {% endif %}
+          </ul>
+        </li>
+        <li>Debitore
+          <ul>
+            {% if tipo_debitore == 'Persona Fisica' %}
+            <li>Tipologia: Persona Fisica</li>
+            <li>Nome: {{db_nome}}</li>
+            <li>Cognome: {{db_cognome}}</li>
+            <li>Luogo di nascita: {{db_luogo_di_nascita}}</li>
+            <li>Data di nascita: {{db_data_di_nascita}}</li>
+            <li>Indirizzo di residenza: {{db_indirizzo_di_residenza}}</li>
+            <li>Codice fiscale: {{df_codice_fiscale}}</li>
+            <li>Partita IVA: {{df_partita_iva}}</li>
+            {% else %}
+            <li>Tipologia: Persona Giuridica</li>
+            <li>Denominazione sociale: {{db_denominazione_sociale}}</li>
+            <li>Indirizzo sede principale: {{db_sede_principale}}</li>
+            <li>Codice fiscale: {{dj_codice_fiscale}}</li>
+            <li>Partita IVA: {{dj_partita_iva}}</li>
+            {% endif %}
+          </ul>
+        </li>
+        <li>Credito
+          <ul>
+            <li>Somma: <span class="somma-value-container">0</span> €</li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+  </div>
+</div>
+{% endblock main %}

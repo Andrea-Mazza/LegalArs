@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Recupero Credito - LegalArs{% endblock title %}
+
+
+{% block metatag %}{% endblock metatag %}
+
+
+{% block main %}
+{% for fattura in fatture %}
+    {{ fattura.numero_fattura }} <br>
+    {{ fattura.importo }} <br>
+    {{ fattura.data_emissione }} <br>
+{% endfor %}
+{% endblock main %}

@@ -1,0 +1,84 @@
+{% extends 'area_personale_base.html' %}
+{% load static %}
+
+{% block title %}Recupero Credito - LegalArs{% endblock title %}
+
+
+{% block metatag %}{% endblock metatag %}
+
+
+{% block main %}
+<div id="step-counter">
+  <div class="step-circle">
+    <div class="number">1</div>
+  </div>
+  <div class="step-separator"></div>
+  <div class="step-circle">
+    <div class="number">2</div>
+  </div>
+  <div class="step-separator"></div>
+  <div class="step-circle">
+    <div class="number">3</div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row custom-row">
+    <div class="col-lg-8 col-md-12">
+      <h4>Dati sul creditore 2/2</h4>
+      <p>Per terminare l'individuazione del creditore, completa i campi qua sotto. Dopodichè potrai procedere con
+        l'individuazione del debitore.</p>
+      <form method="post">
+        {% csrf_token %}
+
+        
+        {% for field in form %}
+        <div class="mb-3 mt-3">
+          <label class="label-container mb-2" for="{{field.auto_id}}">{{field.label}} <img class="question-mark"
+              src="{% static 'images/icons/help.svg' %}" alt="" data-bs-toggle="tooltip" data-bs-placement="top"
+              data-bs-custom-class="custom-tooltip" data-bs-title="Bisogno di aiuto? Clicca qui"></label>
+          {{field}}
+        </div>
+        <p class="help-text">{{field.help_text}} <span class="closeHelpText">Chiudi</span></p>
+        {% for error in field.errors %}
+      <p class="text-danger">{{ error }}</p>
+    {% endfor %}
+        {% endfor %}
+        <input class="btn-gold-outline mb-3" type="submit" value="Invia">
+      </form>
+    </div>
+    <div class="col-lg-4 col-md-12 riepilogo-block">
+      <h5>Riepilogo in tempo reale</h5>
+      <ol id="riepilogo-list">
+        <li>Creditore
+          <ul>
+            {% if tipo_creditore == 'Persona Fisica' %}
+            <li>Tipologia: Persona Fisica</li>
+            <li id="riepilogo-nome_cr">Nome: <span class="value-container"></span></li>
+            <li id="riepilogo-cognome_cr">Cognome: <span class="value-container"></span></li>
+            <li id="riepilogo-luogo-nascita_cr">Luogo di nascita: <span class="value-container"></span></li>
+            <li id="riepilogo-data-nascita_cr">Data di nascita: <span class="value-container"></span></li>
+            <li id="riepilogo-comune-residenza_cr">Comune di residenza: <span class="value-container"></span></li>
+            <li id="riepilogo-indirizzo-residenza_cr">Indirizzo di residenza: <span class="value-container"></span></li>
+            <li id="riepilogo-email_cr">Indirizzo email: <span class="value-container"></span></li>
+            <li id="riepilogo-pec_cr">Indirizzo PEC: <span class="value-container"></span></li>
+            <li id="riepilogo-codice-fiscale_cr">Codice fiscale: <span class="value-container"></span></li>
+            <li id="riepilogo-IVA_cr">Partita IVA: <span class="value-container"></span></li>
+            {% else %}
+            <li>Tipologia: Persona Giuridica</li>
+            <li id="riepilogo-denominazione_cr">Denominazione sociale: <span class="value-container"></span></li>
+            <li id="riepilogo-comune-sede_cr">Comune sede principale: <span class="value-container"></span></li>
+            <li id="riepilogo-indirizzo-sede_cr">Indirizzo sede principale: <span class="value-container"></span></li>
+            <li id="riepilogo-email_cr">Indirizzo email: <span class="value-container"></span></li>
+            <li id="riepilogo-PEC_cr">Indirizzo PEC: <span class="value-container"></span></li>
+            <li id="riepilogo-codice-fiscale_cr">Codice fiscale: <span class="value-container"></span></li>
+            <li id="riepilogo-IVA_cr">Partita IVA: <span class="value-container"></span></li>
+            {% endif %}
+
+          </ul>
+        </li>
+      </ol>
+    </div>
+  </div>
+</div>
+{% endblock main %}
