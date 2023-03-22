@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Tutela dei rapporti bancari - LegalArs{% endblock title %}
+
+{% block metatag %}
+<script src="{% static 'js/activityEffect.js' %}"></script>
+{% endblock metatag %}
+
+{% block main %}
+<article class="rapporti-bancari activity-content">
+    <section id="hero">
+        <h1>Tutela dei rapporti bancari</h1>
+    </section>
+    <section id="activity-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-8 col-sm-12">
+                    <p>È ormai ventennale l’impegno dello Studio Legale nella tutela del consumatore bancario.</p>
+                    <p>Era il 1998, quanto furono proposte diverse opposizioni, a diversi decreti ingiuntivi, ottenute
+                        da diverse banche: in tutti i casi, fu speso un motivo volto a far valere la illegittimità del
+                        cosiddetto anatocismo (la capitalizzazione degli interessi e oneri passivi), sulla base di
+                        qualche isolata sentenza di qualche giudice di merito.</p>
+                    <p>Le stesse opposizione furono -però- l’inizio del contenzioso poi irrobustito dalle due note
+                        sentenze di cassazione del marzo del 1999, che confermarono i profili di illegittimità
+                        dell’anatocismo, dando vita al calvario giudiziario e legislativo degli anni a seguire.</p>
+                    <p>Da allora, lo Studio Legale ha maturato una importante esperienza -anche processuale- in tutto
+                        ciò che riguarda il rapporto bancario in genere, in contenziosi che hanno ovviamente riguardato
+                        il tema dei tassi usurai di interesse, i tassi LIBOR e EURIBOR, il gioco delle valute e ogni
+                        altro profilo di illegittimità (ormai noti, grazie allo spazio -davvero ampio- dato dai mass
+                        media).</p>
+                    <p>La polarizzazione dello Studio, in tematiche bancarie, lo ha reso sensibile a tante tematiche
+                        nuove, quali sono i profili di nullità delle fideiussioni omnibus (si veda il contributo ne “Il
+                        Portale Giuridico”) o anche i profili di responsabilità delle banche depositarie in tutte le
+                        operazioni di investimento online, finite male.</p>
+                    <p>Altro tema, particolarmente seguito dallo Studio, è quello suggellato da recenti pronunce contro
+                        importanti istituti bancari, da cui è emersa la prassi illecita volta a pilotare, con somme
+                        consistenti o indicazioni condivise, i valori di mercato e ogni altro parametro economico
+                        inerente le operazioni gestite, aldilà delle democratiche oscillazioni sempre presenti.</p>
+                    <p>Ciò è in effetti realizzabile soprattutto nelle ultime ore di contrattazione, laddove i volumi
+                        sono più ridotti ed è più facile spingere le quotazioni verso una direzione, anche a danno di
+                        alcuni risparmiatori. Inoltre in molti sostengono che alcune società addette alla valutazione
+                        dell’affidabilità dei titoli e all’indicazione del loro valore di mercato, si spingano ad
+                        effettuare delle valutazioni arbitrarie e prive di effettivi riscontri reali allo scopo di
+                        spingere un titolo verso una determinata quotazione per trarne un profitto.</p>
+                    <p>Trattasi di una nuova frontiera di contenzioso che porta a mettere in discussione svariati tassi
+                        di interesse, previsti nella contrattualistica tra banche e clienti.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="container">
+        <div class="row row-2">
+            <div class="col-lg-6 col-md-8 col-sm-12">
+                <h3 class="text-center">Potrebbero interessarti</h3>
+                <div class="row custom-row">
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-position">
+                        <div class="img-container">
+                            <img src="{% static 'images/icons/attivita/crisi-di-impresa.png' %}" alt="...">
+                            <div class="overlay">
+                                <img src="{% static 'images/icons/attivita/white-icons/crisi-impresa.png' %}" alt="...">
+                                <p>CRISI DI IMPRESA <br> E RISANAMENTO</p>
+                                <a href="{% url 'impresa-risanamento' %}">Scopri</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-position">
+                        <div class="img-container">
+                            <img src="{% static 'images/icons/attivita/reati-ambientali.png' %}" alt="...">
+                            <div class="overlay">
+                                <img src="{% static 'images/icons/attivita/white-icons/reati-ambientali.png' %}"
+                                    alt="...">
+                                <p>REATI <br> AMBIENTALI</p>
+                                <a href="{% url 'reati-ambientali' %}">Scopri</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-position">
+                        <div class="img-container">
+                            <img src="{% static 'images/icons/attivita/tutela-img-web.png' %}" alt="...">
+                            <div class="overlay">
+                                <img src="{% static 'images/icons/attivita/white-icons/tutela-img-web.png' %}"
+                                    alt="...">
+                                <p>TUTELA DELLA <br> IMMAGINE SUL WEB</p>
+                                <a href="{% url 'tutela-immagine' %}">Scopri</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <section id="home-section-seven" class="container-fluid">
+        <div class="container content">
+            <div class="row gy-5">
+                <div class="col-lg-6 col-sm-12">
+                    <h3>Contattaci per maggiori <br> informazioni</h3>
+                    <a href="#">Via Lovanio, 10, 20121 Milano, Italy</a>
+                    <a href="#">Telefono +39 02.82.95.18.61</a>
+                    <a href="#">Fax: 178.6060.284</a>
+                    <a href="#">E-mail: info@legalars.net</a>
+                </div>
+                <div class="col-lg-6 col-sm-12">
+
+                    <form class="row g-3 form-white">
+                        <div class="col-md-6 form-floating">
+                            <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com"
+                                required>
+                            <label for="floatingInput">Nome*</label>
+                        </div>
+                        <div class="col-md-6 form-floating">
+                            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
+                                required>
+                            <label for="floatingInput">Email*</label>
+                        </div>
+                        <div class="col-12 form-floating">
+                            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"
+                                rows="5" required></textarea>
+                            <label for="floatingTextarea">Messaggio*</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Accetto l’informativa sulla <a href="{% url 'privacyPage' %}">privacy</a> *
+                            </label>
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn-gold-outline">INVIA</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</article>
+{% endblock main %}

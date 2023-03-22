@@ -1,0 +1,85 @@
+{% extends 'area_personale_base.html' %}
+{% load static %}
+
+{% block title %}Area Personale{% endblock title %}
+
+
+{% block metatag %}{% endblock metatag %}
+
+
+{% block main %}
+
+<section class="container servizi_attivi">
+    <h2>I servizi che hai attivato</h2>
+    {% if recupero_credito %}
+    <div class="row g-4">
+        {% for field in recupero_credito reversed %}
+
+
+        <div class="col-lg-4 col-md-6 col-sm-12 service-column">
+            <div class="service-card">
+                <div class="row">
+                    <div class="col-10">
+                        <h4>Recupero credito</h4>
+                    </div>
+                    <div class="col-2 text-end">
+                        <img src="{% static 'images/icons/icons8-wallet.gif' %}" class="tool-gif" alt="">
+                    </div>
+                </div>
+                <p>Dettagli:</p>
+                <ul>
+                    <li class="details">Somma: {{field.somma}}€</li>
+                    <li class="details">Attivato il: {{field.time|date:"d/m/Y"}}</li>
+                    <li class="details">Comunicazioni da leggere: {{counter}}
+
+                        {% if avvisi %}
+                        <span class="avvisi-pratica"></span>
+                        {% endif %}
+                    </li>
+                </ul>
+                <a href="{% url 'userArea:servizio_attivo_details' field.pk %}" class="btn-gold-outline">Più
+                    dettagli</a>
+            </div>
+        </div>
+
+        {% endfor %}
+    </div>
+    {% else %}
+    <p>Niente</p>
+    {% endif %}
+</section>
+
+
+{% comment %}
+
+<h2>Creditore</h2>
+
+{% if field.cr_tipo == 'PJ' %}
+{{field.cr_denominazione_sociale}}<br>
+{{field.cr_comune_sede_principale}}<br>
+{{field.cr_indirizzo_sede_principale}}<br>
+{{field.cr_email}}<br>
+{{field.cr_pec}}<br>
+{{field.cr_codice_fiscale}}<br>
+{{field.cr_partita_iva}}<br>
+{% elif field.cr_tipo == 'PF' %}
+{{field.cr_nome}}<br>
+{{field.cr_cognome}}<br>
+{{field.cr_luogo_di_nascita}}<br>
+{{field.cr_data_di_nascita}}<br>
+{{field.cr_comune_di_residenza}}<br>
+{{field.cr_indirizzo_di_residenza}}<br>
+{{field.cr_email}}<br>
+{{field.cr_pec}}<br>
+{{field.cr_codice_fiscale}}<br>
+{{field.cr_partita_iva}}<br>
+{% endif %}
+
+{% for debitore in field.db_tipo.items %}
+{{debitore.1}}<br>
+{% endfor %}
+
+{% endfor %} {% endcomment %}
+
+
+{% endblock main %}

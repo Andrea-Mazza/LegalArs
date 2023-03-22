@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Mandato di Arresto Europeo - LegalArs{% endblock title %}
+
+{% block metatag %}
+<script src="{% static 'js/activityEffect.js' %}"></script>
+{% endblock metatag %}
+
+{% block main %}
+<article class="mandato-europeo activity-content">
+    <section id="hero">
+        <h1>Mandato di Arresto Europeo</h1>
+    </section>
+    <section id="activity-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-8 col-sm-12">
+                    <h2>Il mandato di cattura europeo è un provvedimento giudiziario emesso da uno Stato membro dell’UE
+                        per consentire l’arresto e la consegna da parte di altro Stato membro di un soggetto ricercato
+                        per l’esercizio dell’azione penale o dell’esecuzione di una pena ovvero di una misura di
+                        sicurezza.
+                    </h2>
+                    <div class="divider"></div>
+                    <p>La finalità perseguita è quella di garantire agli Stati membri dell’UE una rapida e agevole
+                        procedura di consegna dei ricercati.</p>
+                    <p>Il mandato di cattura europeo può essere disposto in caso di condanna per fatti puniti dalla
+                        legge dello Stato membro emittente con una pena o con una misura di sicurezza privative della
+                        libertà non inferiore a 12 mesi ovvero in caso di condanna o a una misura di sicurezza non
+                        inferiore a 4 mesi.</p>
+                    <p class="text-center"><em>L’efficacia della decisione giudiziaria è subordinata alla condizione che
+                            i fatti per cui è stato emesso il provvedimento costituiscano reato ai sensi della legge
+                            dello Stato membro di esecuzione, a prescindere dagli elementi costitutivi o dalla qualifica
+                            dello stesso.</em></p>
+                    <p>La procedura di consegna si suddivide in tre fasi:
+                    </p>
+                    <ol>
+                        <li>
+                            <p>Nella prima si ha la comunicazione del provvedimento da parte dell’autorità emittente
+                                all’autorità di esecuzione;</p>
+                        </li>
+                        <li>
+                            <p>Nella seconda fase, relativa all’attuazione, l’autorità ricevente può dare esecuzione al
+                                mandato, ovvero rifiutarsi nelle ipotesi previste dagli art. 3 e 4 della decisione
+                                quadro;</p>
+                        </li>
+                        <li>
+                            <p>Nell’ultima fase l’autorità giudiziaria deve decidere in merito alla consegna
+                                dell’arrestato, dopo che questi in modo irrevocabile vi abbia o meno prestato il
+                                consenso.</p>
+                        </li>
+                    </ol>
+                    <p>Nel caso in cui il ricercato non presti il consenso alla consegna, ha diritto di essere condotto
+                        innanzi all’autorità giudiziaria dell’esecuzione e interpellato nel rispetto delle norme del
+                        diritto interno di tale Stato membro.</p>
+                    <p>Vi sono partners dello Studio Legale che hanno esperienza su questa materia così delicata,
+                        consideratone il rilievo e l’incidenza rispetto alla libertà personale di ogni cittadino.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="container">
+        <div class="row row-2">
+            <div class="col-lg-6 col-md-8 col-sm-12">
+                <h3 class="text-center">Potrebbero interessarti</h3>
+                <div class="row custom-row">
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-position">
+                        <div class="img-container">
+                            <img src="{% static 'images/icons/attivita/colpa-medica.png' %}" alt="...">
+                            <div class="overlay">
+                                <img src="{% static 'images/icons/attivita/white-icons/colpa-medica.png' %}" alt="...">
+                                <p>COLPA <br> MEDICA</p>
+                                <a href="{% url 'colpa-medica' %}">Scopri</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-position">
+                        <div class="img-container">
+                            <img src="{% static 'images/icons/attivita/diritto-di-impresa.png' %}" alt="...">
+                            <div class="overlay">
+                                <img src="{% static 'images/icons/attivita/white-icons/diritto-impresa.png' %}"
+                                    alt="...">
+                                <p>DIRITTO DI <br> IMPRESA</p>
+                                <a href="{% url 'diritto-impresa' %}">Scopri</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-position">
+                        <div class="img-container">
+                            <img src="{% static 'images/icons/attivita/investimenti-e-truffe.png' %}" alt="...">
+                            <div class="overlay">
+                                <img src="{% static 'images/icons/attivita/white-icons/investimenti-e-truffe.png' %}"
+                                    alt="...">
+                                <p>INVESTIMENTI E <br> TRUFFE ONLINE</p>
+                                <a href="{% url 'truffe-online' %}">Scopri</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <section id="home-section-seven" class="container-fluid">
+        <div class="container content">
+            <div class="row gy-5">
+                <div class="col-lg-6 col-sm-12">
+                    <h3>Contattaci per maggiori <br> informazioni</h3>
+                    <a href="#">Via Lovanio, 10, 20121 Milano, Italy</a>
+                    <a href="#">Telefono +39 02.82.95.18.61</a>
+                    <a href="#">Fax: 178.6060.284</a>
+                    <a href="#">E-mail: info@legalars.net</a>
+                </div>
+                <div class="col-lg-6 col-sm-12">
+
+                    <form class="row g-3 form-white">
+                        <div class="col-md-6 form-floating">
+                            <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com"
+                                required>
+                            <label for="floatingInput">Nome*</label>
+                        </div>
+                        <div class="col-md-6 form-floating">
+                            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
+                                required>
+                            <label for="floatingInput">Email*</label>
+                        </div>
+                        <div class="col-12 form-floating">
+                            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"
+                                rows="5" required></textarea>
+                            <label for="floatingTextarea">Messaggio*</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Accetto l’informativa sulla <a href="{% url 'privacyPage' %}">privacy</a> *
+                            </label>
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn-gold-outline">INVIA</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</article>
+{% endblock main %}

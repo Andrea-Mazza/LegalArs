@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Diritto del Lavoro - LegalArs{% endblock title %}
+
+{% block metatag %}
+<script src="{% static 'js/activityEffect.js' %}"></script>
+{% endblock metatag %}
+
+{% block main %}
+<article class="diritto-lavoro activity-content">
+    <section id="hero">
+        <h1>Diritto del Lavoro</h1>
+    </section>
+    <section id="activity-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-8 col-sm-12">
+                    <h2>Il diritto del lavoro è quel ramo del diritto che studia la disciplina del rapporto di lavoro e
+                        di tutte le tematiche ad esso collegate.
+                    </h2>
+                    <div class="divider"></div>
+                    <p>Riguarda la regolamentazione delle relazioni tra datore di lavoro e lavoratore e, perciò, è
+                        connesso al tema delle relazioni sindacali (oggetto propriamente del diritto sindacale) e al
+                        tema delle assicurazioni sociali e previdenziali (di cui si occupa il diritto della previdenza e
+                        della sicurezza sociale).</p>
+                    <p>Per lungo tempo, la fonte principale fu il codice civile italiano, ma, a partire dagli anni
+                        settanta , vi sono state importanti innovazioni, dovute alla introduzione del cosiddetto Statuto
+                        dei lavoratori (legge 20 maggio 1970, n. 300), alla privatizzazione del diritto del lavoro
+                        pubblico in Italia (D.Lgs. 3 febbraio 1993, n. 29, e successive norme, poi confluite nel d.lgs.
+                        30 marzo 2001, n. 165) e alla liberalizzazione del mercato del lavoro privato (legge 14 febbraio
+                        2003, n. 30, meglio conosciuta come legge Biagi).</p>
+                    <h3 class="text-center"><em>Di recente, la materia è stata modificata con il cosiddetto Jobs Act.
+                            Alle vertenze lavoristiche, è dedicata un’apposita sezione del codice di rito, il che ha
+                            imposto la collaborazione con Partners specializzati su
+                            questa materia e su questo rito.</em></h3>
+                    <p>I nostri partners hanno assunto molteplici incarichi, tanto a tutela dei lavoratori, quanto a
+                        tutela delle aziende, spingendosi fino al
+                        settore delle ristrutturazioni aziendali e alla consulenza del lavoro.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="container">
+        <div class="row row-2">
+            <div class="col-lg-6 col-md-8 col-sm-12">
+                <h3 class="text-center">Potrebbero interessarti</h3>
+                <div class="row custom-row">
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-position">
+                        <div class="img-container">
+                            <img src="{% static 'images/icons/attivita/investimenti-e-truffe.png' %}" alt="...">
+                            <div class="overlay">
+                                <img src="{% static 'images/icons/attivita/white-icons/investimenti-e-truffe.png' %}"
+                                    alt="...">
+                                <p>INVESTIMENTI E <br> TRUFFE ONLINE</p>
+                                <a href="{% url 'truffe-online' %}">Scopri</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-position">
+                        <div class="img-container">
+                            <img src="{% static 'images/icons/attivita/crisi-di-impresa.png' %}" alt="...">
+                            <div class="overlay">
+                                <img src="{% static 'images/icons/attivita/white-icons/crisi-impresa.png' %}" alt="...">
+                                <p>CRISI DI IMPRESA <br> E RISANAMENTO</p>
+                                <a href="{% url 'impresa-risanamento' %}">Scopri</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-position">
+                        <div class="img-container">
+                            <img src="{% static 'images/icons/attivita/colpa-medica.png' %}" alt="...">
+                            <div class="overlay">
+                                <img src="{% static 'images/icons/attivita/white-icons/colpa-medica.png' %}" alt="...">
+                                <p>COLPA <br> MEDICA</p>
+                                <a href="{% url 'colpa-medica' %}">Scopri</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <section id="home-section-seven" class="container-fluid">
+        <div class="container content">
+            <div class="row gy-5">
+                <div class="col-lg-6 col-sm-12">
+                    <h3>Contattaci per maggiori <br> informazioni</h3>
+                    <a href="#">Via Lovanio, 10, 20121 Milano, Italy</a>
+                    <a href="#">Telefono +39 02.82.95.18.61</a>
+                    <a href="#">Fax: 178.6060.284</a>
+                    <a href="#">E-mail: info@legalars.net</a>
+                </div>
+                <div class="col-lg-6 col-sm-12">
+
+                    <form class="row g-3 form-white">
+                        <div class="col-md-6 form-floating">
+                            <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com"
+                                required>
+                            <label for="floatingInput">Nome*</label>
+                        </div>
+                        <div class="col-md-6 form-floating">
+                            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
+                                required>
+                            <label for="floatingInput">Email*</label>
+                        </div>
+                        <div class="col-12 form-floating">
+                            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"
+                                rows="5" required></textarea>
+                            <label for="floatingTextarea">Messaggio*</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Accetto l’informativa sulla <a href="{% url 'privacyPage' %}">privacy</a> *
+                            </label>
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn-gold-outline">INVIA</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</article>
+{% endblock main %}

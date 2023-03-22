@@ -1,0 +1,32 @@
+{% extends 'area_personale_base.html' %}
+{% load static %}
+
+{% block title %}Area Personale{% endblock title %}
+
+
+{% block metatag %}{% endblock metatag %}
+
+
+{% block main %}
+<h2>Tutti i servizi disponibili</h2>
+<div class="service-container container-fluid">
+    <div class="row g-4">
+        <div class="col-lg-4 col-md-6 col-sm-12 service-column">
+            <div class="service-card">
+                <div class="row">
+                    <div class="col-10">
+                        <h4>Recupero credito</h4>
+                    </div>
+                    <div class="col-2 text-end">
+                        <img src="{% static 'images/icons/icons8-wallet.gif' %}" class="tool-gif" alt="">
+                    </div>
+                </div>
+                <p>Con la nostra procedura semplice e guidata, potrai iniziare a recuperare il tuo credito
+                    in pochi semplici passi.</p>
+                <a href="{% url 'userArea:recupero-credito-start' %}" class="btn-gold-outline">Inizia ora</a>
+                <span class="btn-gold-outline">Anteprima</span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock main %}

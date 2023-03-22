@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Accesso - LegalArs{% endblock %}
+
+{% block metatag %}
+<script src="{% static 'js/logform.js' %}"></script>
+{% endblock %}
+
+{% block main %}
+<div id="accesso-body">
+    <img src="{% static 'images/justice.jpeg' %}" alt="">
+    <div class="container">
+        <!-- LOGIN FORM -->
+        {% comment %} <div id="login-form">
+            <div class="row d-flex flex-row justify-content-center align-items-center">
+                <div class="col-lg-4 col-12">
+                    <h2 class="text-center">Accedi</h2>
+                    <form method="post" action=".">
+                        {% csrf_token %}
+                        {% for error in login_form.non_field_errors %}
+                        <p class="text-danger">{{ error }}</p>
+                        {% endfor %}
+                        <div class="form-floating mb-3">
+                            {{login_form.username}}
+                            <label for="username">Email</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            {{login_form.password}}
+                            <label for="password">Password</label>
+                        </div>
+                        <input type="submit" name="login" value="Accedi" class="btn-black-outline">
+                    </form>
+                </div>
+            </div>
+            <div class="row d-flex flex-row justify-content-center">
+                <div class="col-lg-4 col-12">
+                    <div class="divider-container">
+                        <hr>
+                        <small>oppure</small>
+                        <hr>
+                    </div>
+                    <p class="text-center">Non hai un account? <span id="register-now">Registrati ora</span></p>
+                    <p class="text-center">Dimenticato la password? <a href="{% url 'password_reset' %}">Clicca qui</a>
+                    </p>
+                </div>
+            </div>
+        </div> {% endcomment %}
+        <!-- REGISTRATION FORM -->
+        <div id="registration-form">
+            <div class="row d-flex flex-row justify-content-center align-items-center">
+                <div class="col-lg-4 col-12">
+                    <h2 class="text-center">Registrati</h2>
+                    <form method="post" action=".">
+                        {% csrf_token %}
+                        <div class="form-floating mb-3">
+                            {{registration_form.name}}
+                            <label for="username">Nome</label>
+                            {% for error in registration_form.name.errors %}
+                            <p class="text-danger">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                        <div class="form-floating mb-3">
+                            {{registration_form.surname}}
+                            <label for="username">Cognome</label>
+                            {% for error in registration_form.surname.errors %}
+                            <p class="text-danger">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                        <div class="form-floating mb-3">
+                            {{registration_form.username}}
+                            <label for="username">Username</label>
+                            {% for error in registration_form.username.errors %}
+                            <p class="text-danger">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                        <div class="form-floating mb-3">
+                            {{registration_form.email}}
+                            <label for="email">Indirizzo email</label>
+                            {% for error in registration_form.email.errors %}
+                            <p class="text-danger">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                        <div class="form-floating mb-3 pass-field">
+                            {{registration_form.password1}}
+                            <svg id="password-toggle" class="see-pass-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                                <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+                                <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+                              </svg>
+                            <label for="password1">Password</label>
+                            {% for error in registration_form.password1.errors %}
+                            <p class="text-danger">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                        <div class="form-floating mb-3">
+                            {{registration_form.password2}}
+                            <label for="password1">Conferma password</label>
+                            {% for error in registration_form.password2.errors %}
+                            <p class="text-danger">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                        <input type="submit" name="register" value="Registrati" class="btn-black-outline">
+                    </form>
+                </div>
+            </div>
+            <div class="row d-flex flex-row justify-content-center">
+                <div class="col-lg-4 col-12">
+                    <div class="divider-container">
+                        <hr>
+                        <small>oppure</small>
+                        <hr>
+                    </div>
+                    <p class="text-center">Hai già un account? <a href="{% url 'accesso' %}">Effettua l'accesso</a></p>
+                    <p class="text-center">Dimenticato la password? <a href="{% url 'password_reset' %}">Clicca qui</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

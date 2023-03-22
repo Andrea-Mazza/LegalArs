@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Articoli giuridici - LegalArs{% endblock title %}
+
+
+{% block metatag %}
+
+{% endblock metatag %}
+
+
+{% block main %}
+<section id="blog-news-content" class="container">
+    <div class="row g-5">
+        <h1>Categoria: {{categoria.nome}}</h1>
+
+        {% for post in posts reversed %}
+        <div class="col-lg-4 col-md-6 col-sm-12 post-card">
+            <div class="blog-card-image">
+                <img src="{{post.copertina.url}}" alt="" class="img-fluid">
+            </div>
+            <div class="blog-card-heading">
+                <h2>{{post.titolo}}</h2>
+            </div>
+            <div class="blog-card-description d-flex flex-column justify-content-end">
+                <a href="{% url 'blog_category_details' slug=post.categoria.slug %}">{{ post.categoria }}</a>
+                <small>{{post.publish|date:'d F Y'}}</small>
+                <p>{{ post.descrizione|safe }}</p>
+                <a href="{% url 'blog_news_details' slug=post.slug %}" class="btn-gold-outline">Leggi</a>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+</section>
+{% endblock main %}

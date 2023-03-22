@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Partnership LegalArs - Estia{% endblock title %}
+
+
+{% block metatag %}{% endblock metatag %}
+
+
+{% block main %}
+<section class="estia-img-heading container-fluid">
+    <h2 class="content">LegalArs ed Estia S.p.A. insieme per una grandissima opportunità per condomini e loro
+        amministratori.</h2>
+</section>
+<section class="container estia-section">
+    <p>Il progetto consiste nell’avvio di collaborazioni stabili con gli Amministratori di condomini, che
+        vogliano migliorarsi economicamente e crescere professionalmente, in un circuito più ampio che fa
+        dell’economia di scala una soluzione conveniente per i condomini amministrati.</p>
+    <p>Estia è uno spin-off di Synergie, il network internazionale, quotato alla Borsa di Parigi, “che permette
+        a candidati e aziende di trovare le opportunità che stanno cercando, in Italia e nel mondo”.</p>
+    <div class="row">
+        <div class="col-md-6 col-sm-12 btn-container">
+            <div class="btn-gold-outline">
+                <p>Con un fatturato complessivo di
+                    2,5 mld di euro (in 18 Paesi)</p>
+                <span class="number">1</span>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12 btn-container">
+            <div class="btn-gold-outline">
+                <p>È presente anche in Italia,
+                    con una forza lavoro di 600 dipendenti
+                    e un fatturato di 600 mln di euro</p>
+                <span class="number">2</span>
+            </div>
+        </div>
+        <div class="col-12 btn-container">
+            <div class="btn-gold-outline">
+                <p>Estia ha già 10 filiali in Italia, distribuite tra le città di Milano, Roma, Torino e
+                    Palermo.</p>
+                <span class="number">3</span>
+            </div>
+        </div>
+    </div>
+    <p>Organizza corsi di abilitazione per accedere alla professione di amministratori di condomini e offre ai migliori
+        corsisti opportunità di inserimento nelle proprie filiali.</p>
+    <p>LegalArs ha già sposato la “Sharing Economy”, rendendo possibile ai clienti del servizio legale la condivisione
+        di un unico team professionale, con vantaggi per i clienti (di risparmio sui costi) e, per i professionisti (di
+        redditività del proprio tempo lavorativo).</p>
+    <p>La partnership con LegalArs è finalizzata all’assistenza nell’apertura di nuove unità operative (filiali o
+        sportelli) e non è escluso che, a determinate condizioni, se ne aprano più d’una nella stessa città.</p>
+    <p>In collaborazione col settore commerciale di Estia, LegalArs seleziona gli amministratori interessati, valutando
+        tutte le opportunità di collaborazione.</p>
+    <p>Se sei interessato, chiedi un appuntamento compilando il modulo <a href="#home-section-seven">qui sotto</a>,
+        scrivendo su <a href="mailto:info@legalars.net">info@legalars.net</a> o
+        telefonando al numero <a href="tel: +39 335 626 9014">335 626 9014</a>.</p>
+</section>
+
+<section id="home-section-seven" class="container-fluid">
+    <div class="container content">
+        <div class="row gy-5">
+            <div class="col-lg-6 col-sm-12">
+                <h3>Contattaci per maggiori <br> informazioni</h3>
+                <a href="#">Via Lovanio, 10, 20121 Milano, Italy</a>
+                <a href="#">Telefono +39 02.82.95.18.61</a>
+                <a href="#">Fax: 178.6060.284</a>
+                <a href="#">E-mail: info@legalars.net</a>
+            </div>
+            <div class="col-lg-6 col-sm-12">
+
+                <form class="row g-3 form-white">
+                    <div class="col-md-6 form-floating">
+                        <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com"
+                            required>
+                        <label for="floatingInput">Nome*</label>
+                    </div>
+                    <div class="col-md-6 form-floating">
+                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
+                            required>
+                        <label for="floatingInput">Email*</label>
+                    </div>
+                    <div class="col-12 form-floating">
+                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" rows="5"
+                            required></textarea>
+                        <label for="floatingTextarea">Messaggio*</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Accetto l’informativa sulla <a href="{% url 'privacyPage' %}">privacy</a> *
+                        </label>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn-gold-outline">INVIA</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock main %}

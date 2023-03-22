@@ -1,0 +1,413 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="it" itemscope itemtype="http://schema.org/WebPage">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Area Personale{% endblock title %}</title>
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">
+    <!-- BOOTSTRAP CSS -->
+    <link rel="stylesheet" href="{% static 'bootstrap/dist/css/bootstrap.css' %}">
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- JS -->
+    <script src="{% static 'js/headerBtnUserArea.js' %}"></script>
+    <script src="{% static 'js/enableTooltip.js' %}"></script>
+    <script src="{% static 'js/showHelpText.js' %}"></script>
+    <script src="{% static 'js/riepilogoEffect.js' %}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    {% block metatag %}{% endblock metatag %}
+</head>
+
+<body>
+    <section id="area-personale-body">
+
+        <nav id="personal-mobile-nav">
+
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <img src="{% static 'images/logo.png' %}" class="logo" alt="Logo di Legal Ars">
+            </a>
+
+            <button id="headerBtn" class="d-lg-none not-open" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasResponsive" aria-controls="offcanvasResponsive">
+                <span id="lineOne" class="line"></span>
+                <span id="lineTwo" class="line"></span>
+                <span id="lineThree" class="line"></span>
+            </button>
+
+            <div class="offcanvas-lg offcanvas-end" tabindex="-1" id="offcanvasResponsive"
+                aria-labelledby="offcanvasResponsiveLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasResponsiveLabel">La tua area personale</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
+                        data-bs-target="#offcanvasResponsive" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="sidebar-list-items">
+                        {% if request.path == "/area-personale/" %}
+                        <li class="active-label"><a href="{% url 'userArea:user_home' %}"><img alt=""
+                                    src="{% static 'images/icons/category.png' %}">Bacheca</a></li>
+                        {% else %}
+                        <li><a href="{% url 'userArea:user_home' %}"><img alt=""
+                                    src="{% static 'images/icons/category.png' %}">Bacheca</a></li>
+                        {% endif %}
+
+                        {% if request.path|slice:'0:24' == "/area-personale/servizi/" %}
+                        <!-- <li class="active-label animate__animated animate__lightSpeedInLeft"><a
+                                    href="{% url 'userArea:servizi_home' %}"><img alt=""
+                                        src="{% static 'images/icons/stack.png' %}">Servizi</a>
+
+                                <ul>
+                                    <li><a href="{% url 'userArea:servizi_attivi' %}">Servizi attivati</a></li>
+                                    <li><a href="{% url 'userArea:servizi_all' %}">Servizi disponibili</a></li>
+                                </ul>
+
+                            </li> -->
+
+                        <div class="accordion" id="accordionExample">
+
+                            <div class="accordion-item active-label animate__animated animate__lightSpeedInLeft">
+                                <h2 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed active-accordion" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false"
+                                        aria-controls="collapseTwo">
+                                        <img alt="" src="{% static 'images/icons/stack.png' %}">Servizi
+                                    </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                                    data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <ul>
+                                            <li><a href="{% url 'userArea:servizi_home' %}">Pagina principale</a>
+                                            </li>
+                                            <li><a href="{% url 'userArea:servizi_attivi' %}">Servizi attivati</a>
+                                            </li>
+                                            <li><a href="{% url 'userArea:servizi_all' %}">Servizi disponibili</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        {% else %}
+                        <!-- <li class="animate__animated animate__lightSpeedInLeft"><a
+                                    href="{% url 'userArea:servizi_home' %}"><img alt=""
+                                        src="{% static 'images/icons/stack.png' %}">Servizi</a></li> -->
+                        <div class="accordion" id="accordionExample">
+
+                            <div class="accordion-item animate__animated animate__lightSpeedInLeft">
+                                <h2 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        <img alt="" src="{% static 'images/icons/stack.png' %}">Servizi
+                                    </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                                    data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <ul>
+                                            <li><a href="{% url 'userArea:servizi_home' %}">Pagina principale</a>
+                                            </li>
+                                            <li><a href="{% url 'userArea:servizi_attivi' %}">Servizi attivati</a>
+                                            </li>
+                                            <li><a href="{% url 'userArea:servizi_all' %}">Servizi disponibili</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        {% endif %}
+
+                        {% if request.path|slice:'0:33' == "/area-personale/articoli-salvati/" %}
+                        <li class="active-label"><a href="{% url 'userArea:post_saved' %}"><img alt=""
+                                    src="{% static 'images/icons/blog-icon.svg' %}">Blog</a></li>
+                        {% else %}
+                        <li><a href="{% url 'userArea:post_saved' %}"><img alt=""
+                                    src="{% static 'images/icons/blog-icon.svg' %}">Blog</a></li>
+                        {% endif %}
+
+
+                    </ul>
+                    <div class="sidebar-bottom">
+                        <ul>
+                            <li><a href="{% url 'home' %}" class="back-to-site"><img
+                                        src="{% static 'images/icons/arrow_back.png' %}" alt="">
+                                    Torna su LegalArs.net</a></li>
+                            <li><a href="{% url 'logout' %}"><img alt=""
+                                        src="{% static 'images/icons/exit.png' %}">Disconnettiti</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <aside id="sidebar">
+            <div class="offcanvas-lg offcanvas-end" tabindex="-1" id="offcanvasResponsive"
+                aria-labelledby="offcanvasResponsiveLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasResponsiveLabel">La tua area personale</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
+                        data-bs-target="#offcanvasResponsive" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <div class="menu-list-container">
+                        <ul class="sidebar-list-items">
+                            <li class="list-item-logo"><a href="{% url 'home' %}"><img
+                                        src="{% static 'images/logo.png' %}" class="logo" alt="Logo di Legal Ars"></a>
+                            </li>
+                            {% if request.path == "/area-personale/" %}
+                            <li class="active-label animate__animated animate__lightSpeedInLeft"><a
+                                    href="{% url 'userArea:user_home' %}"><img alt=""
+                                        src="{% static 'images/icons/category.png' %}">Bacheca</a></li>
+                            {% else %}
+                            <li class="animate__animated animate__lightSpeedInLeft"><a
+                                    href="{% url 'userArea:user_home' %}"><img alt=""
+                                        src="{% static 'images/icons/category.png' %}">Bacheca</a></li>
+                            {% endif %}
+
+                            {% if request.path|slice:'0:24' == "/area-personale/servizi/" %}
+                            <!-- <li class="active-label animate__animated animate__lightSpeedInLeft"><a
+                                    href="{% url 'userArea:servizi_home' %}"><img alt=""
+                                        src="{% static 'images/icons/stack.png' %}">Servizi</a>
+
+                                <ul>
+                                    <li><a href="{% url 'userArea:servizi_attivi' %}">Servizi attivati</a></li>
+                                    <li><a href="{% url 'userArea:servizi_all' %}">Servizi disponibili</a></li>
+                                </ul>
+
+                            </li> -->
+
+                            <div class="accordion" id="accordionExample">
+
+                                <div class="accordion-item active-label animate__animated animate__lightSpeedInLeft">
+                                    <h2 class="accordion-header" id="headingTwo">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                                            aria-expanded="false" aria-controls="collapseTwo">
+                                            <img alt="" src="{% static 'images/icons/stack.png' %}">Servizi
+                                        </button>
+                                    </h2>
+                                    <div id="collapseTwo" class="accordion-collapse collapse"
+                                        aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <ul>
+                                                <li><a href="{% url 'userArea:servizi_home' %}">Pagina principale</a>
+                                                </li>
+                                                <li><a href="{% url 'userArea:servizi_attivi' %}">Servizi attivati</a>
+                                                </li>
+                                                <li><a href="{% url 'userArea:servizi_all' %}">Servizi disponibili</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            {% else %}
+                            <!-- <li class="animate__animated animate__lightSpeedInLeft"><a
+                                    href="{% url 'userArea:servizi_home' %}"><img alt=""
+                                        src="{% static 'images/icons/stack.png' %}">Servizi</a></li> -->
+                            <div class="accordion" id="accordionExample">
+
+                                <div class="accordion-item animate__animated animate__lightSpeedInLeft">
+                                    <h2 class="accordion-header" id="headingTwo">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                                            aria-expanded="false" aria-controls="collapseTwo">
+                                            <img alt="" src="{% static 'images/icons/stack.png' %}">Servizi
+                                        </button>
+                                    </h2>
+                                    <div id="collapseTwo" class="accordion-collapse collapse"
+                                        aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <ul>
+                                                <li><a href="{% url 'userArea:servizi_home' %}">Pagina principale</a>
+                                                </li>
+                                                <li><a href="{% url 'userArea:servizi_attivi' %}">Servizi attivati</a>
+                                                </li>
+                                                <li><a href="{% url 'userArea:servizi_all' %}">Servizi disponibili</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            {% endif %}
+
+                            {% if request.path|slice:'0:33' == "/area-personale/articoli-salvati/" %}
+                            <li class="active-label animate__animated animate__lightSpeedInLeft"><a
+                                    href="{% url 'userArea:post_saved' %}"><img alt=""
+                                        src="{% static 'images/icons/blog-icon.svg' %}">Blog</a></li>
+                            {% else %}
+                            <li class="animate__animated animate__lightSpeedInLeft"><a
+                                    href="{% url 'userArea:post_saved' %}"><img alt=""
+                                        src="{% static 'images/icons/blog-icon.svg' %}">Blog</a></li>
+                            {% endif %}
+
+
+                        </ul>
+                    </div>
+                    <div class="sidebar-bottom">
+                        <ul>
+                            <li class="animate__animated animate__lightSpeedInLeft"><a href="{% url 'home' %}"
+                                    class="back-to-site"><img src="{% static 'images/icons/arrow_back.png' %}" alt="">
+                                    Torna su LegalArs.net</a></li>
+                            <li class="animate__animated animate__lightSpeedInLeft"><span data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal" class="back-to-site">
+                                    <img alt="" src="{% static 'images/icons/live_help.svg' %}">Assistenza</span>
+                            </li>
+                            <li class="animate__animated animate__lightSpeedInLeft"><a href="{% url 'logout' %}"
+                                    class="back-to-site"><img alt=""
+                                        src="{% static 'images/icons/exit.png' %}">Disconnettiti</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+        </aside>
+
+        <main>
+            <div class="breadcrumb">
+                <p>Dove ti trovi: </p>
+
+
+                {% if request.path == "/area-personale/" %}
+                <a href="{% url 'userArea:user_home' %}">Bacheca</a>
+
+                {% elif request.path|slice:'0:41' == "/area-personale/servizi/recupero-credito/" %}
+                <a href="{% url 'userArea:servizi_home' %}">Servizi</a>
+                <img alt="" src="{% static 'images/icons/Vector.png' %}">
+                <a href="{% url 'userArea:servizi_home' %}">Recupero Credito</a>
+
+                {% elif request.path|slice:'0:30' == "/area-personale/servizi/attivi" %}
+                <a href="{% url 'userArea:servizi_home' %}">Servizi</a>
+                <img alt="" src="{% static 'images/icons/Vector.png' %}">
+                <a href="{% url 'userArea:servizi_attivi' %}">Attivati</a>
+
+                {% elif request.path|slice:'0:29' == "/area-personale/servizi/lista" %}
+                <a href="{% url 'userArea:servizi_home' %}">Servizi</a>
+                <img alt="" src="{% static 'images/icons/Vector.png' %}">
+                <a href="{% url 'userArea:servizi_all' %}">Disponibili</a>
+
+                {% elif request.path|slice:'0:24' == "/area-personale/servizi/" %}
+                <a href="{% url 'userArea:servizi_home' %}">Servizi</a>
+
+                {% elif request.path|slice:'0:33' == "/area-personale/articoli-salvati/" %}
+                <a href="{% url 'userArea:post_saved' %}">Blog</a>
+                {% endif %}
+            </div>
+
+            <!-- Modal Assistenza -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Contatta l'assistenza</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Compila i campi sottostanti e inviaci la tua comunicazione.</p>
+                            {{contact_form}}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+                            <button type="button" class="btn btn-primary">Invia</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% block main %}
+            {% endblock main %}
+        </main>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="container-fluid">
+        <div class="container">
+            <div class="row gy-3 mb-5">
+                <div class="col-lg-3 col-md-6 col-sm-12 order-lg-1 order-md-1 order-sm-1 order-1 text-responsive">
+                    <h3>LegalArs.net</h3>
+                    <ul>
+                        <li>Avv. Antonio Mazza <br>
+                            P.IVA: 01945420790</li>
+                        <li>Lo Studio</li>
+                        <li><a href="{% url 'privacyPage' %}">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-6 col-md-12 order-lg-2 order-md-3 order-3">
+                    <div class="row">
+                        <div class="col-lg-12 col-12 text-responsive">
+                            <h3>I nostri Servizi</h3>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 text-responsive">
+                            <ul>
+                                <li><a href="{% url 'truffe-online' %}">Investimenti e truffe online</a></li>
+                                <li><a href="{% url 'separazioni-divorzi' %}">Separazione e divorzi</a></li>
+                                <li><a href="{% url 'esdebitazione' %}">Esdebitazione</a></li>
+                                <li><a href="{% url 'diffamazione' %}">Diffamazine a mezzo stampa</a></li>
+                                <li><a href="{% url 'colpa-medica' %}">Colpa medica</a></li>
+                                <li><a href="{% url 'mandato-europeo' %}">Mandato di arresto europeo</a></li>
+                                <li><a href="{% url 'rapporti-bancari' %}">Tutela nei rapporti bancari</a></li>
+                                <li><a href="{% url 'atti-esattoriali' %}">Tutela avverso atti esattoriali</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 text-responsive">
+                            <ul>
+                                <li><a href="{% url 'tutela-immagine' %}">Tutela delle immagini sul Web</a></li>
+                                <li><a href="{% url 'impresa-risanamento' %}">Crisi di impresa e risanamento
+                                        aziendale</a></li>
+                                <li><a href="{% url 'reati-ambientali' %}">Reati Ambientali</a></li>
+                                <li><a href="#">Recupero Crediti</a></li>
+                                <li><a href="{% url 'diritto-impresa' %}">Diritto di Impresa</a></li>
+                                <li><a href="{% url 'real-estate' %}">Real Estate</a></li>
+                                <li><a href="{% url 'permesso-soggiorno' %}">Permesso di Soggiorno</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12 order-lg-3 order-md-2 order-2 text-responsive">
+                    <h3>Contatti</h3>
+                    <ul>
+                        <li>Via Lovanio, 10, 20121 Milano</li>
+                        <li>EMAIL: info@legalars.net</li>
+                        <li>TEL: +39 0282951861</li>
+                        <li>FAX: 1786060284</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-12 text-left text-responsive">
+                    <small>Copyright © 2022 LegalArs. Tutti i diritti riservati.</small>
+                </div>
+                <div class="col-md-6 col-sm-12 text-end text-responsive">
+                    <small>Sviluppato da <a href="#">Free Attitude</a></small>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- FOOTER END -->
+
+    <!-- BOOTSTRAP JS -->
+
+    <script src="{% static 'bootstrap/dist/js/bootstrap.bundle.js' %}"></script>
+
+
+
+
+</body>
+
+</html>

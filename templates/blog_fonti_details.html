@@ -1,0 +1,41 @@
+{% extends 'blog_fonti_base.html' %}
+{% load static %}
+
+{% block title %}{{fonte.titolo}} - LegalArs{% endblock title %}
+
+{% block metatag %}
+<script src="{% static 'js/fonti_index.js' %}"></script>
+{% endblock metatag %}
+
+{% block indice %}
+<div class="accordion accordion-index" id="accordionExample">
+
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingIndex">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseIndex" aria-expanded="true" aria-controls="collapseIndex">
+                Articoli
+            </button>
+        </h2>
+        <div id="collapseIndex" class="accordion-collapse collapse" aria-labelledby="headingIndex"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body container-index">
+
+            </div>
+        </div>
+    </div>
+    <h4>Altre fonti:</h4>
+</div>
+{% endblock indice %}
+
+{% block content %}
+
+
+<!-- NON INSERIRE ELEMENTI <A> DENTRO fonti-details-body -->
+<article class="fonti-details-body" style="text-align: center;">
+    <h2 class="fonte-titolo">{{fonte.titolo}}</h2>
+    <h3 class="fonte-sottotitolo">{{fonte.sotto_titolo}}</h3>
+
+    {{fonte.corpo|safe}}
+</article>
+{% endblock content %}

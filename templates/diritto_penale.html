@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Diritto Penale - LegalArs{% endblock title %}
+
+{% block metatag %}
+<script src="{% static 'js/activityEffect.js' %}"></script>
+{% endblock metatag %}
+
+{% block main %}
+<article class="diritto-penale activity-content">
+    <section id="hero">
+        <h1>Diritto Penale</h1>
+    </section>
+    <section id="activity-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-8 col-sm-12">
+                    <h2>Il diritto penale è quella branca del diritto in cui ci si occupa dei reati e delle conseguenze
+                        (le
+                        pene) da essi derivanti. <br>
+                        Determinati comportamenti umani (i reati) sono proibiti, per mezzo di una minaccia di una
+                        specifica
+                        sanzione afflittiva (la pena), a tutela dei valori fondanti la convivenza interna di un popolo.
+                    </h2>
+                    <div class="divider"></div>
+                    <p>I nostri Partners vantano specifiche competenze nel diritto penale e hanno maturato una lunga
+                        esperienza nell’assistenza e nella consulenza di società e privati (anche nelle vesti di
+                        soggetti
+                        danneggiati).</p>
+                    <p>Numerosi sono stati gli incarichi assunti nell’ambito del diritto penale economico, con una
+                        speciale
+                        vocazione per i reati finanziari, societari e fallimentari nonché per i delitti contro la
+                        pubblica
+                        amministrazione, affrontando anche casi di associazione dedita alla commissione di truffe
+                        comunitarie.</p>
+                    <p>Nondimeno numerosi sono stati gli incarichi ricevuti per delitti contro la persona, comprese
+                        vicende
+                        omicidiarie e atti persecutori, sempre più diffusi nella casistica della c.d. violenza di
+                        genere.
+                    </p>
+                    <p>Diversi mandati difensivi sono stati conferiti da personalità politiche.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="container">
+        <div class="row row-2">
+            <div class="col-lg-6 col-md-8 col-sm-12">
+                <h3 class="text-center">Potrebbero interessarti</h3>
+                <div class="row custom-row">
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-position">
+                        <div class="img-container">
+                            <img src="{% static 'images/icons/attivita/reati-ambientali.png' %}" alt="...">
+                            <div class="overlay">
+                                <img src="{% static 'images/icons/attivita/white-icons/reati-ambientali.png' %}"
+                                    alt="...">
+                                <p>REATI <br> AMBIENTALI</p>
+                                <a href="{% url 'reati-ambientali' %}">Scopri</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-position">
+                        <div class="img-container">
+                            <img src="{% static 'images/icons/attivita/arresto-europeo.png' %}" alt="...">
+                            <div class="overlay">
+                                <img src="{% static 'images/icons/attivita/white-icons/arresto-europeo.png' %}"
+                                    alt="...">
+                                <p>MANDATO DI <br> ARRESTO EUROPEO</p>
+                                <a href="{% url 'mandato-europeo' %}">Scopri</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-position">
+                        <div class="img-container">
+                            <img src="{% static 'images/icons/attivita/diffamazione-stampa.png' %}" alt="...">
+                            <div class="overlay">
+                                <img src="{% static 'images/icons/attivita/white-icons/diffamazione-stampa.png' %}"
+                                    alt="...">
+                                <p>DIFFAMAZIONE A <br> MEZZO STAMPA</p>
+                                <a href="{% url 'diffamazione' %}">Scopri</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <section id="home-section-seven" class="container-fluid">
+        <div class="container content">
+            <div class="row gy-5">
+                <div class="col-lg-6 col-sm-12">
+                    <h3>Contattaci per maggiori <br> informazioni</h3>
+                    <a href="#">Via Lovanio, 10, 20121 Milano, Italy</a>
+                    <a href="#">Telefono +39 02.82.95.18.61</a>
+                    <a href="#">Fax: 178.6060.284</a>
+                    <a href="#">E-mail: info@legalars.net</a>
+                </div>
+                <div class="col-lg-6 col-sm-12">
+
+                    <form class="row g-3 form-white">
+                        <div class="col-md-6 form-floating">
+                            <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com"
+                                required>
+                            <label for="floatingInput">Nome*</label>
+                        </div>
+                        <div class="col-md-6 form-floating">
+                            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
+                                required>
+                            <label for="floatingInput">Email*</label>
+                        </div>
+                        <div class="col-12 form-floating">
+                            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"
+                                rows="5" required></textarea>
+                            <label for="floatingTextarea">Messaggio*</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Accetto l’informativa sulla <a href="{% url 'privacyPage' %}">privacy</a> *
+                            </label>
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn-gold-outline">INVIA</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</article>
+{% endblock main %}

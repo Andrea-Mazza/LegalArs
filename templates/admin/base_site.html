@@ -1,0 +1,21 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+
+{% block extrastyle %}
+<link rel="stylesheet" href="{% static 'css/admin.css' %}">
+{% endblock %}
+
+
+{% block title %}Amministrazione | LegalArs{% endblock %}
+
+<!-- HEADER START -->
+{% block branding %}
+<h1>Amministrazione LegalArs</h1>
+{% endblock %}
+<!-- HEADER END -->
+
+
+{% block extrahead %}
+<script src="{% static 'tinymce/js/tinymce/tinymce.min.js' %}"></script>
+<script src="{% static 'tinymce/tinymce_init.js' %}"></script>
+{% endblock %}

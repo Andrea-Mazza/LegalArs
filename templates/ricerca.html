@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Ricerca veloce{% endblock title %}
+
+{% block metatag %}
+
+{% endblock metatag %}
+
+{% block main %}
+<section class="container ricerca-section">
+    <h1 class="text-center">Ricerca gli articoli che ti interessano</h1>
+
+    <form class="search-form" method="get">
+        <div class="field-container">
+            <div class="form-floating mb-3">
+                {{form.ricerca}}
+                <label class="label-container mb-2" for="{{form.ricerca.auto_id}}">{{form.ricerca.label}}</label>
+            </div>
+            {% for error in form.ricerca.errors %}
+            <p class="text-danger">{{ error }}</p>
+            {% endfor %}
+            <button class="btn-gold-outline mb-3" type="submit">Cerca</button>
+        </div>
+    </form>
+
+    {% if query %}
+    <p>Risultati per "{{ query }}":</p>
+    {% if results %}
+    <section id="blog-news-content" class="container">
+        <div class="row g-5">
+            {% for post in results %}
+
+            <div class="col-lg-4 col-md-6 col-sm-12 post-card d-flex flex-column justify-content-between">
+                <div class="blog-card-image">
+                    <img src="{{post.copertina.url}}" alt="" class="img-fluid">
+                </div>
+                <div class="blog-card-heading">
+                    <h2>{{post.titolo}}</h2>
+                </div>
+                <div class="blog-card-description d-flex flex-column justify-content-end">
+                    <a href="{% url 'blog_category_details' slug=post.categoria.slug %}"> {{ post.categoria.nome }}</a>
+                    <small>Pubblicazione: {{post.publish|date:'d F Y'}}</small>
+                    <small>Autore: {{post.autore.name}} {{post.autore.surname}}</small>
+                    <p>{{post.descrizione|safe}}</p>
+                    <a href="{% url 'blog_news_details' slug=post.slug %}" class="btn-gold-outline">Leggi</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    {% else %}
+    <p>Nessun risultato trovato.</p>
+    <p>Spiacente, nessun articolo corrisponde ai tuoi criteri. Prova con un’altra ricerca</p>
+
+    <p>Si potrebbero prendere in considerazione alcuni dei nostri suggerimenti per ottenere risultati migliori:</p>
+    <ul>
+        <li>Controlla la ortografia.</li>
+        <li>Prova con termini simili o sinonimi.</li>
+        <li>Provare a utilizzare più di una parola chiave.</li>
+    </ul>
+    {% endif %}
+    {% endif %}
+</section>
+{% endblock main %}

@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}Contatti - LegalArs{% endblock title %}
+
+{% block metatag %}{% endblock metatag %}
+
+{% block main %}
+<section class="container-fluid" id="contatti-hero">
+    <div class="text-hero container">
+        <p>CHI SIAMO</p>
+        <h1>Studio Legale LegalArs</h1>
+    </div>
+</section>
+<section class="contatti-body container">
+    <div class="row row-2">
+        <div class="col-lg-6 col-md-8 col-sm-12">
+            <h2 class="text-center">Richiedi una Consulenza</h2>
+            <p class="text-center">Lasciaci il tuo contatto, <br>
+                verrai ricontattato al più presto!</p>
+            <form class="row g-3 form-black">
+                <div class="col-md-6 form-floating">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" required>
+                    <label for="floatingInput">Nome*</label>
+                </div>
+                <div class="col-md-6 form-floating">
+                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
+                    <label for="floatingInput">Email*</label>
+                </div>
+                <div class="col-12 form-floating">
+                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" rows="5"
+                        required></textarea>
+                    <label for="floatingTextarea">Messaggio*</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        Accetto l’informativa sulla <a href="{% url 'privacyPage' %}">privacy</a> *
+                    </label>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn-gold-outline">INVIA</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-md-12 d-flex flex-column">
+            <p>STUDIO LEGALE LEGALARS</p>
+            <h2>I nostri riferimenti per poterci contattare</h2>
+            <a href="#">Via Lovanio, 10, 20121 Milano, Italy</a>
+            <a href="#">Telefono: +39 02.82.95.18.61</a>
+            <a href="#">Fax: 178.6060.284</a>
+            <a href="#">E-mail: info@legalars.net</a>
+        </div>
+        <div class="col-lg-6 col-md-12">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2797.6346964663962!2d9.184165915388176!3d45.477162240599775!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786c13560390e55%3A0x4512d207259d562e!2sVia+Lovanio%2C+10%2C+20121+Milano+MI!5e0!3m2!1sen!2sit!4v1514904419387"
+                width="100%" height="360" frameborder="0" style="border:0" allowfullscreen=""></iframe>
+        </div>
+    </div>
+</section>
+{% endblock main %}
