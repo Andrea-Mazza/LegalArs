@@ -33,8 +33,7 @@ DEBUG = True
 
 # DJANGO_SETTINGS_MODULE = 'config.settings'
 
-ALLOWED_HOSTS = ['192.168.1.88',
-                 '127.0.0.1', '192.168.0.167', '192.168.129.248']
+ALLOWED_HOSTS = ['legalars-app-9yyw9.ondigitalocean.app', 'localhost']
 
 
 # Application definition
