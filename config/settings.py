@@ -71,7 +71,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-DJANGO_SETTINGS_MODULE = 'config.settings'
+DJANGO_SETTINGS_MODULE = os.getenv('DJANGO_SETTINGS_MODULE')
 ROOT_URLCONF = 'config.urls'
 
 TEMPLATES = [
@@ -137,8 +137,8 @@ AWS_DEFAULT_ACL = 'public-read'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 STATIC_URL = '{}/{}/'.format(AWS_S3_ENDPOINT_URL, AWS_LOCATION)
 STATIC_ROOT = 'static'
-MEDIA_URL = '{}/{}/'.format(AWS_S3_ENDPOINT_URL, 'media')
-MEDIA_ROOT = 'media/'
+MEDIA_URL = '{}/{}/'.format(AWS_S3_ENDPOINT_URL, '/images/')
+MEDIA_ROOT = 'static/images'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 # Password validation
@@ -175,13 +175,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [str(BASE_DIR.joinpath('static'))]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# STATIC_URL = 'static/'
+# STATICFILES_DIRS = [str(BASE_DIR.joinpath('static'))]
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-MEDIA_ROOT = 'static/images'
+# MEDIA_ROOT = 'static/images'
 
-MEDIA_URL = '/images/'
+# MEDIA_URL = '/images/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
