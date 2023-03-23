@@ -137,7 +137,7 @@ AWS_DEFAULT_ACL = 'public-read'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 STATIC_URL = '{}/{}/'.format(AWS_S3_ENDPOINT_URL, AWS_LOCATION)
 STATIC_ROOT = 'static'
-MEDIA_URL = '{}/{}/'.format(AWS_S3_ENDPOINT_URL, '/images/')
+MEDIA_URL = '{}/{}/'.format(AWS_S3_ENDPOINT_URL, '/blog/')
 MEDIA_ROOT = 'static/images'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
