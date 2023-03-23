@@ -53,6 +53,8 @@ INSTALLED_APPS = [
     # per la sitemap
     'django.contrib.sitemaps',
     'django.contrib.sites',
+    # for spaces
+    'storages',
 ]
 
 SITE_ID = 1
@@ -112,6 +114,21 @@ PASSWORD_RESET_TIMEOUT_DAYS = 1
 
 AUTH_USER_MODEL = 'userArea.CustomUser'
 
+AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
+AWS_S3_ENDPOINT_URL = os.getenv('AWS_S3_ENDPOINT_URL')
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'no-cache',
+}
+AWS_LOCATION = 'static'
+AWS_DEFAULT_ACL = 'public-read'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATIC_URL = '{}/{}/'.format(AWS_S3_ENDPOINT_URL, AWS_LOCATION)
+STATIC_ROOT = 'static'
+MEDIA_URL = '{}/{}/'.format(AWS_S3_ENDPOINT_URL, 'media')
+MEDIA_ROOT = 'media/'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
