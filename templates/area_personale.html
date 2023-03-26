@@ -11,6 +11,8 @@
 <section id="user-area-home">
     <h1>La tua area personale</h1>
 
+
+
     {% if recupero_credito %}
     <div class="user-area-home-section">
         <div class="row-heading">Servizi attivati</div>
@@ -51,6 +53,12 @@
             </div>
         </div>
     </div>
+    {% else %}
+    <div class="nothing-to-show">
+        <div class="alert alert-primary" role="alert">
+            Al momento non risulta che tu abbia servizi attivi.
+        </div>
+    </div>
     {% endif %}
 
     {% if post %}
@@ -85,6 +93,12 @@
                 <div class="see-more"><a href="{% url 'userArea:post_saved' %}">Vedi tutti <img alt=""
                             src="/static/images/icons/Vector.png"></a></div>
             </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="nothing-to-show">
+        <div class="alert alert-primary" role="alert">
+            Al momento non risultano articoli salvati.
         </div>
     </div>
     {% endif %}

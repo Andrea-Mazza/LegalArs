@@ -45,41 +45,14 @@
         {% endfor %}
     </div>
     {% else %}
-    <p>Niente</p>
+    <div class="nothing-to-show">
+        <div class="alert alert-warning" role="alert">
+            <h4>Pare che tu non abbia attivato ancora nessun servizio.</h4>
+            <p>Quando ne attiverai uno, tramite questa pagina potrai accedere a tutti i dettagli e le comunicazioni in
+                tempo reale.</p>
+        </div>
+    </div>
     {% endif %}
 </section>
-
-
-{% comment %}
-
-<h2>Creditore</h2>
-
-{% if field.cr_tipo == 'PJ' %}
-{{field.cr_denominazione_sociale}}<br>
-{{field.cr_comune_sede_principale}}<br>
-{{field.cr_indirizzo_sede_principale}}<br>
-{{field.cr_email}}<br>
-{{field.cr_pec}}<br>
-{{field.cr_codice_fiscale}}<br>
-{{field.cr_partita_iva}}<br>
-{% elif field.cr_tipo == 'PF' %}
-{{field.cr_nome}}<br>
-{{field.cr_cognome}}<br>
-{{field.cr_luogo_di_nascita}}<br>
-{{field.cr_data_di_nascita}}<br>
-{{field.cr_comune_di_residenza}}<br>
-{{field.cr_indirizzo_di_residenza}}<br>
-{{field.cr_email}}<br>
-{{field.cr_pec}}<br>
-{{field.cr_codice_fiscale}}<br>
-{{field.cr_partita_iva}}<br>
-{% endif %}
-
-{% for debitore in field.db_tipo.items %}
-{{debitore.1}}<br>
-{% endfor %}
-
-{% endfor %} {% endcomment %}
-
 
 {% endblock main %}

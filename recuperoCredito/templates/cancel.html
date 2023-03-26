@@ -1,0 +1,17 @@
+{% extends 'area_personale_base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block title %}Recupero Credito - LegalArs{% endblock title %}
+
+
+{% block metatag %}
+<script src="{% static 'js/enableModal.js' %}"></script>
+{% endblock metatag %}
+
+
+{% block main %}
+<h2 class="text-center">Pagamento cancellato</h2>
+<a href="{% url 'userArea:servizi_all' %}" class="btn-gold-outline">Torna indietro</a>
+
+{% endblock main %}

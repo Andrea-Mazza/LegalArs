@@ -110,14 +110,24 @@
     </div>
   </div>
 
-  <h3>Comunicazioni:</h3>
-  {% if messaggi %}
-  <ul class="messaggi-container">
-    {% for messaggio in messaggi reversed %}
-    <li class="messaggio"> <span class="messaggio-label">Comunicazione {{forloop.revcounter}}</span>{{messaggio.testo|safe}}</li>
-    {% endfor %}
-  </ul>
-  {% endif %}
+  <div class="comunicazioni-section">
+    <h3>Comunicazioni:</h3>
+
+    <ul class="messaggi-container">
+      {% if pratica_cedito.procura_speciale %}
+      <li class="messaggio"> <span class="messaggio-label">Comunicazione
+          1</span>
+        <a href="{{pratica_credito.get_url}}">Scarica</a>{{messaggio.testo|safe}}
+      </li>
+      {% endif %}
+      {% if messaggi %}
+      {% for messaggio in messaggi reversed %}
+      <li class="messaggio"> <span class="messaggio-label">Comunicazione
+          {{forloop.revcounter|add:"1"}}</span>{{messaggio.testo|safe}}</li>
+      {% endfor %}
+      {% endif %}
+    </ul>
+  </div>
 </section>
 
 {% endblock main %}

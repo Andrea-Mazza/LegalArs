@@ -14,6 +14,10 @@ from django.dispatch import receiver
 # Create your models here.
 
 
+class RecuperoCreditoOneTime(models.Model):
+    price = models.DecimalField(decimal_places=2, max_digits=12)  # cent
+
+
 def get_current_date():
     return timezone.now().date()
 
@@ -206,6 +210,10 @@ class ServizioRecuperoCredito(models.Model):
     somma = models.DecimalField(
         max_digits=12, decimal_places=2, default='0.00')
     comunicazioni_non_lette = models.IntegerField(default=0)
+    first_payment = models.DecimalField(
+        max_digits=12, decimal_places=2, default='0.00')
+    procura_speciale = models.FileField(
+        upload_to='recupero_credito_doc', null=True)
 
     def __str__(self):
         if self.cr_tipo == 'Persona Fisica':

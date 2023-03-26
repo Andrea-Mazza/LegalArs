@@ -187,3 +187,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+STRIPE_PUBLISHABLE_KEY = os.getenv('STRIPE_PUBLISHABLE_KEY')
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
+BACKEND_DOMAIN = os.getenv('BACKEND_DOMAIN')
+PAYMENT_SUCCESS_URL = os.getenv('PAYMENT_SUCCESS_URL')
+PAYMENT_CANCEL_URL = os.getenv('PAYMENT_CANCEL_URL')
+
+
+# STRIPE_PRICE_ID = os.getenv('STRIPE_PRICE_ID')
+# STRIPE_ENDPOINT_SECRET = os.getenv('STRIPE_ENDPOINT_SECRET')

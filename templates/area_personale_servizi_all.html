@@ -4,7 +4,9 @@
 {% block title %}Area Personale{% endblock title %}
 
 
-{% block metatag %}{% endblock metatag %}
+{% block metatag %}
+<script src="{% static 'js/enableModal.js' %}"></script>
+{% endblock metatag %}
 
 
 {% block main %}
@@ -23,8 +25,36 @@
                 </div>
                 <p>Con la nostra procedura semplice e guidata, potrai iniziare a recuperare il tuo credito
                     in pochi semplici passi.</p>
-                <a href="{% url 'userArea:recupero-credito-start' %}" class="btn-gold-outline">Inizia ora</a>
-                <span class="btn-gold-outline">Anteprima</span>
+                <a href="https://buy.stripe.com/aEU17081c9z78Kc9AA" class="btn-gold-outline">Abbonati e inizia
+                    ora</a>
+                <span class="btn-gold-outline" data-bs-toggle="modal"
+                    data-bs-target="#recuperoCreditoModal">Anteprima</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- recuperoCreditoModal -->
+<div class="modal fade" id="recuperoCreditoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Servizio di recupero credito</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Per creare una pratica di recupero credito online, dovrai inserire solo alcuni dati che
+                permetteranno all'avvocato di avere tutte le informazioni necessarie per procedere con la richiesta di
+                recupero. Sarà necessario indicare se il creditore è una persona oppure una società/ente, inserire
+                informazioni come nome, cognome, residenza,
+                codice fiscale e partita IVA. Gli stessi dati ti saranno richiesti per il debitore. Infine, sarà
+                necessario inserire informazioni riguardanti la somma da recuperare.
+                Una volta che la pratica verrà avviata, potrai ricevere le comunicazioni direttamente
+                dall'avvocato tramite la tua area personale, dove potrai monitorare lo stato della pratica e avere
+                accesso a tutte le informazioni relative alla procedura di recupero del credito.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
             </div>
         </div>
     </div>

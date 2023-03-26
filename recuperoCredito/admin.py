@@ -28,5 +28,6 @@ admin.site.register(models.ServizioRecuperoCredito,
 admin.site.register(models.Tribunali)
 admin.site.register(models.MessaggioRecuperoCredito,
                     MessaggioRecuperoCreditoAdmin)
+admin.site.register(models.RecuperoCreditoOneTime)
 # admin.site.register(models.RecuperoCredito)
 # admin.site.register(models.CreditoreGiuridico)
