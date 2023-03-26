@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
 
     //Find al the needed elements in the DOM through them id attribute
-    const body = document.getElementById('body')
+    // const body = document.getElementById('body')
     const headerBtn = document.getElementById('headerBtn')
     const lineOne = document.getElementById('lineOne')
     const lineTwo = document.getElementById('lineTwo')
@@ -47,14 +47,14 @@ document.addEventListener('DOMContentLoaded', function () {
             lineThree.animate(lineThreeAnimation, animationTiming)
 
             headerBtn.classList.remove('not-open')
-            body.classList.add('menu-open')
+            // body.classList.add('menu-open')
         } else {
             lineOne.animate(lineOneAnimation, animationTiming).reverse()
             lineTwo.animate(lineTwoAnimation, lineTwoTiming).reverse()
             lineThree.animate(lineThreeAnimation, animationTiming).reverse()
 
             headerBtn.classList.add('not-open')
-            body.classList.remove('menu-open')
+            // body.classList.remove('menu-open')
         }
     })
 
