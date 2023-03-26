@@ -139,10 +139,18 @@
                     </ul>
                     <div class="sidebar-bottom">
                         <ul>
-                            <li><a href="{% url 'home' %}" class="back-to-site"><img
-                                        src="{% static 'images/icons/arrow_back.png' %}" alt="">
+                            <li class="animate__animated animate__lightSpeedInLeft"><a href="{% url 'home' %}"
+                                    class="back-to-site"><img src="{% static 'images/icons/arrow_back.png' %}" alt="">
                                     Torna su LegalArs.net</a></li>
-                            <li><a href="{% url 'logout' %}"><img alt=""
+                            <li class="animate__animated animate__lightSpeedInLeft"><a
+                                    href="https://billing.stripe.com/p/login/5kA16EgVB3M36Jy4gg" class="back-to-site">I
+                                    tuoi abbonamenti</a></li>
+                            <li class="animate__animated animate__lightSpeedInLeft"><span data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal" class="back-to-site">
+                                    <img alt="" src="{% static 'images/icons/live_help.svg' %}">Assistenza</span>
+                            </li>
+                            <li class="animate__animated animate__lightSpeedInLeft"><a href="{% url 'logout' %}"
+                                    class="back-to-site"><img alt=""
                                         src="{% static 'images/icons/exit.png' %}">Disconnettiti</a></li>
                         </ul>
                     </div>
@@ -264,6 +272,9 @@
                             <li class="animate__animated animate__lightSpeedInLeft"><a href="{% url 'home' %}"
                                     class="back-to-site"><img src="{% static 'images/icons/arrow_back.png' %}" alt="">
                                     Torna su LegalArs.net</a></li>
+                            <li class="animate__animated animate__lightSpeedInLeft"><a
+                                    href="https://billing.stripe.com/p/login/5kA16EgVB3M36Jy4gg" class="back-to-site">I
+                                    tuoi abbonamenti</a></li>
                             <li class="animate__animated animate__lightSpeedInLeft"><span data-bs-toggle="modal"
                                     data-bs-target="#exampleModal" class="back-to-site">
                                     <img alt="" src="{% static 'images/icons/live_help.svg' %}">Assistenza</span>
