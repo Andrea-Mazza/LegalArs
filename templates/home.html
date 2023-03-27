@@ -351,8 +351,8 @@
                                     <h2>{{post.titolo}}</h2>
                                 </div>
                                 <div class="blog-card-description d-flex flex-column justify-content-end">
-                                    <a href="{% url 'blog_category_details' slug=post.categoria.slug %}"> {{
-                                        post.categoria.nome }}</a>
+                                    <a href="{% url 'blog_category_details' slug=post.categoria.slug %}">
+                                        {{post.categoria.nome}}</a>
                                     <small>Pubblicazione: {{post.publish|date:'d F Y'}}</small>
                                     <small>Autore: {{post.autore.name}} {{post.autore.surname}}</small>
                                     <p>{{post.descrizione|safe}}</p>
