@@ -60,4 +60,4 @@ document.addEventListener('DOMContentLoaded', function () {
 
 })
 
-//This is a comment
+//This is a comment to test the collect static command

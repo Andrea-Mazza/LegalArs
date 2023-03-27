@@ -130,7 +130,7 @@ AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
 AWS_S3_ENDPOINT_URL = os.getenv('AWS_S3_ENDPOINT_URL')
 AWS_S3_OBJECT_PARAMETERS = {
-    'CacheControl': 'no-cache',
+    'CacheControl': 'max-age=86400',
 }
 AWS_LOCATION = 'static'
 AWS_DEFAULT_ACL = 'public-read'
