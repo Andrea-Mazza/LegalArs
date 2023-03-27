@@ -25,9 +25,11 @@
 {% block main %}
 <section class="container-fluid" id="hero">
     <div class="text-hero container">
-        <p class="animate__animated animate__zoomInDown">LEGALARS MILANO</p>
-        <h1 class="animate__animated animate__zoomInDown">Lo studio legale interattivo, <br> la communitiy del diritto vivente, <br> a portata di click</h1>
-        <a href="#home-section-seven" class="animate__animated animate__zoomInDown btn-gold-outline">RICHIEDI UN CONTATTO</a>
+        <p class="animate__animated animate__zoomInDown">LEGALARS MILANO 1234</p>
+        <h1 class="animate__animated animate__zoomInDown">Lo studio legale interattivo, <br> la communitiy del diritto
+            vivente, <br> a portata di click</h1>
+        <a href="#home-section-seven" class="animate__animated animate__zoomInDown btn-gold-outline">RICHIEDI UN
+            CONTATTO</a>
     </div>
 </section>
 
@@ -332,39 +334,41 @@
         <h3>Portale Giuridico</h3>
         <div id="carouselExampleSlidesOnly" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-inner">
-              {% for post in posts %}
+                {% for post in posts %}
                 {% if forloop.counter0|divisibleby:3 %}
-                  {% if forloop.first %}
-                    <div class="carousel-item active">
-                  {% else %}
+                {% if forloop.first %}
+                <div class="carousel-item active">
+                    {% else %}
                     <div class="carousel-item">
-                  {% endif %}
-                  <div class="row">
-                {% endif %}
-                <div class="col-lg-4 col-md-6 col-sm-12 post-card d-flex flex-column">
-                    <div class="blog-card-image">
-                        <img src="{{post.copertina.url}}" alt="" class="img-fluid">
+                        {% endif %}
+                        <div class="row">
+                            {% endif %}
+                            <div class="col-lg-4 col-md-6 col-sm-12 post-card d-flex flex-column">
+                                <div class="blog-card-image">
+                                    <img src="{{post.copertina.url}}" alt="" class="img-fluid">
+                                </div>
+                                <div class="blog-card-heading">
+                                    <h2>{{post.titolo}}</h2>
+                                </div>
+                                <div class="blog-card-description d-flex flex-column justify-content-end">
+                                    <a href="{% url 'blog_category_details' slug=post.categoria.slug %}"> {{
+                                        post.categoria.nome }}</a>
+                                    <small>Pubblicazione: {{post.publish|date:'d F Y'}}</small>
+                                    <small>Autore: {{post.autore.name}} {{post.autore.surname}}</small>
+                                    <p>{{post.descrizione|safe}}</p>
+                                    <a href="{% url 'blog_news_details' slug=post.slug %}"
+                                        class="btn-gold-outline">Leggi</a>
+                                </div>
+                            </div>
+                            {% if forloop.counter0|add:1|divisibleby:3 or forloop.last %}
+                        </div>
                     </div>
-                    <div class="blog-card-heading">
-                        <h2>{{post.titolo}}</h2>
-                    </div>
-                    <div class="blog-card-description d-flex flex-column justify-content-end">
-                        <a href="{% url 'blog_category_details' slug=post.categoria.slug %}"> {{ post.categoria.nome }}</a>
-                        <small>Pubblicazione: {{post.publish|date:'d F Y'}}</small>
-                        <small>Autore: {{post.autore.name}} {{post.autore.surname}}</small>
-                        <p>{{post.descrizione|safe}}</p>
-                        <a href="{% url 'blog_news_details' slug=post.slug %}" class="btn-gold-outline">Leggi</a>
-                    </div>
+                    {% endif %}
+                    {% endfor %}
                 </div>
-                {% if forloop.counter0|add:1|divisibleby:3 or forloop.last %}
-                  </div>
-                </div>
-                {% endif %}
-              {% endfor %}
             </div>
+
         </div>
-          
-    </div>
 </section>
 
 <section id="home-section-seven" class="container-fluid">
