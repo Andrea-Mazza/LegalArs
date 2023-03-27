@@ -53,11 +53,6 @@ body {
   overflow-x: hidden;
 }
 
-.menu-open {
-  overflow-y: hidden;
-  max-height: 950px;
-}
-
 a {
   text-decoration: none;
   color: unset;
