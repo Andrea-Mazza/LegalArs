@@ -19,7 +19,6 @@ import stripe
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
-@login_required(login_url='/accesso/')
 def userArea_base(request):
     has_subscription = request.user.has_subscription
     if request.method == 'POST':
@@ -55,7 +54,6 @@ def userArea_base(request):
     return contact_form
 
 
-@login_required(login_url='/accesso/')
 def user_home(request):
     has_subscription = request.user.has_subscription
     recupero_credito = models.ServizioRecuperoCredito.objects.filter(
@@ -93,7 +91,6 @@ def user_home(request):
     return render(request, 'area_personale.html', context)
 
 
-@login_required(login_url='/accesso/')
 def servizi_home(request):
     assistenzaForm = userArea_base(request)
     has_subscription = request.user.has_subscription
@@ -102,7 +99,6 @@ def servizi_home(request):
     return render(request, 'area_personale_servizi.html', context)
 
 
-@login_required(login_url='/accesso/')
 def servizi_all(request):
     assistenzaForm = userArea_base(request)
     has_subscription = request.user.has_subscription
@@ -117,7 +113,6 @@ def servizi_all(request):
     return render(request, 'area_personale_servizi_all.html', context)
 
 
-@login_required(login_url='/accesso/')
 def create_checkout_subscription(request):
     if request.method == 'POST':
         prices = stripe.Price.list(
@@ -141,7 +136,6 @@ def create_checkout_subscription(request):
         return redirect(checkout_session.url)
 
 
-@login_required(login_url='/accesso/')
 def customer_portal(request):
     # For demonstration purposes, we're using the Checkout session to retrieve the customer ID.
     # Typically this is stored alongside the authenticated user in your database.
@@ -235,7 +229,7 @@ def cancel_subscription(request):
 #         instance.comunicazioni_non_lette += 1
 #         instance.save()
 
-@login_required(login_url='/accesso/')
+
 def servizi_attivi(request):
     recupero_credito = models.ServizioRecuperoCredito.objects.filter(
         current_user=request.user)
@@ -258,7 +252,6 @@ def servizi_attivi(request):
     return render(request, 'area_personale_servizi_attivi.html', context)
 
 
-@login_required(login_url='/accesso/')
 def servizio_attivo_details(request, pk):
     recupero_credito = models.ServizioRecuperoCredito.objects.filter(
         current_user=request.user)
@@ -288,7 +281,6 @@ def get_saved_posts(user):
     return list(reversed(Articolo.objects.filter(saved_by=user)))
 
 
-@login_required(login_url='/accesso/')
 def post_saved(request):
     has_subscription = request.user.has_subscription
     post = get_saved_posts(request.user)
