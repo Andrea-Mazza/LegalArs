@@ -19,4 +19,11 @@ urlpatterns = [
     path('cancel/', CancelView.as_view(), name="cancel"),
     path('procura-special/<int:pk>/',
          write_procura_speciale, name="procura-script"),
+    path('create_checkout_subscription/', views.create_checkout_subscription,
+         name="create_checkout_subscription"),
+    path('success-subscription', views.success_subscription,
+         name='success_subscription'),
+    path('cancel-subscription', views.cancel_subscription,
+         name='cancel-subscription'),
+    path('customer-portal/', views.customer_portal, name="customer_portal"),
 ]

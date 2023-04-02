@@ -16,15 +16,16 @@
     alcuni documenti che ci permetteranno di agire in qualità di tuoi difensori.</p>
 <p>In particolare dovranno essere effettuati i versamenti per:</p>
 <ul>
-    <li><span class="modal-trigger" data-bs-toggle="modal" data-bs-target="#contributoModal">il contributo
+    <li><span class="modal-trigger" data-bs-toggle="modal" data-bs-target="#contributoModal">contributo
             unificato</span>, pari a €{{contributo}}</li>
     {% if bollo %}
-    <li><span class="modal-trigger" data-bs-toggle="modal" data-bs-target="#bolloModal">il bollo</span>, pari a
+    <li>bollo, pari a
         €{{bollo}}</li>
     {% endif %}
 </ul>
 
-<p>Tieni anche in considerazione che potrebbe essere necessario anche sostenere il costo per un'agenzia che effettui determinati adempimenti in loco.</p>
+<p>Tieni anche in considerazione che potrebbe essere necessario anche sostenere il costo per un'agenzia che effettui
+    determinati adempimenti in loco.</p>
 <!-- ContributoModal -->
 <div class="modal fade" id="contributoModal" tabindex="-1" aria-labelledby="contributoModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -69,4 +70,12 @@
         </div>
     </div>
 </div>
+
+<section>
+    <p>totale = {{total}}€</p>
+    <form action="{% url 'userArea:create-checkout-session' product_id %}" method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn-gold-outline">Paga ora</button>
+    </form>
+</section>
 {% endblock main %}

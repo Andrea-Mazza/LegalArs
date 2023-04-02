@@ -1,3 +1,4 @@
+import json
 from pyexpat.errors import messages
 from django.shortcuts import redirect, render, get_object_or_404
 from recuperoCredito import models
@@ -8,14 +9,19 @@ from django.dispatch import receiver
 from config.forms import RicercaArticoloForm, AssistenzaUserArea
 from django.db.models import Q
 from django.core.mail import EmailMessage
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.decorators import login_required
+from django.conf import settings
+import stripe
 
 # Create your views here.
+
+stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
 @login_required(login_url='/accesso/')
 def userArea_base(request):
+    has_subscription = request.user.has_subscription
     if request.method == 'POST':
         contact_form = AssistenzaUserArea(request.POST)
         if contact_form.is_valid():
@@ -44,12 +50,14 @@ def userArea_base(request):
                 return HttpResponse('Ops qualcosa è andato storto')
     else:
         contact_form = AssistenzaUserArea()
-    context = {'contact_form': contact_form}
+    context = {'contact_form': contact_form,
+               'has_subscription': has_subscription}
     return contact_form
 
 
 @login_required(login_url='/accesso/')
 def user_home(request):
+    has_subscription = request.user.has_subscription
     recupero_credito = models.ServizioRecuperoCredito.objects.filter(
         current_user=request.user)
     post = list(reversed(Articolo.objects.filter(
@@ -67,7 +75,7 @@ def user_home(request):
                 request, "Si è verificato un errore durante la rimozione dell'articolo salvato.")
     assistenzaForm = userArea_base(request)
     context = {'recupero_credito': recupero_credito,
-               'post': post[:2], 'contact_form': assistenzaForm}
+               'post': post[:2], 'contact_form': assistenzaForm, 'has_subscription': has_subscription}
 
     avvisi = False
     counter = 0
@@ -88,15 +96,133 @@ def user_home(request):
 @login_required(login_url='/accesso/')
 def servizi_home(request):
     assistenzaForm = userArea_base(request)
-    context = {'contact_form': assistenzaForm}
+    has_subscription = request.user.has_subscription
+    context = {'contact_form': assistenzaForm,
+               'has_subscription': has_subscription}
     return render(request, 'area_personale_servizi.html', context)
 
 
 @login_required(login_url='/accesso/')
 def servizi_all(request):
     assistenzaForm = userArea_base(request)
-    context = {'contact_form': assistenzaForm}
+    has_subscription = request.user.has_subscription
+    subscriptions = stripe.Product.list(active=True)
+    prices = stripe.Price.list(active=True)
+    customer = stripe.Customer.list(email=request.user.email)
+    active_subscriptions = False
+    if request.user.has_subscription == True:
+        active_subscriptions = True
+    context = {'contact_form': assistenzaForm, 'subscriptions': subscriptions, 'prices': prices,
+               'active_subscriptions': active_subscriptions, 'has_subscription': has_subscription}
     return render(request, 'area_personale_servizi_all.html', context)
+
+
+@login_required(login_url='/accesso/')
+def create_checkout_subscription(request):
+    if request.method == 'POST':
+        prices = stripe.Price.list(
+            lookup_keys=[request.POST['lookup_key']],
+            expand=['data.product']
+        )
+
+        checkout_session = stripe.checkout.Session.create(
+            line_items=[
+                {
+                    'price': prices.data[0].id,
+                    'quantity': 1,
+                },
+            ],
+            mode='subscription',
+            success_url='https://legalars-app-9yyw9.ondigitalocean.app/area-personale' +
+            '/success-subscription?session_id={CHECKOUT_SESSION_ID}',
+            cancel_url='https://legalars-app-9yyw9.ondigitalocean.app/area-personale' +
+            '/cancel-subscription',
+        )
+        return redirect(checkout_session.url)
+
+
+@login_required(login_url='/accesso/')
+def customer_portal(request):
+    # For demonstration purposes, we're using the Checkout session to retrieve the customer ID.
+    # Typically this is stored alongside the authenticated user in your database.
+    checkout_session_id = request.POST.get('session_id')
+    checkout_session = stripe.checkout.Session.retrieve(checkout_session_id)
+
+    return_url = 'https://legalars-app-9yyw9.ondigitalocean.app/area-personale'
+
+    portalSession = stripe.billing_portal.Session.create(
+        customer=checkout_session.customer,
+        return_url=return_url,
+    )
+
+    return redirect(portalSession.url)
+
+
+# IL WEBHOOK DEVE ESSERE FISSATTO NELLA PAGINA PRECEDENTE AL SERVIZIO DIGITALE IN MODO TALE DA BLOCCARE L'ACCESSO AL SERVIZIO DIGITALE SE L'ABBONAMENTO è SCADUTO
+def webhook_received(request):
+    # Replace this endpoint secret with your endpoint's unique secret
+    # If you are testing with the CLI, find the secret by running 'stripe listen'
+    # If you are using an endpoint defined with the API or dashboard, look in your webhook settings
+    # at https://dashboard.stripe.com/webhooks
+    webhook_secret = 'whsec_W0FnAFCBMUr0N55usb4tS2Z1g5KV3wCr'
+    request_data = json.loads(request.data)
+
+    if webhook_secret:
+        # Retrieve the event by verifying the signature using the raw body and secret if webhook signing is configured.
+        signature = request.headers.get('stripe-signature')
+        try:
+            event = stripe.Webhook.construct_event(
+                payload=request.data, sig_header=signature, secret=webhook_secret)
+            data = event['data']
+        except Exception as e:
+            return e
+        # Get the type of webhook event sent - used to check the status of PaymentIntents.
+        event_type = event['type']
+    else:
+        data = request_data['data']
+        event_type = request_data['type']
+    data_object = data['object']
+
+    print('event ' + event_type)
+
+    if event_type == 'checkout.session.completed':
+        print('🔔 Payment succeeded!')
+    elif event_type == 'customer.subscription.trial_will_end':
+        print('Subscription trial will end')
+    elif event_type == 'customer.subscription.created':
+        print('Subscription created %s', event.id)
+    elif event_type == 'customer.subscription.updated':
+        print('Subscription created %s', event.id)
+    elif event_type == 'customer.subscription.deleted':
+        # handle subscription canceled automatically based
+        # upon your subscription settings. Or if the user cancels it.
+        print('Subscription canceled: %s', event.id)
+
+    return JsonResponse({'status': 'success'})
+
+
+def success_subscription(request):
+    session_id = request.GET.get('session_id')
+
+    user = request.user
+    user.has_subscription = True
+    user.save()
+    has_subscription = request.user.has_subscription
+    context = {
+        'session_id': session_id, 'has_subscription': has_subscription
+    }
+    return render(request, 'stripe/success.html', context=context)
+
+
+def cancel_subscription(request):
+    user = request.user
+    user.has_subscription = False
+    user.save()
+    has_subscription = request.user.has_subscription
+    context = {
+        'has_subscription': has_subscription
+    }
+    return redirect(request, 'stripe/cancel.html', context)
 
 
 # @receiver(post_save, sender=models.ServizioRecuperoCredito)
@@ -113,9 +239,10 @@ def servizi_all(request):
 def servizi_attivi(request):
     recupero_credito = models.ServizioRecuperoCredito.objects.filter(
         current_user=request.user)
+    has_subscription = request.user.has_subscription
     assistenzaForm = userArea_base(request)
     context = {'recupero_credito': recupero_credito,
-               'contact_form': assistenzaForm}
+               'contact_form': assistenzaForm, 'has_subscription': has_subscription}
     avvisi = False
     counter = 0
     for pratica in recupero_credito:
@@ -151,8 +278,9 @@ def servizio_attivo_details(request, pk):
         messaggio.save()
 
     assistenzaForm = userArea_base(request)
+    has_subscription = request.user.has_subscription
     context = {'pratica_credito': pratica_credito,
-               'messaggi': messaggi, 'contact_form': assistenzaForm}
+               'messaggi': messaggi, 'contact_form': assistenzaForm, 'has_subscription': has_subscription}
     return render(request, 'area_personale_servizio_attivo_details.html', context)
 
 
@@ -162,6 +290,7 @@ def get_saved_posts(user):
 
 @login_required(login_url='/accesso/')
 def post_saved(request):
+    has_subscription = request.user.has_subscription
     post = get_saved_posts(request.user)
     if request.method == 'POST':  # Aggiungi questo per gestire la richiesta POST del form di rimozione articolo
         article_id = request.POST.get('article_id')
@@ -193,6 +322,7 @@ def post_saved(request):
         'form': form,
         'query': query,
         'results': results,
-        'contact_form': assistenzaForm
+        'contact_form': assistenzaForm,
+        'has_subscription': has_subscription
     }
     return render(request, 'post_saved.html', context)

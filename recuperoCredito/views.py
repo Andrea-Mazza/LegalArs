@@ -32,6 +32,8 @@ import uuid
 
 # Create your views here.
 
+stripe.api_key = settings.STRIPE_SECRET_KEY
+
 
 @login_required(login_url='/accesso/')
 def start(request):
@@ -536,12 +538,14 @@ def dati_debitore(request):
                     'db_indirizzo_di_residenza']
                 request.session['df_codice_fiscale'] = form.cleaned_data['df_codice_fiscale']
                 request.session['df_partita_iva'] = form.cleaned_data['df_partita_iva']
+                request.session['db_comune_di_residenza'] = form.cleaned_data['db_comune_di_residenza'].nome
             else:
                 request.session['db_denominazione_sociale'] = form.cleaned_data[
                     'db_denominazione_sociale']
                 request.session['db_sede_principale'] = form.cleaned_data['db_sede_principale']
                 request.session['dj_codice_fiscale'] = form.cleaned_data['dj_codice_fiscale']
                 request.session['dj_partita_iva'] = form.cleaned_data['dj_partita_iva']
+                request.session['db_comune_sede_principale'] = form.cleaned_data['db_comune_sede_principale'].nome
             # dati_debitore_model.save()
             # request.session['dati_debitore_id'] = dati_debitore_model.id
             return redirect('userArea:credito')
@@ -1005,11 +1009,13 @@ def SuccessView(request):
         pratica_completa.db_indirizzo_di_residenza = request.session['db_indirizzo_di_residenza']
         pratica_completa.df_codice_fiscale = request.session['df_codice_fiscale']
         pratica_completa.df_partita_iva = request.session['df_partita_iva']
+        pratica_completa.db_comune_di_residenza = request.session['db_comune_di_residenza']
     else:
         pratica_completa.db_denominazione_sociale = request.session['db_denominazione_sociale']
         pratica_completa.db_sede_principale = request.session['db_sede_principale']
         pratica_completa.dj_codice_fiscale = request.session['dj_codice_fiscale']
         pratica_completa.dj_partita_iva = request.session['dj_partita_iva']
+        pratica_completa.db_comune_sede_principale = request.session['db_comune_sede_principale']
 
     document = write_procura_speciale(pratica_completa)
     filename = f'procura_speciale_{unique_id}.docx'

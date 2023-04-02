@@ -57,6 +57,8 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     # for spaces
     'storages',
+    # dj-stripe
+    'djstripe',
 ]
 
 SITE_ID = 1
@@ -193,6 +195,17 @@ STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
 BACKEND_DOMAIN = os.getenv('BACKEND_DOMAIN')
 PAYMENT_SUCCESS_URL = os.getenv('PAYMENT_SUCCESS_URL')
 PAYMENT_CANCEL_URL = os.getenv('PAYMENT_CANCEL_URL')
+
+# Change to True in production
+STRIPE_LIVE_MODE = os.getenv('STRIPE_LIVE_MODE')
+# Add these two lines even if you are not using webhooks
+DJSTRIPE_WEBHOOK_SECRET = os.getenv('DJSTRIPE_WEBHOOK_SECRET')
+DJSTRIPE_FOREIGN_KEY_TO_FIELD = os.getenv('DJSTRIPE_FOREIGN_KEY_TO_FIELD')
+# We recommend setting to True for new installations
+DJSTRIPE_USE_NATIVE_JSONFIELD = os.getenv('DJSTRIPE_USE_NATIVE_JSONFIELD')
+
+SUBSCRIPTION_SUCCESS_URL = os.getenv('SUBSCRIPTION_SUCCESS_URL')
+SUBSCRIPTION_CANCEL_URL = os.getenv('SUBSCRIPTION_CANCEL_URL')
 
 
 # STRIPE_PRICE_ID = os.getenv('STRIPE_PRICE_ID')

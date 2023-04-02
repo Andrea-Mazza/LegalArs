@@ -5,6 +5,7 @@ botocore==1.29.97
 certifi==2022.12.7
 charset-normalizer==3.1.0
 dj-database-url==1.2.0
+dj-stripe==2.7.3
 Django==4.1.5
 django-ckeditor==6.5.1
 django-js-asset==2.0.0
@@ -13,6 +14,7 @@ django-tinymce==3.5.0
 gunicorn==20.1.0
 idna==3.4
 jmespath==1.0.1
+jsonfield==3.1.0
 lxml==4.9.2
 Pillow==9.4.0
 psycopg2-binary==2.9.5
@@ -25,6 +27,6 @@ requests==2.28.2
 s3transfer==0.6.0
 six==1.16.0
 sqlparse==0.4.3
-stripe==5.3.0
+stripe==4.2.0
 tomli==2.0.1
 urllib3==1.26.15

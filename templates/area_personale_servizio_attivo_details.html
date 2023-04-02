@@ -114,10 +114,12 @@
     <h3>Comunicazioni:</h3>
 
     <ul class="messaggi-container">
-      {% if pratica_cedito.procura_speciale %}
+      {% if pratica_credito.procura_speciale %}
       <li class="messaggio"> <span class="messaggio-label">Comunicazione
           1</span>
-        <a href="{{pratica_credito.get_url}}">Scarica</a>{{messaggio.testo|safe}}
+        <a href="{{pratica_credito.get_url}}" style="color: #da9a23;">Scarica</a> questo documento. Una volta scaricato,
+        firmalo, scansionalo e
+        inviacelo tramite email{{messaggio.testo|safe}}
       </li>
       {% endif %}
       {% if messaggi %}

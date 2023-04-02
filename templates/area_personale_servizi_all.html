@@ -5,32 +5,66 @@
 
 
 {% block metatag %}
+<script src="https://js.stripe.com/v3/"></script> <!-- new -->
 <script src="{% static 'js/enableModal.js' %}"></script>
 {% endblock metatag %}
 
 
 {% block main %}
+
+{% if has_subscription %}
+<h2>Abbonamenti attivi</h2>
+<div class="row g-4">
+<div class="col-lg-4 col-md-6 col-sm-12 service-column">
+<div class="service-card">
+    <div class="row">
+        <div class="col-10">
+            <h4>Recupero Credito</h4>
+        </div>
+        <div class="col-2 text-end">
+            <img src="{% static 'images/icons/icons8-wallet.gif' %}" class="tool-gif" alt="">
+        </div>
+    </div>
+    <p>Con la nostra procedura semplice e guidata, potrai iniziare a recuperare il tuo credito in pochi semplici passi.</p>
+    <span class="btn-gold-outline" data-bs-toggle="modal"
+        data-bs-target="#recuperoCreditoModal">Maggiori dettagli</span>
+
+        <a href="{% url 'userArea:recupero-credito-start' %}">Inizia subito</a>
+</div>
+</div>
+</div>
+
+{% endif %}
 <h2>Tutti i servizi disponibili</h2>
 <div class="service-container container-fluid">
     <div class="row g-4">
+        {% for product in subscriptions.data %}
         <div class="col-lg-4 col-md-6 col-sm-12 service-column">
             <div class="service-card">
                 <div class="row">
                     <div class="col-10">
-                        <h4>Recupero credito</h4>
+                        <h4>{{product.name}}</h4>
                     </div>
                     <div class="col-2 text-end">
                         <img src="{% static 'images/icons/icons8-wallet.gif' %}" class="tool-gif" alt="">
                     </div>
                 </div>
-                <p>Con la nostra procedura semplice e guidata, potrai iniziare a recuperare il tuo credito
-                    in pochi semplici passi.</p>
-                <a href="https://buy.stripe.com/aEU17081c9z78Kc9AA" class="btn-gold-outline">Abbonati e inizia
-                    ora</a>
+                <p>{{product.description}}</p>
+                {% for price in prices %}
+            {% if price.product == product.id %}
+                <form action="{% url 'userArea:create_checkout_subscription' %}" method="POST">
+                    {% csrf_token %}
+                    <!-- Add a hidden field with the lookup_key of your Price -->
+                    <input type="hidden" name="lookup_key" value="{{price.lookup_key}}" />
+                    <button id="checkout-and-portal-button" type="submit" class="btn-gold-outline">Abbonati</button>
+                </form>
+            {% endif %}
+        {% endfor %} 
                 <span class="btn-gold-outline" data-bs-toggle="modal"
                     data-bs-target="#recuperoCreditoModal">Anteprima</span>
             </div>
         </div>
+        {% endor %}
     </div>
 </div>
 
@@ -43,6 +77,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+                <p><b>IMPORTANTE</b>: con un abbonamento puoi avviare il numero di pratiche che desideri.</p>
                 Per creare una pratica di recupero credito online, dovrai inserire solo alcuni dati che
                 permetteranno all'avvocato di avere tutte le informazioni necessarie per procedere con la richiesta di
                 recupero. Sarà necessario indicare se il creditore è una persona oppure una società/ente, inserire

@@ -122,6 +122,8 @@ class DebitoreFisicoForm(forms.Form):
     ), label='Luogo di nascita del debitore', widget=forms.Select(attrs={'class': 'form-select'}), help_text="Il luogo di nascita è il posto in cui abbiamo fatto il nostro ingresso nel mondo. Seleziona il comune di nascita.")
     db_data_di_nascita = forms.DateField(
         label='Data di nascita del debitore', widget=forms.DateInput(attrs={'class': 'form-control'}), help_text='La data di nascita è il giorno in cui si diventa un membro ufficiale del club "Esseri umani". Inserisci la data di nascita per aiutarci a determinare l\'età del debitore.')
+    db_comune_di_residenza = forms.ModelChoiceField(
+        queryset=models.Comuni.objects.all(), label="Comune della sede principale", widget=forms.Select(attrs={'class': 'form-select'}), help_text="Il comune della sede principale è il luogo in cui l'azienda ha il proprio ufficio centrale e dove viene svolta la maggior parte delle attività aziendali. Questo comune rappresenta l'ubicazione geografica dell'azienda e viene utilizzato per scopi fiscali e amministrativi.")
     db_indirizzo_di_residenza = forms.CharField(
         max_length=1000, label='Indirizzo di residenza del debitore', widget=forms.TextInput(attrs={'class': 'form-control'}), help_text="Inserisci l'indirizzo completo del debitore, compreso il nome della strada e del numero civico.")
     df_codice_fiscale = forms.CharField(required=False, max_length=200, label="Codice Fiscale del debitore",
@@ -144,6 +146,8 @@ class DebitoreFisicoForm(forms.Form):
 class DebitoreGiuridicoForm(forms.Form):
     db_denominazione_sociale = forms.CharField(
         max_length=1000, label='Denominazione sociale del debitore', widget=forms.TextInput(attrs={'class': 'form-control'}), help_text="La denominazione sociale è il nome ufficiale con cui l'azienda è identificata nel mercato. Questo nome può essere costituito da qualsiasi combinazione di parole e rappresenta l'immagine e la reputazione dell'azienda.")
+    db_comune_sede_principale = forms.ModelChoiceField(
+        queryset=models.Comuni.objects.all(), label="Comune della sede principale", widget=forms.Select(attrs={'class': 'form-select'}), help_text="Il comune della sede principale è il luogo in cui l'azienda ha il proprio ufficio centrale e dove viene svolta la maggior parte delle attività aziendali. Questo comune rappresenta l'ubicazione geografica dell'azienda e viene utilizzato per scopi fiscali e amministrativi.")
     db_sede_principale = forms.CharField(
         max_length=1000, label='Indirizzo della sede principale del debitore', widget=forms.TextInput(attrs={'class': 'form-control'}), help_text="L'indirizzo della sede principale rappresenta il luogo fisico in cui l'azienda ha il proprio ufficio centrale e dove viene svolta la maggior parte delle attività aziendali.")
     dj_codice_fiscale = forms.CharField(required=False, max_length=1000, label='Codice fiscale del debitore',
