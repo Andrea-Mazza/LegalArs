@@ -12,32 +12,39 @@
 
 {% block main %}
 
-{% if has_subscription %}
+{% if subscription_list %}
 <h2>Abbonamenti attivi</h2>
-<div class="row g-4">
-<div class="col-lg-4 col-md-6 col-sm-12 service-column">
-<div class="service-card">
-    <div class="row">
-        <div class="col-10">
-            <h4>Recupero Credito</h4>
-        </div>
-        <div class="col-2 text-end">
-            <img src="{% static 'images/icons/icons8-wallet.gif' %}" class="tool-gif" alt="">
+<div class="row">
+    {% for plan in subscription_list %}
+    <div class="col-lg-4 col-md-6 col-sm-12 service-column">
+        <div class="service-card">
+            <div class="row">
+                <div class="col-7">
+                    <h4>{{plan.name}} </h4>
+                </div>
+                <div class="col-5 text-end">
+                    <div class="abbonato-label">
+                        <div class="blobs-container">
+                            <div class="blob green"></div>
+                        </div>
+                        Abbonato
+                    </div>
+                </div>
+            </div>
+            <p>{{plan.description}}</p>
+            <span class="btn-gold-outline" data-bs-toggle="modal" data-bs-target="#recuperoCreditoModal">Maggiori
+                dettagli</span>
+
+            <a href="{% url 'userArea:recupero-credito-start' %}">Inizia subito</a>
         </div>
     </div>
-    <p>Con la nostra procedura semplice e guidata, potrai iniziare a recuperare il tuo credito in pochi semplici passi.</p>
-    <span class="btn-gold-outline" data-bs-toggle="modal"
-        data-bs-target="#recuperoCreditoModal">Maggiori dettagli</span>
-
-        <a href="{% url 'userArea:recupero-credito-start' %}">Inizia subito</a>
+    {% endfor %}
 </div>
-</div>
-</div>
-
 {% endif %}
+
 <h2>Tutti i servizi disponibili</h2>
 <div class="service-container container-fluid">
-    <div class="row g-4">
+    <div class="row">
         {% for product in subscriptions.data %}
         <div class="col-lg-4 col-md-6 col-sm-12 service-column">
             <div class="service-card">
@@ -46,25 +53,30 @@
                         <h4>{{product.name}}</h4>
                     </div>
                     <div class="col-2 text-end">
-                        <img src="{% static 'images/icons/icons8-wallet.gif' %}" class="tool-gif" alt="">
+                        <div class="abbonato-label">
+                            <div class="blobs-container">
+                                <div class="blob-red"></div>
+                            </div>
+                            Non Abbonato
+                        </div>
                     </div>
                 </div>
                 <p>{{product.description}}</p>
                 {% for price in prices %}
-            {% if price.product == product.id %}
+                {% if price.product == product.id %}
                 <form action="{% url 'userArea:create_checkout_subscription' %}" method="POST">
                     {% csrf_token %}
                     <!-- Add a hidden field with the lookup_key of your Price -->
                     <input type="hidden" name="lookup_key" value="{{price.lookup_key}}" />
                     <button id="checkout-and-portal-button" type="submit" class="btn-gold-outline">Abbonati</button>
                 </form>
-            {% endif %}
-        {% endfor %} 
+                {% endif %}
+                {% endfor %}
                 <span class="btn-gold-outline" data-bs-toggle="modal"
                     data-bs-target="#recuperoCreditoModal">Anteprima</span>
             </div>
         </div>
-        {% endor %}
+        {% endfor %}
     </div>
 </div>
 

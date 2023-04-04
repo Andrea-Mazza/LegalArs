@@ -1,6 +1,7 @@
 import json
 from pyexpat.errors import messages
 from django.shortcuts import redirect, render, get_object_or_404
+from django.urls import NoReverseMatch
 from recuperoCredito import models
 from blog.models import Articolo
 from django.utils import timezone
@@ -107,12 +108,51 @@ def servizi_all(request):
     has_subscription = request.user.has_subscription
     subscriptions = stripe.Product.list(active=True)
     prices = stripe.Price.list(active=True)
-    customer = stripe.Customer.list(email=request.user.email)
+
     active_subscriptions = False
     if request.user.has_subscription == True:
         active_subscriptions = True
     context = {'contact_form': assistenzaForm, 'subscriptions': subscriptions, 'prices': prices,
                'active_subscriptions': active_subscriptions, 'has_subscription': has_subscription}
+
+    stripe_customer_id = request.user.stripe_customer_id
+    if stripe_customer_id:
+        customer = stripe.Customer.retrieve(stripe_customer_id)
+        # Recupera la lista di tutti gli abbonamenti dell'utente
+        subscriptions = stripe.Subscription.list(customer=stripe_customer_id)
+
+        # Filtra gli abbonamenti attivi
+        active_subscriptions = []
+        for subscription in subscriptions:
+            if subscription.status == 'active':
+                active_subscriptions.append(
+                    subscription['items']['data'][0]['price']['id'])
+
+        subscription_list = []
+        for subscription in active_subscriptions:
+            # price_id = subscription['items']['data'][0]['price']['id']
+            price = stripe.Price.retrieve(subscription)
+            product_id = price['product']
+            product = stripe.Product.retrieve(product_id)
+            subscription_list.append(product)
+        context['subscription_list'] = subscription_list
+
+        context['active_subscriptions'] = active_subscriptions
+        context['customer'] = customer
+
+        # current_prices = []
+        # for price_attribute in active_subscriptions:
+
+        #     current_prices.append(price_attribute.price.id)
+
+        # list_current_prices = []
+        # for price_items in current_prices:
+        #     price = stripe.Price.retrieve(price_items)
+        #     list_current_prices.append(price.product)
+        # context['list_current_prices'] = list_current_prices
+
+    else:
+        customer = None
     return render(request, 'area_personale_servizi_all.html', context)
 
 
@@ -131,10 +171,11 @@ def create_checkout_subscription(request):
                     'quantity': 1,
                 },
             ],
+            customer_email=request.user.email,
             mode='subscription',
-            success_url='https://legalars-app-9yyw9.ondigitalocean.app/area-personale' +
+            success_url='http://192.168.1.88:8000/area-personale' +
             '/success-subscription?session_id={CHECKOUT_SESSION_ID}',
-            cancel_url='https://legalars-app-9yyw9.ondigitalocean.app/area-personale' +
+            cancel_url='http://192.168.1.88:8000/area-personale' +
             '/cancel-subscription',
         )
         return redirect(checkout_session.url)
@@ -203,7 +244,12 @@ def webhook_received(request):
 def success_subscription(request):
     session_id = request.GET.get('session_id')
 
+    # Estrarre l'id del cliente Stripe
+    session = stripe.checkout.Session.retrieve(session_id)
+    customer_id = session.customer
+
     user = request.user
+    user.stripe_customer_id = customer_id
     user.has_subscription = True
     user.save()
     has_subscription = request.user.has_subscription
@@ -221,7 +267,7 @@ def cancel_subscription(request):
     context = {
         'has_subscription': has_subscription
     }
-    return redirect(request, 'stripe/cancel.html', context)
+    return render(request, 'stripe/cancel.html', context)
 
 
 # @receiver(post_save, sender=models.ServizioRecuperoCredito)

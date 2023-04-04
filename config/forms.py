@@ -44,8 +44,6 @@ class RegisterForm(forms.Form):
         attrs={'class': 'form-control', 'placeholder': 'Nome', 'id': 'nome'}))
     surname = forms.CharField(widget=forms.TextInput(
         attrs={'class': 'form-control', 'placeholder': 'Cognome', 'id': 'cognome'}))
-    username = forms.CharField(widget=forms.TextInput(
-        attrs={'class': 'form-control', 'placeholder': 'Username', 'id': 'username'}))
     email = forms.EmailField(widget=forms.EmailInput(
         attrs={'class': 'form-control', 'placeholder': 'Indirizzo email', 'id': 'email'}))
     password1 = forms.CharField(widget=forms.PasswordInput(
@@ -53,26 +51,26 @@ class RegisterForm(forms.Form):
     password2 = forms.CharField(widget=forms.PasswordInput(
         attrs={'class': 'form-control', 'placeholder': 'Conferma password', 'id': 'password2'}))
 
-    def clean_username(self):
-        super().clean()
-        username = self.cleaned_data.get('username')
-        if len(username) < 4:
-            raise forms.ValidationError(
-                "Questo campo deve contenere un minimo di 4 caratteri. Correggi per favore.")
-        elif len(username) < 1:
-            raise forms.ValidationError(
-                "Questo campo è obbligatori per la creazione di un account. Per favore inserisci un minimo di 4 caratteri per procedere alla registrazione del tuo account")
-        elif CustomUser.objects.filter(username=username).exists():
-            i = 1
-            new_username = f"{username}_{i}"
-            while CustomUser.objects.filter(username=new_username).exists():
-                i += 1
-                new_username = f"{username}_{i}"
-                suggestion = f"{new_username}"
-                raise forms.ValidationError(
-                    f"Sembra che questo username sia già stato già registrato da qualcun'altro. Ecco alcuni suggerimenti {suggestion}")
-            # return new_username
-        return username
+    # def clean_username(self):
+    #     super().clean()
+    #     username = self.cleaned_data.get('username')
+    #     if len(username) < 4:
+    #         raise forms.ValidationError(
+    #             "Questo campo deve contenere un minimo di 4 caratteri. Correggi per favore.")
+    #     elif len(username) < 1:
+    #         raise forms.ValidationError(
+    #             "Questo campo è obbligatori per la creazione di un account. Per favore inserisci un minimo di 4 caratteri per procedere alla registrazione del tuo account")
+    #     elif CustomUser.objects.filter(username=username).exists():
+    #         i = 1
+    #         new_username = f"{username}_{i}"
+    #         while CustomUser.objects.filter(username=new_username).exists():
+    #             i += 1
+    #             new_username = f"{username}_{i}"
+    #             suggestion = f"{new_username}"
+    #             raise forms.ValidationError(
+    #                 f"Sembra che questo username sia già stato già registrato da qualcun'altro. Ecco alcuni suggerimenti {suggestion}")
+    #         # return new_username
+    #     return username
 
     def clean_email(self):
         super().clean()
@@ -106,9 +104,8 @@ class RegisterForm(forms.Form):
     def save(self):
         email = self.cleaned_data.get('email')
         password = self.cleaned_data.get('password1')
-        username = self.cleaned_data.get('username')
         user = CustomUser.objects.create_user(
-            email=email, password=password, username=username)
+            email=email, password=password)
         user.save()
         return user
 

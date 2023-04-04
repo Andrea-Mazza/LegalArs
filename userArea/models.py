@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.contrib.auth import get_user_model
+import stripe
+from django.conf import settings
 # Create your models here.
 
 
@@ -49,12 +51,13 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True)
     name = models.CharField(max_length=30, default='')
     surname = models.CharField(max_length=30, default='')
-    username = models.CharField(max_length=30, unique=True, blank=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
     last_viewed_servizi_attivi = models.DateTimeField(null=True, blank=True)
     has_subscription = models.BooleanField(default='False')
+    stripe_customer_id = models.CharField(
+        max_length=5000, blank=True, null=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['name', 'surname']
@@ -69,6 +72,16 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     def get_short_name(self):
         return self.name
+
+    def create_stripe_customer(self, token):
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+        customer = stripe.Customer.create(
+            email=self.email,
+            source=token,
+            metadata={'custom_user_id': self.id}
+        )
+        self.stripe_customer_id = customer.id
+        self.save()
 
     class Meta:
         app_label = 'userArea'

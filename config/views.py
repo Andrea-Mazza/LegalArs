@@ -258,10 +258,9 @@ def signup(request):
                 name = registration_form.cleaned_data.get('name')
                 surname = registration_form.cleaned_data.get('surname')
                 email = registration_form.cleaned_data.get('email')
-                username = registration_form.cleaned_data.get('username')
                 password = registration_form.cleaned_data.get('password1')
                 user = CustomUser.objects.create_user(
-                    email=email, name=name, surname=surname, username=username, password=password)
+                    email=email, name=name, surname=surname, password=password)
                 auth_login(request, user)
                 return redirect('userArea:user_home')
     return render(request, 'signup.html', {'registration_form': registration_form})

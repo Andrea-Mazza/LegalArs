@@ -23,7 +23,7 @@ urlpatterns = [
          name="create_checkout_subscription"),
     path('success-subscription', views.success_subscription,
          name='success_subscription'),
-    path('cancel-subscription', views.cancel_subscription,
+    path('cancel-subscription/', views.cancel_subscription,
          name='cancel-subscription'),
     path('customer-portal/', views.customer_portal, name="customer_portal"),
 ]
