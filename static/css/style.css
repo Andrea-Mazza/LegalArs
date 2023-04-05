@@ -2317,6 +2317,15 @@ footer ul li {
   column-gap: 5px;
   align-items: center;
 }
+#area-personale-body #sidebar .sidebar-bottom a:not(.logo),
+#area-personale-body #sidebar .sidebar-bottom span {
+  font-size: 13px;
+}
+#area-personale-body #sidebar .sidebar-bottom span:hover {
+  cursor: pointer;
+  color: #da9a23;
+  text-decoration: underline;
+}
 #area-personale-body #personal-mobile-nav {
   display: none;
 }
@@ -2336,6 +2345,15 @@ footer ul li {
 #area-personale-body #personal-mobile-nav .active-label ul {
   margin: 0;
   padding: 0;
+}
+#area-personale-body #personal-mobile-nav .sidebar-bottom a:not(.logo),
+#area-personale-body #personal-mobile-nav .sidebar-bottom span {
+  font-size: 13px;
+}
+#area-personale-body #personal-mobile-nav .sidebar-bottom span:hover {
+  cursor: pointer;
+  color: #da9a23;
+  text-decoration: underline;
 }
 #area-personale-body main {
   grid-area: main;
@@ -2429,6 +2447,36 @@ footer ul li {
 #area-personale-body #user-area-home .service-card .btn-gold-outline {
   font-size: 0.6rem;
   padding: 0.4rem;
+}
+#area-personale-body .modal .carousel-item {
+  min-height: 240px;
+  text-align: center;
+}
+#area-personale-body .modal .carousel-control-prev {
+  left: -40px;
+}
+#area-personale-body .modal .carousel-control-next {
+  right: -40px;
+}
+#area-personale-body .modal .carousel-indicators {
+  bottom: -35px;
+}
+#area-personale-body .modal .carousel-indicators [data-bs-target] {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+#area-personale-body .btn-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+#area-personale-body .btn-row span {
+  font-size: 13px;
+}
+#area-personale-body .btn-row span:hover {
+  cursor: pointer;
 }
 
 #sidebar .accordion {
@@ -2558,6 +2606,9 @@ footer ul li {
   }
   #area-personale-body #sidebar {
     display: none;
+  }
+  #area-personale-body #sidebar a:not(.logo) {
+    font-size: 13px;
   }
   #area-personale-body #personal-mobile-nav {
     display: flex;

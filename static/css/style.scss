@@ -2581,6 +2581,20 @@ footer {
             column-gap: 5px;
             align-items: center;
         }
+
+        .sidebar-bottom {
+
+            a:not(.logo),
+            span {
+                font-size: 13px;
+            }
+
+            span:hover {
+                cursor: pointer;
+                color: $gold;
+                text-decoration: underline;
+            }
+        }
     }
 
     #personal-mobile-nav {
@@ -2607,6 +2621,20 @@ footer {
             ul {
                 margin: 0;
                 padding: 0;
+            }
+        }
+
+        .sidebar-bottom {
+
+            a:not(.logo),
+            span {
+                font-size: 13px;
+            }
+
+            span:hover {
+                cursor: pointer;
+                color: $gold;
+                text-decoration: underline;
             }
         }
     }
@@ -2728,6 +2756,46 @@ footer {
     // .btn-gold-outline {
     //     padding: 10px 27px 9px;
     // }
+
+    .modal {
+        .carousel-item {
+            min-height: 240px;
+            text-align: center;
+        }
+
+        .carousel-control-prev {
+            left: -40px;
+        }
+
+        .carousel-control-next {
+            right: -40px;
+        }
+
+        .carousel-indicators {
+            bottom: -35px;
+        }
+
+        .carousel-indicators [data-bs-target] {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+        }
+    }
+
+    .btn-row {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
+        span {
+            font-size: 13px;
+        }
+
+        span:hover {
+            cursor: pointer;
+        }
+    }
 }
 
 
@@ -2884,6 +2952,10 @@ footer {
 
         #sidebar {
             display: none;
+
+            a:not(.logo) {
+                font-size: 13px;
+            }
         }
 
         #personal-mobile-nav {

@@ -14,31 +14,34 @@
 
 {% if subscription_list %}
 <h2>Abbonamenti attivi</h2>
-<div class="row">
-    {% for plan in subscription_list %}
-    <div class="col-lg-4 col-md-6 col-sm-12 service-column">
-        <div class="service-card">
-            <div class="row">
-                <div class="col-7">
-                    <h4>{{plan.name}} </h4>
-                </div>
-                <div class="col-5 text-end">
-                    <div class="abbonato-label">
-                        <div class="blobs-container">
-                            <div class="blob green"></div>
+<div class="service-container container-fluid">
+    <div class="row">
+        {% for plan in subscription_list %}
+        <div class="col-lg-4 col-md-6 col-sm-12 service-column">
+            <div class="service-card">
+                <div class="row">
+                    <div class="col-7">
+                        <h4>{{plan.name}} </h4>
+                    </div>
+                    <div class="col-5 text-end">
+                        <div class="abbonato-label">
+                            <div class="blobs-container">
+                                <div class="blob green"></div>
+                            </div>
+                            Abbonato
                         </div>
-                        Abbonato
                     </div>
                 </div>
+                <p>{{plan.description}}</p>
+                <div class="btn-row">
+                    <a class="btn-gold-outline" href="{% url 'userArea:recupero-credito-start' %}">Inizia subito</a>
+                    <span data-bs-toggle="modal" data-bs-target="#recuperoCreditoModal">Maggiori
+                        dettagli</span>
+                </div>
             </div>
-            <p>{{plan.description}}</p>
-            <span class="btn-gold-outline" data-bs-toggle="modal" data-bs-target="#recuperoCreditoModal">Maggiori
-                dettagli</span>
-
-            <a href="{% url 'userArea:recupero-credito-start' %}">Inizia subito</a>
         </div>
+        {% endfor %}
     </div>
-    {% endfor %}
 </div>
 {% endif %}
 
@@ -49,10 +52,10 @@
         <div class="col-lg-4 col-md-6 col-sm-12 service-column">
             <div class="service-card">
                 <div class="row">
-                    <div class="col-10">
+                    <div class="col-8">
                         <h4>{{product.name}}</h4>
                     </div>
-                    <div class="col-2 text-end">
+                    <div class="col-4 text-end">
                         <div class="abbonato-label">
                             <div class="blobs-container">
                                 <div class="blob-red"></div>
@@ -62,18 +65,19 @@
                     </div>
                 </div>
                 <p>{{product.description}}</p>
-                {% for price in prices %}
-                {% if price.product == product.id %}
-                <form action="{% url 'userArea:create_checkout_subscription' %}" method="POST">
-                    {% csrf_token %}
-                    <!-- Add a hidden field with the lookup_key of your Price -->
-                    <input type="hidden" name="lookup_key" value="{{price.lookup_key}}" />
-                    <button id="checkout-and-portal-button" type="submit" class="btn-gold-outline">Abbonati</button>
-                </form>
-                {% endif %}
-                {% endfor %}
-                <span class="btn-gold-outline" data-bs-toggle="modal"
-                    data-bs-target="#recuperoCreditoModal">Anteprima</span>
+                <div class="btn-row">
+                    {% for price in prices %}
+                    {% if price.product == product.id %}
+                    <form action="{% url 'userArea:create_checkout_subscription' %}" method="POST">
+                        {% csrf_token %}
+                        <!-- Add a hidden field with the lookup_key of your Price -->
+                        <input type="hidden" name="lookup_key" value="{{price.lookup_key}}" />
+                        <button id="checkout-and-portal-button" type="submit" class="btn-gold-outline">Abbonati</button>
+                    </form>
+                    {% endif %}
+                    {% endfor %}
+                    <span data-bs-toggle="modal" data-bs-target="#recuperoCreditoModal">Anteprima</span>
+                </div>
             </div>
         </div>
         {% endfor %}
@@ -89,16 +93,59 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p><b>IMPORTANTE</b>: con un abbonamento puoi avviare il numero di pratiche che desideri.</p>
-                Per creare una pratica di recupero credito online, dovrai inserire solo alcuni dati che
-                permetteranno all'avvocato di avere tutte le informazioni necessarie per procedere con la richiesta di
-                recupero. Sarà necessario indicare se il creditore è una persona oppure una società/ente, inserire
-                informazioni come nome, cognome, residenza,
-                codice fiscale e partita IVA. Gli stessi dati ti saranno richiesti per il debitore. Infine, sarà
-                necessario inserire informazioni riguardanti la somma da recuperare.
-                Una volta che la pratica verrà avviata, potrai ricevere le comunicazioni direttamente
-                dall'avvocato tramite la tua area personale, dove potrai monitorare lo stato della pratica e avere
-                accesso a tutte le informazioni relative alla procedura di recupero del credito.
+
+                <div id="carouselExampleCaptions" class="carousel carousel-dark slide">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0"
+                            class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                            aria-label="Slide 3"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3"
+                            aria-label="Slide 4"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4"
+                            aria-label="Slide 5"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <p>Con un abbonamento a questo servizio puoi iniziare a recuperare tutte i tuoi crediti,
+                                avviando più pratiche.</p>
+                            <p>Come funziona?</p>
+                        </div>
+                        <div class="carousel-item">
+                            <p>La prima cosa da fare è inserire alcuni dati che ci permetteranno di individuare il
+                                creditore.</p>
+                        </div>
+                        <div class="carousel-item">
+                            <p>Successivamente dovranno essere inserite alcune informazioni relative al debitore.
+                            </p>
+                        </div>
+                        <div class="carousel-item">
+                            <p>Infine, non dovrai fare altro che inserire la somma che intendi recuperare.</p>
+                            <p>E dopo tutto questo?</p>
+                        </div>
+                        <div class="carousel-item">
+                            <p>Alla fine di questo processo, arriverai in un pagina con una lista dei costi tipici
+                                da sostenere per avviare la pratica.</p>
+                            <p>Una volta effettuato il pagamento nella tua area personale verrà creato uno spazio
+                                dedicato alla tua pratica. In questo spazio riceverai comunicazioni in tempo reale
+                                da parte dell'avvocato.</p>
+                            <p>Cosa aspetti?</p>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
