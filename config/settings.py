@@ -90,7 +90,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DEVELOPMENT_MODE = False
+# DEVELOPMENT_MODE = False
 
 # if DEVELOPMENT_MODE is True:
 #     # SECURITY WARNING: keep the secret key used in production secret!
@@ -119,6 +119,8 @@ DEVELOPMENT_MODE = False
 #     PAYMENT_SUCCESS_URL = env('PAYMENT_SUCCESS_URL')
 #     PAYMENT_CANCEL_URL = env('PAYMENT_CANCEL_URL')
 # else:
+
+DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "False") == "True"
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
