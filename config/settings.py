@@ -12,12 +12,8 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
-from dotenv import load_dotenv
 import sys
 import dj_database_url
-
-env_path = Path('.') / '.env'
-load_dotenv(dotenv_path='.env')
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -116,7 +112,6 @@ WSGI_APPLICATION = 'config.wsgi.application'
 #     PAYMENT_CANCEL_URL = env('PAYMENT_CANCEL_URL')
 # else:
 
-DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "False") == "True"
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY')
@@ -152,6 +147,8 @@ BACKEND_DOMAIN = os.getenv('BACKEND_DOMAIN')
 PAYMENT_SUCCESS_URL = os.getenv('PAYMENT_SUCCESS_URL')
 PAYMENT_CANCEL_URL = os.getenv('PAYMENT_CANCEL_URL')
 
+DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "False") == "True"
+
 if DEVELOPMENT_MODE is True:
     DATABASES = {
         "default": {
@@ -163,7 +160,7 @@ elif len(sys.argv) > 0 and sys.argv[1] != 'collectstatic':
     if os.getenv("DATABASE_URL", None) is None:
         raise Exception("DATABASE_URL environment variable not defined")
     DATABASES = {
-        "default": 'legalars_db',
+        "default": dj_database_url.parse(os.environ.get("DATABASE_URL")),
     }
 
 EMAIL_SUBJECT_PREFIX = '[Your Project Name]'
