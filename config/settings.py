@@ -116,7 +116,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # else:
 
 
-DEVELOPMENT_MODE = True
+DEVELOPMENT_MODE = False
 
 if DEVELOPMENT_MODE is True:
     DATABASES = {
