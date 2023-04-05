@@ -200,7 +200,8 @@ class ServizioRecuperoCredito(models.Model):
     db_cognome = models.CharField(max_length=1000, blank=True)
     db_luogo_di_nascita = models.CharField(max_length=1000, blank=True)
     db_data_di_nascita = models.CharField(max_length=1000, blank=True)
-    db_indirizzo_di_residenza = models.CharField(max_length=1000, blank=True)
+    db_indirizzo_di_residenza = models.CharField(
+        max_length=1000, blank=True, default='')
     db_comune_di_residenza = models.CharField(
         max_length=1000, blank=True, default='')
     df_codice_fiscale = models.CharField(max_length=1000, blank=True)
