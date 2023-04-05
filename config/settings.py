@@ -100,12 +100,6 @@ if DEVELOPMENT_MODE is True:
     ALLOWED_HOSTS = ['192.168.1.88',
                      '127.0.0.1', '192.168.0.167', '192.168.129.248', 'localhost']
     DJANGO_SETTINGS_MODULE = 'config.settings'
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
-        }
-    }
     EMAIL_BACKEND = env('EMAIL_BACKEND')
     EMAIL_HOST = env('EMAIL_HOST')
     EMAIL_HOST_USER = env('EMAIL_HOST_USER')
@@ -124,12 +118,7 @@ if DEVELOPMENT_MODE is True:
     BACKEND_DOMAIN = env('BACKEND_DOMAIN')
     PAYMENT_SUCCESS_URL = env('PAYMENT_SUCCESS_URL')
     PAYMENT_CANCEL_URL = env('PAYMENT_CANCEL_URL')
-elif len(sys.argv) > 0 and sys.argv[1] != 'collectstatic':
-    if os.getenv("DATABASE_URL", None) is None:
-        raise Exception("DATABASE_URL environment variable not defined")
-    DATABASES = {
-        "default": dj_database_url.parse(os.environ.get("DATABASE_URL")),
-    }
+else:
     # SECURITY WARNING: keep the secret key used in production secret!
     SECRET_KEY = os.getenv('SECRET_KEY')
     # SECURITY WARNING: don't run with debug turned on in production!
@@ -164,6 +153,19 @@ elif len(sys.argv) > 0 and sys.argv[1] != 'collectstatic':
     PAYMENT_SUCCESS_URL = os.getenv('PAYMENT_SUCCESS_URL')
     PAYMENT_CANCEL_URL = os.getenv('PAYMENT_CANCEL_URL')
 
+if DEVELOPMENT_MODE is True:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+        }
+    }
+elif len(sys.argv) > 0 and sys.argv[1] != 'collectstatic':
+    if os.getenv("DATABASE_URL", None) is None:
+        raise Exception("DATABASE_URL environment variable not defined")
+    DATABASES = {
+        "default": dj_database_url.parse(os.environ.get("DATABASE_URL")),
+    }
 
 EMAIL_SUBJECT_PREFIX = '[Your Project Name]'
 PASSWORD_RESET_TIMEOUT_DAYS = 1
