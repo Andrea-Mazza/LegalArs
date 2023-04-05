@@ -121,7 +121,7 @@ DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "False") == "True"
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG', 'False')
+DEBUG = False
 ALLOWED_HOSTS = ['legalars-app-9yyw9.ondigitalocean.app', 'localhost']
 DJANGO_SETTINGS_MODULE = os.getenv('DJANGO_SETTINGS_MODULE')
 EMAIL_BACKEND = os.getenv('EMAIL_BACKEND')
@@ -163,7 +163,7 @@ elif len(sys.argv) > 0 and sys.argv[1] != 'collectstatic':
     if os.getenv("DATABASE_URL", None) is None:
         raise Exception("DATABASE_URL environment variable not defined")
     DATABASES = {
-        "default": dj_database_url.parse(os.getenv("DATABASE_URL")),
+        "default": 'legalars_db',
     }
 
 EMAIL_SUBJECT_PREFIX = '[Your Project Name]'
