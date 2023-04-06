@@ -58,8 +58,8 @@ def userArea_base(request):
 @login_required(login_url='/accesso/')
 def user_home(request):
     has_subscription = request.user.has_subscription
-    recupero_credito = models.ServizioRecuperoCredito.objects.filter(
-        current_user=request.user)
+    # recupero_credito = models.ServizioRecuperoCredito.objects.filter(
+    #     current_user=request.user)
     post = list(reversed(Articolo.objects.filter(
         saved_by=request.user)))
     if request.method == 'POST':  # Aggiungi questo per gestire la richiesta POST del form di rimozione articolo
@@ -74,8 +74,8 @@ def user_home(request):
             messages.error(
                 request, "Si è verificato un errore durante la rimozione dell'articolo salvato.")
     assistenzaForm = userArea_base(request)
-    context = {'recupero_credito': recupero_credito,
-               'post': post[:2], 'contact_form': assistenzaForm, 'has_subscription': has_subscription}
+    context = {
+        'post': post[:2], 'contact_form': assistenzaForm, 'has_subscription': has_subscription}
 
     avvisi = False
     counter = 0
