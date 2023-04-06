@@ -80,8 +80,8 @@ def dati_creditore(request):
                 request.session['cr_data_di_nascita'] = form.cleaned_data['cr_data_di_nascita']
                 request.session['cr_comune_di_residenza'] = form.cleaned_data[
                     'cr_comune_di_residenza'].nome
-                # request.session['cr_indirizzo_di_residenza'] = form.cleaned_data[
-                #     'cr_indirizzo_di_residenza']
+                request.session['cr_indirizzo_di_residenza'] = form.cleaned_data[
+                    'cr_indirizzo_di_residenza']
                 request.session['cr_email'] = form.cleaned_data['cr_email']
                 request.session['cr_pec'] = form.cleaned_data['cr_pec']
                 request.session['cr_codice_fiscale'] = form.cleaned_data['cr_codice_fiscale']
@@ -89,10 +89,10 @@ def dati_creditore(request):
             elif tipo_creditore == 'Persona Giuridica':
                 request.session['cr_denominazione_sociale'] = form.cleaned_data[
                     'cr_denominazione_sociale']
-                # request.session['cr_comune_sede_principale'] = form.cleaned_data[
-                #     'cr_comune_sede_principale'].nome
-                # request.session['cr_indirizzo_sede_principale'] = form.cleaned_data[
-                #     'cr_indirizzo_sede_principale']
+                request.session['cr_comune_sede_principale'] = form.cleaned_data[
+                    'cr_comune_sede_principale'].nome
+                request.session['cr_indirizzo_sede_principale'] = form.cleaned_data[
+                    'cr_indirizzo_sede_principale']
                 request.session['cr_email'] = form.cleaned_data['cr_email']
                 request.session['cr_pec'] = form.cleaned_data['cr_pec']
                 request.session['cr_codice_fiscale'] = form.cleaned_data['cr_codice_fiscale']
@@ -214,16 +214,16 @@ def tipo_debitore(request):
         cognome = request.session['cr_cognome']
         luogo_di_nascita = request.session['cr_luogo_di_nascita']
         data_di_nascita = request.session['cr_data_di_nascita']
-        # comune_di_residenza = request.session['cr_comune_di_residenza']
-        # indirizzo_di_residenza = request.session['cr_indirizzo_di_residenza']
+        comune_di_residenza = request.session['cr_comune_di_residenza']
+        indirizzo_di_residenza = request.session['cr_indirizzo_di_residenza']
         email = request.session['cr_email']
         pec = request.session['cr_pec']
         codice_fiscale = request.session['cr_codice_fiscale']
         partita_iva = request.session['cr_partita_iva']
     elif tipo_creditore == 'Persona Giuridica':
         denominazione_sociale = request.session['cr_denominazione_sociale']
-        # comune_sede_principale = request.session['cr_comune_sede_principale']
-        # indirizzo_sede_principale = request.session['cr_indirizzo_sede_principale']
+        comune_sede_principale = request.session['cr_comune_sede_principale']
+        indirizzo_sede_principale = request.session['cr_indirizzo_sede_principale']
         email = request.session['cr_email']
         pec = request.session['cr_pec']
         codice_fiscale = request.session['cr_codice_fiscale']
@@ -272,8 +272,8 @@ def tipo_debitore(request):
             'cognome': cognome,
             'luogo_di_nascita': luogo_di_nascita,
             'data_di_nascita': data_di_nascita,
-            # 'comune_di_residenza': comune_di_residenza,
-            # 'indirizzo_di_residenza': indirizzo_di_residenza,
+            'comune_di_residenza': comune_di_residenza,
+            'indirizzo_di_residenza': indirizzo_di_residenza,
             'email': email,
             'pec': pec,
             'codice_fiscale': codice_fiscale,
@@ -284,8 +284,8 @@ def tipo_debitore(request):
             'tipo_debitore': tipo_debitore,
             'tipo_creditore': tipo_creditore,
             'denominazione_sociale': denominazione_sociale,
-            # 'comune_sede_principale': comune_sede_principale,
-            # 'indirizzo_sede_principale': indirizzo_sede_principale,
+            'comune_sede_principale': comune_sede_principale,
+            'indirizzo_sede_principale': indirizzo_sede_principale,
             'email': email,
             'pec': pec,
             'codice_fiscale': codice_fiscale,
@@ -307,16 +307,16 @@ def dati_debitore(request):
         cognome = request.session['cr_cognome']
         luogo_di_nascita = request.session['cr_luogo_di_nascita']
         data_di_nascita = request.session['cr_data_di_nascita']
-        # comune_di_residenza = request.session['cr_comune_di_residenza']
-        # indirizzo_di_residenza = request.session['cr_indirizzo_di_residenza']
+        comune_di_residenza = request.session['cr_comune_di_residenza']
+        indirizzo_di_residenza = request.session['cr_indirizzo_di_residenza']
         email = request.session['cr_email']
         pec = request.session['cr_pec']
         codice_fiscale = request.session['cr_codice_fiscale']
         partita_iva = request.session['cr_partita_iva']
     elif tipo_creditore == 'Persona Giuridica':
         denominazione_sociale = request.session['cr_denominazione_sociale']
-        # comune_sede_principale = request.session['cr_comune_sede_principale']
-        # indirizzo_sede_principale = request.session['cr_indirizzo_sede_principale']
+        comune_sede_principale = request.session['cr_comune_sede_principale']
+        indirizzo_sede_principale = request.session['cr_indirizzo_sede_principale']
         email = request.session['cr_email']
         pec = request.session['cr_pec']
         codice_fiscale = request.session['cr_codice_fiscale']
@@ -534,18 +534,18 @@ def dati_debitore(request):
                 request.session['db_cognome'] = form.cleaned_data['db_cognome']
                 request.session['db_luogo_di_nascita'] = form.cleaned_data['db_luogo_di_nascita']
                 request.session['db_data_di_nascita'] = form.cleaned_data['db_data_di_nascita']
-                # request.session['db_indirizzo_di_residenza'] = form.cleaned_data[
-                #     'db_indirizzo_di_residenza']
+                request.session['db_indirizzo_di_residenza'] = form.cleaned_data[
+                    'db_indirizzo_di_residenza']
                 request.session['df_codice_fiscale'] = form.cleaned_data['df_codice_fiscale']
                 request.session['df_partita_iva'] = form.cleaned_data['df_partita_iva']
-                # request.session['db_comune_di_residenza'] = form.cleaned_data['db_comune_di_residenza'].nome
+                request.session['db_comune_di_residenza'] = form.cleaned_data['db_comune_di_residenza'].nome
             else:
                 request.session['db_denominazione_sociale'] = form.cleaned_data[
                     'db_denominazione_sociale']
-                # request.session['db_sede_principale'] = form.cleaned_data['db_sede_principale']
+                request.session['db_sede_principale'] = form.cleaned_data['db_sede_principale']
                 request.session['dj_codice_fiscale'] = form.cleaned_data['dj_codice_fiscale']
                 request.session['dj_partita_iva'] = form.cleaned_data['dj_partita_iva']
-                # request.session['db_comune_sede_principale'] = form.cleaned_data['db_comune_sede_principale'].nome
+                request.session['db_comune_sede_principale'] = form.cleaned_data['db_comune_sede_principale'].nome
             # dati_debitore_model.save()
             # request.session['dati_debitore_id'] = dati_debitore_model.id
             return redirect('userArea:credito')
@@ -565,8 +565,8 @@ def dati_debitore(request):
             'cognome': cognome,
             'luogo_di_nascita': luogo_di_nascita,
             'data_di_nascita': data_di_nascita,
-            # 'comune_di_residenza': comune_di_residenza,
-            # 'indirizzo_di_residenza': indirizzo_di_residenza,
+            'comune_di_residenza': comune_di_residenza,
+            'indirizzo_di_residenza': indirizzo_di_residenza,
             'email': email,
             'pec': pec,
             'codice_fiscale': codice_fiscale,
@@ -578,8 +578,8 @@ def dati_debitore(request):
             'tipo_debitore': tipo_debitore,
             'tipo_creditore': tipo_creditore,
             'denominazione_sociale': denominazione_sociale,
-            # 'comune_sede_principale': comune_sede_principale,
-            # 'indirizzo_sede_principale': indirizzo_sede_principale,
+            'comune_sede_principale': comune_sede_principale,
+            'indirizzo_sede_principale': indirizzo_sede_principale,
             'email': email,
             'pec': pec,
             'codice_fiscale': codice_fiscale,
@@ -663,9 +663,9 @@ def credito(request):
                 pratica_completa.cr_cognome = request.session['cr_cognome']
                 pratica_completa.cr_luogo_di_nascita = request.session['cr_luogo_di_nascita']
                 pratica_completa.cr_data_di_nascita = request.session['cr_data_di_nascita']
-                # pratica_completa.cr_comune_di_residenza = request.session['cr_comune_di_residenza']
-                # pratica_completa.cr_indirizzo_di_residenza = request.session[
-                #     'cr_indirizzo_di_residenza']
+                pratica_completa.cr_comune_di_residenza = request.session['cr_comune_di_residenza']
+                pratica_completa.cr_indirizzo_di_residenza = request.session[
+                    'cr_indirizzo_di_residenza']
                 pratica_completa.cr_email = request.session['cr_email']
                 pratica_completa.cr_pec = request.session['cr_pec']
                 pratica_completa.cr_codice_fiscale = request.session['cr_codice_fiscale']
@@ -674,10 +674,10 @@ def credito(request):
                 pratica_completa.cr_tipo = request.session['cr_tipo']
                 pratica_completa.cr_denominazione_sociale = request.session[
                     'cr_denominazione_sociale']
-                # pratica_completa.cr_comune_sede_principale = request.session[
-                #     'cr_comune_sede_principale']
-                # pratica_completa.cr_indirizzo_sede_principale = request.session[
-                #     'cr_indirizzo_sede_principale']
+                pratica_completa.cr_comune_sede_principale = request.session[
+                    'cr_comune_sede_principale']
+                pratica_completa.cr_indirizzo_sede_principale = request.session[
+                    'cr_indirizzo_sede_principale']
                 pratica_completa.cr_email = request.session['cr_email']
                 pratica_completa.cr_pec = request.session['cr_pec']
                 pratica_completa.cr_codice_fiscale = request.session['cr_codice_fiscale']
@@ -689,15 +689,15 @@ def credito(request):
                 pratica_completa.db_cognome = request.session['db_cognome']
                 pratica_completa.db_luogo_di_nascita = request.session['db_luogo_di_nascita']
                 pratica_completa.db_data_di_nascita = request.session['db_data_di_nascita']
-                # pratica_completa.db_indirizzo_di_residenza = request.session[
-                #     'db_indirizzo_di_residenza']
+                pratica_completa.db_indirizzo_di_residenza = request.session[
+                    'db_indirizzo_di_residenza']
                 pratica_completa.df_codice_fiscale = request.session['df_codice_fiscale']
                 pratica_completa.df_partita_iva = request.session['df_partita_iva']
             else:
                 pratica_completa.db_tipo = request.session['db_tipo']
                 pratica_completa.db_denominazione_sociale = request.session[
                     'db_denominazione_sociale']
-                # pratica_completa.db_sede_principale = request.session['db_sede_principale']
+                pratica_completa.db_sede_principale = request.session['db_sede_principale']
                 pratica_completa.dj_codice_fiscale = request.session['dj_codice_fiscale']
                 pratica_completa.dj_partita_iva = request.session['dj_partita_iva']
             pratica_completa.somma = credito_form.cleaned_data['somma']
@@ -817,8 +817,8 @@ def credito(request):
                 'cognome': request.session['cr_cognome'],
                 'luogo_di_nascita': request.session['cr_luogo_di_nascita'],
                 'data_di_nascita': request.session['cr_data_di_nascita'],
-                # 'comune_di_residenza': request.session['cr_comune_di_residenza'],
-                # 'indirizzo_di_residenza': request.session['cr_indirizzo_di_residenza'],
+                'comune_di_residenza': request.session['cr_comune_di_residenza'],
+                'indirizzo_di_residenza': request.session['cr_indirizzo_di_residenza'],
                 'email': request.session['cr_email'],
                 'pec': request.session['cr_pec'],
                 'codice_fiscale': request.session['cr_codice_fiscale'],
@@ -837,8 +837,8 @@ def credito(request):
                 'tipo_creditore': request.session['cr_tipo'],
                 'tipo_debitore': request.session['db_tipo'],
                 'cr_denominazione_sociale': request.session['cr_denominazione_sociale'],
-                # 'cr_comune_sede_principale': request.session['cr_comune_sede_principale'],
-                # 'cr_indirizzo_sede_principale': request.session['cr_indirizzo_sede_principale'],
+                'cr_comune_sede_principale': request.session['cr_comune_sede_principale'],
+                'cr_indirizzo_sede_principale': request.session['cr_indirizzo_sede_principale'],
                 'cr_email': request.session['cr_email'],
                 'cr_pec': request.session['cr_pec'],
                 'cr_codice_fiscale': request.session['cr_codice_fiscale'],
@@ -861,8 +861,8 @@ def credito(request):
                 'cognome': request.session['cr_cognome'],
                 'luogo_di_nascita': request.session['cr_luogo_di_nascita'],
                 'data_di_nascita': request.session['cr_data_di_nascita'],
-                # 'comune_di_residenza': request.session['cr_comune_di_residenza'],
-                # 'indirizzo_di_residenza': request.session['cr_indirizzo_di_residenza'],
+                'comune_di_residenza': request.session['cr_comune_di_residenza'],
+                'indirizzo_di_residenza': request.session['cr_indirizzo_di_residenza'],
                 'email': request.session['cr_email'],
                 'pec': request.session['cr_pec'],
                 'codice_fiscale': request.session['cr_codice_fiscale'],
@@ -878,8 +878,8 @@ def credito(request):
                 'tipo_creditore': request.session['cr_tipo'],
                 'tipo_debitore': request.session['db_tipo'],
                 'cr_denominazione_sociale': request.session['cr_denominazione_sociale'],
-                # 'cr_comune_sede_principale': request.session['cr_comune_sede_principale'],
-                # 'cr_indirizzo_sede_principale': request.session['cr_indirizzo_sede_principale'],
+                'cr_comune_sede_principale': request.session['cr_comune_sede_principale'],
+                'cr_indirizzo_sede_principale': request.session['cr_indirizzo_sede_principale'],
                 'cr_email': request.session['cr_email'],
                 'cr_pec': request.session['cr_pec'],
                 'cr_codice_fiscale': request.session['cr_codice_fiscale'],
@@ -985,17 +985,17 @@ def SuccessView(request):
         pratica_completa.cr_cognome = request.session['cr_cognome']
         pratica_completa.cr_luogo_di_nascita = request.session['cr_luogo_di_nascita']
         pratica_completa.cr_data_di_nascita = request.session['cr_data_di_nascita']
-        # pratica_completa.cr_comune_di_residenza = request.session['cr_comune_di_residenza']
-        # pratica_completa.cr_indirizzo_di_residenza = request.session['cr_indirizzo_di_residenza']
+        pratica_completa.cr_comune_di_residenza = request.session['cr_comune_di_residenza']
+        pratica_completa.cr_indirizzo_di_residenza = request.session['cr_indirizzo_di_residenza']
         pratica_completa.cr_email = request.session['cr_email']
         pratica_completa.cr_pec = request.session['cr_pec']
         pratica_completa.cr_codice_fiscale = request.session['cr_codice_fiscale']
         pratica_completa.cr_partita_iva = request.session['cr_partita_iva']
     else:
         pratica_completa.cr_denominazione_sociale = request.session['cr_denominazione_sociale']
-        # pratica_completa.cr_comune_sede_principale = request.session['cr_comune_sede_principale']
-        # pratica_completa.cr_indirizzo_sede_principale = request.session[
-        #     'cr_indirizzo_sede_principale']
+        pratica_completa.cr_comune_sede_principale = request.session['cr_comune_sede_principale']
+        pratica_completa.cr_indirizzo_sede_principale = request.session[
+            'cr_indirizzo_sede_principale']
         pratica_completa.cr_email = request.session['cr_email']
         pratica_completa.cr_pec = request.session['cr_pec']
         pratica_completa.cr_codice_fiscale = request.session['cr_codice_fiscale']
@@ -1006,23 +1006,23 @@ def SuccessView(request):
         pratica_completa.db_cognome = request.session['db_cognome']
         pratica_completa.db_luogo_di_nascita = request.session['db_luogo_di_nascita']
         pratica_completa.db_data_di_nascita = request.session['db_data_di_nascita']
-        # pratica_completa.db_indirizzo_di_residenza = request.session['db_indirizzo_di_residenza']
+        pratica_completa.db_indirizzo_di_residenza = request.session['db_indirizzo_di_residenza']
         pratica_completa.df_codice_fiscale = request.session['df_codice_fiscale']
         pratica_completa.df_partita_iva = request.session['df_partita_iva']
-        # pratica_completa.db_comune_di_residenza = request.session['db_comune_di_residenza']
+        pratica_completa.db_comune_di_residenza = request.session['db_comune_di_residenza']
     else:
         pratica_completa.db_denominazione_sociale = request.session['db_denominazione_sociale']
-        # pratica_completa.db_sede_principale = request.session['db_sede_principale']
+        pratica_completa.db_sede_principale = request.session['db_sede_principale']
         pratica_completa.dj_codice_fiscale = request.session['dj_codice_fiscale']
         pratica_completa.dj_partita_iva = request.session['dj_partita_iva']
-        # pratica_completa.db_comune_sede_principale = request.session['db_comune_sede_principale']
+        pratica_completa.db_comune_sede_principale = request.session['db_comune_sede_principale']
 
-    # document = write_procura_speciale(pratica_completa)
-    # filename = f'procura_speciale_{unique_id}.docx'
-    # file_path = os.path.join(os.path.dirname(os.path.abspath(
-    #     __file__)), '..', 'static/images/recupero_credito_doc', filename)
-    # with open(file_path, 'wb') as f:
-    #     f.write(document.read())
+    document = write_procura_speciale(pratica_completa)
+    filename = f'procura_speciale_{unique_id}.docx'
+    file_path = os.path.join(os.path.dirname(os.path.abspath(
+        __file__)), '..', 'static/images/recupero_credito_doc', filename)
+    with open(file_path, 'wb') as f:
+        f.write(document.read())
 
     pratica_completa.save()
 

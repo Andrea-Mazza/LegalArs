@@ -58,8 +58,8 @@ def userArea_base(request):
 @login_required(login_url='/accesso/')
 def user_home(request):
     has_subscription = request.user.has_subscription
-    # recupero_credito = models.ServizioRecuperoCredito.objects.filter(
-    #     current_user=request.user)
+    recupero_credito = models.ServizioRecuperoCredito.objects.filter(
+        current_user=request.user)
     post = list(reversed(Articolo.objects.filter(
         saved_by=request.user)))
     if request.method == 'POST':  # Aggiungi questo per gestire la richiesta POST del form di rimozione articolo
@@ -74,21 +74,21 @@ def user_home(request):
             messages.error(
                 request, "Si è verificato un errore durante la rimozione dell'articolo salvato.")
     assistenzaForm = userArea_base(request)
-    context = {
-        'post': post[:2], 'contact_form': assistenzaForm, 'has_subscription': has_subscription}
+    context = {'recupero_credito': recupero_credito,
+               'post': post[:2], 'contact_form': assistenzaForm, 'has_subscription': has_subscription}
 
     avvisi = False
     counter = 0
-    # for pratica in recupero_credito:
-    #     if pratica.comunicazioni_non_lette > 0:
-    #         avvisi = True
-    #     messaggi = models.MessaggioRecuperoCredito.objects.filter(
-    #         servizio_recupero_credito=pratica)
-    #     for messaggio in messaggi:
-    #         if not messaggio.letta:
-    #             counter += 1
-    # context['avvisi'] = avvisi
-    # context['counter'] = counter
+    for pratica in recupero_credito:
+        if pratica.comunicazioni_non_lette > 0:
+            avvisi = True
+        messaggi = models.MessaggioRecuperoCredito.objects.filter(
+            servizio_recupero_credito=pratica)
+        for messaggio in messaggi:
+            if not messaggio.letta:
+                counter += 1
+    context['avvisi'] = avvisi
+    context['counter'] = counter
 
     return render(request, 'area_personale.html', context)
 
