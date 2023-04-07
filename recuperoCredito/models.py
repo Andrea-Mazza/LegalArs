@@ -175,96 +175,96 @@ class Fattura(models.Model):
 #     cr_partita_iva = models.CharField(max_length=1000)
 
 
-# class ServizioRecuperoCredito(models.Model):
-#     current_user = models.ForeignKey(
-#         CustomUser, on_delete=models.CASCADE, null=True, default=None)
-#     time = models.DateTimeField(
-#         default=timezone.now)
-#     cr_tipo = models.CharField(max_length=1000, default='')
-#     cr_nome = models.CharField(max_length=1000, blank=True)
-#     cr_cognome = models.CharField(max_length=1000, blank=True)
-#     cr_luogo_di_nascita = models.CharField(max_length=1000, blank=True)
-#     cr_data_di_nascita = models.CharField(max_length=1000, blank=True)
-#     cr_comune_di_residenza = models.CharField(
-#         max_length=1000, blank=True, default='', null=True)
-#     cr_indirizzo_di_residenza = models.CharField(max_length=1000, blank=True)
-#     cr_email = models.CharField(max_length=1000, blank=True)
-#     cr_pec = models.CharField(max_length=1000, blank=True)
-#     cr_codice_fiscale = models.CharField(max_length=1000, blank=True)
-#     cr_partita_iva = models.CharField(max_length=1000, blank=True)
-#     cr_denominazione_sociale = models.CharField(max_length=1000, blank=True)
-#     cr_comune_sede_principale = models.CharField(max_length=1000, blank=True)
-#     cr_indirizzo_sede_principale = models.CharField(
-#         max_length=1000, blank=True)
-#     db_tipo = models.CharField(max_length=1000, default='')
-#     db_nome = models.CharField(max_length=1000, blank=True)
-#     db_cognome = models.CharField(max_length=1000, blank=True)
-#     db_luogo_di_nascita = models.CharField(max_length=1000, blank=True)
-#     db_data_di_nascita = models.CharField(max_length=1000, blank=True)
-#     db_indirizzo_di_residenza = models.CharField(
-#         max_length=1000, blank=True, default='')
-#     db_comune_di_residenza = models.CharField(
-#         max_length=1000, blank=True, default='', null=True)
-#     df_codice_fiscale = models.CharField(max_length=1000, blank=True)
-#     df_partita_iva = models.CharField(max_length=1000, blank=True)
-#     db_denominazione_sociale = models.CharField(max_length=1000, blank=True)
-#     db_comune_sede_principale = models.CharField(
-#         max_length=1000, blank=True, default='')
-#     db_sede_principale = models.CharField(max_length=1000, blank=True)
-#     dj_codice_fiscale = models.CharField(max_length=1000, blank=True)
-#     dj_partita_iva = models.CharField(max_length=1000, blank=True)
-#     somma = models.DecimalField(
-#         max_digits=12, decimal_places=2, default='0.00')
-#     comunicazioni_non_lette = models.IntegerField(default=0)
-#     first_payment = models.DecimalField(
-#         max_digits=12, decimal_places=2, default='0.00')
-#     procura_speciale = models.FileField(
-#         upload_to='recupero_credito_doc', null=True)
+class ServizioRecuperoCredito(models.Model):
+    current_user = models.ForeignKey(
+        CustomUser, on_delete=models.CASCADE, null=True, default=None)
+    time = models.DateTimeField(
+        default=timezone.now)
+    cr_tipo = models.CharField(max_length=1000, default='')
+    cr_nome = models.CharField(max_length=1000, blank=True)
+    cr_cognome = models.CharField(max_length=1000, blank=True)
+    cr_luogo_di_nascita = models.CharField(max_length=1000, blank=True)
+    cr_data_di_nascita = models.CharField(max_length=1000, blank=True)
+    cr_comune_di_residenza = models.CharField(
+        max_length=1000, blank=True, default='', null=True)
+    cr_indirizzo_di_residenza = models.CharField(max_length=1000, blank=True)
+    cr_email = models.CharField(max_length=1000, blank=True)
+    cr_pec = models.CharField(max_length=1000, blank=True)
+    cr_codice_fiscale = models.CharField(max_length=1000, blank=True)
+    cr_partita_iva = models.CharField(max_length=1000, blank=True)
+    cr_denominazione_sociale = models.CharField(max_length=1000, blank=True)
+    cr_comune_sede_principale = models.CharField(max_length=1000, blank=True)
+    cr_indirizzo_sede_principale = models.CharField(
+        max_length=1000, blank=True)
+    db_tipo = models.CharField(max_length=1000, default='')
+    db_nome = models.CharField(max_length=1000, blank=True)
+    db_cognome = models.CharField(max_length=1000, blank=True)
+    db_luogo_di_nascita = models.CharField(max_length=1000, blank=True)
+    db_data_di_nascita = models.CharField(max_length=1000, blank=True)
+    db_indirizzo_di_residenza = models.CharField(
+        max_length=1000, blank=True, default='')
+    db_comune_di_residenza = models.CharField(
+        max_length=1000, blank=True, default='', null=True)
+    df_codice_fiscale = models.CharField(max_length=1000, blank=True)
+    df_partita_iva = models.CharField(max_length=1000, blank=True)
+    db_denominazione_sociale = models.CharField(max_length=1000, blank=True)
+    db_comune_sede_principale = models.CharField(
+        max_length=1000, blank=True, default='')
+    db_sede_principale = models.CharField(max_length=1000, blank=True)
+    dj_codice_fiscale = models.CharField(max_length=1000, blank=True)
+    dj_partita_iva = models.CharField(max_length=1000, blank=True)
+    somma = models.DecimalField(
+        max_digits=12, decimal_places=2, default='0.00')
+    comunicazioni_non_lette = models.IntegerField(default=0)
+    first_payment = models.DecimalField(
+        max_digits=12, decimal_places=2, default='0.00')
+    procura_speciale = models.FileField(
+        upload_to='recupero_credito_doc', null=True)
 
-#     def __str__(self):
-#         if self.cr_tipo == 'Persona Fisica':
-#             return self.cr_nome
-#         else:
-#             return self.cr_denominazione_sociale
+    def __str__(self):
+        if self.cr_tipo == 'Persona Fisica':
+            return self.cr_nome
+        else:
+            return self.cr_denominazione_sociale
 
-#     def clean(self):
-#         if self.cr_tipo == 'Persona Fisica':
-#             if not self.cr_nome:
-#                 raise ValidationError(
-#                     'Il nome del creditore è obbligatorio per una persona fisica.')
-#             if not self.cr_cognome:
-#                 raise ValidationError(
-#                     'Il cognome del creditore è obbligatorio per una persona fisica.')
-#             # validate the other persona fisica fields as needed
-#         elif self.cr_tipo == 'Persona Giuridica':
-#             if not self.cr_denominazione_sociale:
-#                 raise ValidationError(
-#                     'La denominazione sociale del creditore è obbligatoria per una persona giuridica.')
-#             # self.cr_nome = models.CharField(
-#             #     max_length=2000, **{'widget': forms.TextInput(attrs={'style': 'display: none'})})
+    def clean(self):
+        if self.cr_tipo == 'Persona Fisica':
+            if not self.cr_nome:
+                raise ValidationError(
+                    'Il nome del creditore è obbligatorio per una persona fisica.')
+            if not self.cr_cognome:
+                raise ValidationError(
+                    'Il cognome del creditore è obbligatorio per una persona fisica.')
+            # validate the other persona fisica fields as needed
+        elif self.cr_tipo == 'Persona Giuridica':
+            if not self.cr_denominazione_sociale:
+                raise ValidationError(
+                    'La denominazione sociale del creditore è obbligatoria per una persona giuridica.')
+            # self.cr_nome = models.CharField(
+            #     max_length=2000, **{'widget': forms.TextInput(attrs={'style': 'display: none'})})
 
-#     # def save(self, *args, **kwargs):
-#     #     if self.pk is not None:  # se l'oggetto è già presente nel database
-#     #         self.comunicazioni_non_lette += 1
-#     #     super().save(*args, **kwargs)
-#     # Definizione del metodo per aggiornare le comunicazioni non lette
-#     def aggiorna_comunicazioni_non_lette(self):
-#         self.comunicazioni_non_lette = MessaggioRecuperoCredito.objects.filter(
-#             servizio_recupero_credito=self, letta=False).count()
-#         self.save()
-
-
-# class MessaggioRecuperoCredito(models.Model):
-#     servizio_recupero_credito = models.ForeignKey(
-#         ServizioRecuperoCredito, on_delete=models.CASCADE, null=True)
-#     testo = models.TextField()
-#     data_creazione = models.DateTimeField(default=timezone.now)
-#     letta = models.BooleanField(default=False)
-
-#     def __str__(self):
-#         return self.testo
+    # def save(self, *args, **kwargs):
+    #     if self.pk is not None:  # se l'oggetto è già presente nel database
+    #         self.comunicazioni_non_lette += 1
+    #     super().save(*args, **kwargs)
+    # Definizione del metodo per aggiornare le comunicazioni non lette
+    def aggiorna_comunicazioni_non_lette(self):
+        self.comunicazioni_non_lette = MessaggioRecuperoCredito.objects.filter(
+            servizio_recupero_credito=self, letta=False).count()
+        self.save()
 
 
-# @receiver(post_save, sender=MessaggioRecuperoCredito)
-# def aggiorna_comunicazioni_non_lette(sender, instance, **kwargs):
-#     instance.servizio_recupero_credito.aggiorna_comunicazioni_non_lette()
+class MessaggioRecuperoCredito(models.Model):
+    servizio_recupero_credito = models.ForeignKey(
+        ServizioRecuperoCredito, on_delete=models.CASCADE, null=True)
+    testo = models.TextField()
+    data_creazione = models.DateTimeField(default=timezone.now)
+    letta = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.testo
+
+
+@receiver(post_save, sender=MessaggioRecuperoCredito)
+def aggiorna_comunicazioni_non_lette(sender, instance, **kwargs):
+    instance.servizio_recupero_credito.aggiorna_comunicazioni_non_lette()
