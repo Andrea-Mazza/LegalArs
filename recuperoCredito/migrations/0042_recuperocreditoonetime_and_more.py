@@ -18,22 +18,6 @@ class Migration(migrations.Migration):
                 ('price', models.DecimalField(decimal_places=2, max_digits=12)),
             ],
         ),
-        migrations.RemoveField(
-            model_name='serviziorecuperocredito',
-            name='cr_comune_di_residenza',
-        ),
-        migrations.RemoveField(
-            model_name='serviziorecuperocredito',
-            name='cr_comune_sede_principale',
-        ),
-        migrations.RemoveField(
-            model_name='serviziorecuperocredito',
-            name='cr_indirizzo_di_residenza',
-        ),
-        migrations.RemoveField(
-            model_name='serviziorecuperocredito',
-            name='cr_indirizzo_sede_principale',
-        ),
         migrations.AddField(
             model_name='serviziorecuperocredito',
             name='db_comune_di_residenza',
