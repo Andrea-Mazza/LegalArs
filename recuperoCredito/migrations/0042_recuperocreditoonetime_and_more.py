@@ -13,7 +13,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='RecuperoCreditoOneTime',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('price', models.DecimalField(decimal_places=2, max_digits=12)),
             ],
         ),
@@ -36,7 +37,8 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='serviziorecuperocredito',
             name='db_comune_di_residenza',
-            field=models.CharField(blank=True, default='', max_length=1000, null=True),
+            field=models.CharField(
+                blank=True, default='', max_length=1000, null=True),
         ),
         migrations.AddField(
             model_name='serviziorecuperocredito',
@@ -46,16 +48,13 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='serviziorecuperocredito',
             name='first_payment',
-            field=models.DecimalField(decimal_places=2, default='0.00', max_digits=12),
+            field=models.DecimalField(
+                decimal_places=2, default='0.00', max_digits=12),
         ),
         migrations.AddField(
             model_name='serviziorecuperocredito',
             name='procura_speciale',
-            field=models.FileField(null=True, upload_to='recupero_credito_doc'),
-        ),
-        migrations.AlterField(
-            model_name='serviziorecuperocredito',
-            name='db_indirizzo_di_residenza',
-            field=models.CharField(blank=True, default='', max_length=1000),
+            field=models.FileField(
+                null=True, upload_to='recupero_credito_doc'),
         ),
     ]

@@ -43,11 +43,6 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='serviziorecuperocredito',
-            name='db_indirizzo_di_residenza',
-            field=models.CharField(blank=True, max_length=1000),
-        ),
-        migrations.AddField(
-            model_name='serviziorecuperocredito',
             name='db_luogo_di_nascita',
             field=models.CharField(blank=True, max_length=1000),
         ),
