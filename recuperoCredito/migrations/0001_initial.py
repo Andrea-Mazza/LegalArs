@@ -15,106 +15,135 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Comuni',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('nome', models.CharField(max_length=250)),
             ],
         ),
         migrations.CreateModel(
             name='Credito',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('numero_fatture', models.IntegerField(blank=True)),
             ],
         ),
         migrations.CreateModel(
             name='Creditore',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('tipo_creditore', models.CharField(choices=[('PF', 'Persona Fisica'), ('PJ', 'Persona Giuridica')], max_length=2)),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
+                ('tipo_creditore', models.CharField(choices=[
+                 ('PF', 'Persona Fisica'), ('PJ', 'Persona Giuridica')], max_length=2)),
                 ('numero_creditori', models.IntegerField()),
             ],
         ),
         migrations.CreateModel(
             name='Debitore',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('tipo', models.CharField(blank=True, choices=[('PF', 'Persona Fisica'), ('PJ', 'Persona Giuridica')], max_length=2)),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
+                ('tipo', models.CharField(blank=True, choices=[
+                 ('PF', 'Persona Fisica'), ('PJ', 'Persona Giuridica')], max_length=2)),
             ],
         ),
         migrations.CreateModel(
             name='ServizioRecuperoCredito',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('cr_tipo', models.CharField(default='', max_length=1000)),
                 ('cr_nome', models.CharField(blank=True, max_length=1000)),
                 ('cr_cognome', models.CharField(blank=True, max_length=1000)),
-                ('cr_luogo_di_nascita', models.CharField(blank=True, max_length=1000)),
-                ('cr_data_di_nascita', models.CharField(blank=True, max_length=1000)),
-                ('cr_comune_di_residenza', models.CharField(blank=True, max_length=1000)),
-                ('cr_indirizzo_di_residenza', models.CharField(blank=True, max_length=1000)),
+                ('cr_luogo_di_nascita', models.CharField(
+                    blank=True, max_length=1000)),
+                ('cr_data_di_nascita', models.CharField(
+                    blank=True, max_length=1000)),
+                ('cr_comune_di_residenza', models.CharField(
+                    blank=True, max_length=1000)),
+                ('cr_indirizzo_di_residenza', models.CharField(
+                    blank=True, max_length=1000)),
                 ('cr_email', models.CharField(blank=True, max_length=1000)),
                 ('cr_pec', models.CharField(blank=True, max_length=1000)),
-                ('cr_codice_fiscale', models.CharField(blank=True, max_length=1000)),
+                ('cr_codice_fiscale', models.CharField(
+                    blank=True, max_length=1000)),
                 ('cr_partita_iva', models.CharField(blank=True, max_length=1000)),
-                ('cr_denominazione_sociale', models.CharField(blank=True, max_length=1000)),
-                ('cr_comune_sede_principale', models.CharField(blank=True, max_length=1000)),
-                ('cr_indirizzo_sede_principale', models.CharField(blank=True, max_length=1000)),
+                ('cr_denominazione_sociale', models.CharField(
+                    blank=True, max_length=1000)),
+                ('cr_comune_sede_principale', models.CharField(
+                    blank=True, max_length=1000)),
+                ('cr_indirizzo_sede_principale',
+                 models.CharField(blank=True, max_length=1000)),
             ],
         ),
         migrations.CreateModel(
             name='Fattura',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('numero_fattura', models.CharField(blank=True, max_length=100)),
-                ('importo', models.DecimalField(blank=True, decimal_places=2, max_digits=10)),
+                ('importo', models.DecimalField(
+                    blank=True, decimal_places=2, max_digits=10)),
                 ('data_emissione', models.DateField(blank=True)),
-                ('credito', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='recuperoCredito.credito')),
+                ('credito', models.ForeignKey(blank=True, null=True,
+                 on_delete=django.db.models.deletion.CASCADE, to='recuperoCredito.credito')),
             ],
         ),
         migrations.CreateModel(
             name='DbPersonaGiuridica',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('denominazione_sociale', models.CharField(blank=True, max_length=255)),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
+                ('denominazione_sociale', models.CharField(
+                    blank=True, max_length=255)),
                 ('sede_principale', models.CharField(blank=True, max_length=255)),
                 ('codice_fiscale', models.CharField(blank=True, max_length=255)),
                 ('partita_iva', models.CharField(blank=True, max_length=255)),
-                ('debitore', models.OneToOneField(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='recuperoCredito.debitore')),
+                ('debitore', models.OneToOneField(blank=True, null=True,
+                 on_delete=django.db.models.deletion.CASCADE, to='recuperoCredito.debitore')),
             ],
         ),
         migrations.CreateModel(
             name='DbPersonaFisica',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('sesso', models.CharField(blank=True, max_length=1)),
                 ('nome', models.CharField(blank=True, max_length=255)),
                 ('cognome', models.CharField(blank=True, max_length=255)),
                 ('luogo_nascita', models.CharField(blank=True, max_length=255)),
                 ('data_nascita', models.DateField(blank=True)),
-                ('indirizzo_residenza', models.CharField(blank=True, max_length=255)),
+                ('indirizzo_residenza', models.CharField(
+                    blank=True, max_length=255)),
                 ('codice_fiscale', models.CharField(blank=True, max_length=255)),
                 ('partita_iva', models.CharField(blank=True, max_length=255)),
-                ('debitore', models.OneToOneField(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='recuperoCredito.debitore')),
+                ('debitore', models.OneToOneField(blank=True, null=True,
+                 on_delete=django.db.models.deletion.CASCADE, to='recuperoCredito.debitore')),
             ],
         ),
         migrations.CreateModel(
             name='CrPersonaGiuridica',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('denominazione_sociale', models.CharField(max_length=100)),
                 ('indirizzo_sede_principale', models.CharField(max_length=100)),
                 ('email', models.EmailField(blank=True, max_length=254, null=True)),
-                ('email_pec', models.EmailField(blank=True, max_length=254, null=True)),
+                ('email_pec', models.EmailField(
+                    blank=True, max_length=254, null=True)),
                 ('codice_fiscale', models.CharField(blank=True, max_length=16)),
                 ('partita_iva', models.CharField(blank=True, max_length=11)),
-                ('comune_sede_principale', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='cr_pj_comuni_residenza', to='recuperoCredito.comuni')),
-                ('creditore', models.OneToOneField(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='recuperoCredito.creditore')),
+                ('comune_sede_principale', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL,
+                 related_name='cr_pj_comuni_residenza', to='recuperoCredito.comuni')),
+                ('creditore', models.OneToOneField(blank=True, null=True,
+                 on_delete=django.db.models.deletion.CASCADE, to='recuperoCredito.creditore')),
             ],
         ),
         migrations.CreateModel(
             name='CrPersonaFisica',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
                 ('sesso', models.CharField(max_length=1)),
                 ('nome', models.CharField(max_length=100)),
                 ('cognome', models.CharField(max_length=100)),
@@ -123,10 +152,41 @@ class Migration(migrations.Migration):
                 ('comune_residenza', models.CharField(max_length=100)),
                 ('indirizzo_residenza', models.CharField(max_length=100)),
                 ('email', models.EmailField(blank=True, max_length=254, null=True)),
-                ('email_pec', models.EmailField(blank=True, max_length=254, null=True)),
+                ('email_pec', models.EmailField(
+                    blank=True, max_length=254, null=True)),
                 ('codice_fiscale', models.CharField(blank=True, max_length=16)),
                 ('partita_iva', models.CharField(blank=True, max_length=11)),
-                ('creditore', models.OneToOneField(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='recuperoCredito.creditore')),
+                ('creditore', models.OneToOneField(blank=True, null=True,
+                 on_delete=django.db.models.deletion.CASCADE, to='recuperoCredito.creditore')),
+            ],
+        ),
+        migrations.CreateModel(
+            name='RecuperoCreditoOneTime',
+            fields=[
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
+                ('price', models.DecimalField(decimal_places=2, max_digits=12)),
+            ],
+        ),
+        migrations.CreateModel(
+            name='Tribunali',
+            fields=[
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
+                ('nome', models.CharField(max_length=1000)),
+            ],
+        ),
+        migrations.CreateModel(
+            name='MessaggioRecuperoCredito',
+            fields=[
+                ('id', models.BigAutoField(auto_created=True,
+                 primary_key=True, serialize=False, verbose_name='ID')),
+                ('testo', models.TextField()),
+                ('data_creazione', models.DateTimeField(
+                    default=django.utils.timezone.now)),
+                ('letta', models.BooleanField(default=False)),
+                ('servizio_recupero_credito', models.ForeignKey(
+                    null=True, on_delete=django.db.models.deletion.CASCADE, to='recuperoCredito.serviziorecuperocredito')),
             ],
         ),
     ]
