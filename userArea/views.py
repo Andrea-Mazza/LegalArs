@@ -77,16 +77,17 @@ def user_home(request):
     context = {'recupero_credito': recupero_credito,
                'post': post[:2], 'contact_form': assistenzaForm, 'has_subscription': has_subscription}
 
-    avvisi = False
-    counter = 0
-    for pratica in recupero_credito:
-        if pratica.comunicazioni_non_lette > 0:
-            avvisi = True
-        messaggi = models.MessaggioRecuperoCredito.objects.filter(
-            servizio_recupero_credito=pratica)
-        for messaggio in messaggi:
-            if not messaggio.letta:
-                counter += 1
+    if recupero_credito.exists():
+        avvisi = False
+        counter = 0
+        for pratica in recupero_credito:
+            if pratica.comunicazioni_non_lette > 0:
+                avvisi = True
+            messaggi = models.MessaggioRecuperoCredito.objects.filter(
+                servizio_recupero_credito=pratica)
+            for messaggio in messaggi:
+                if not messaggio.letta:
+                    counter += 1
     context['avvisi'] = avvisi
     context['counter'] = counter
     return render(request, 'area_personale.html', context)
