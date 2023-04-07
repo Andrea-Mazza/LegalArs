@@ -185,17 +185,17 @@ class ServizioRecuperoCredito(models.Model):
     cr_cognome = models.CharField(max_length=1000, blank=True)
     cr_luogo_di_nascita = models.CharField(max_length=1000, blank=True)
     cr_data_di_nascita = models.CharField(max_length=1000, blank=True)
-    # cr_comune_di_residenza = models.CharField(
-    #     max_length=1000, blank=True, default='', null=True)
-    # cr_indirizzo_di_residenza = models.CharField(max_length=1000, blank=True)
+    cr_comune_di_residenza = models.CharField(
+        max_length=1000, blank=True, default='', null=True)
+    cr_indirizzo_di_residenza = models.CharField(max_length=1000, blank=True)
     cr_email = models.CharField(max_length=1000, blank=True)
     cr_pec = models.CharField(max_length=1000, blank=True)
     cr_codice_fiscale = models.CharField(max_length=1000, blank=True)
     cr_partita_iva = models.CharField(max_length=1000, blank=True)
     cr_denominazione_sociale = models.CharField(max_length=1000, blank=True)
-    # cr_comune_sede_principale = models.CharField(max_length=1000, blank=True)
-    # cr_indirizzo_sede_principale = models.CharField(
-    #     max_length=1000, blank=True)
+    cr_comune_sede_principale = models.CharField(max_length=1000, blank=True)
+    cr_indirizzo_sede_principale = models.CharField(
+        max_length=1000, blank=True)
     db_tipo = models.CharField(max_length=1000, default='')
     db_nome = models.CharField(max_length=1000, blank=True)
     db_cognome = models.CharField(max_length=1000, blank=True)
