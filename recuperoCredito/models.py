@@ -177,7 +177,7 @@ class Fattura(models.Model):
 
 class ServizioRecuperoCredito(models.Model):
     current_user = models.ForeignKey(
-        CustomUser, on_delete=models.CASCADE, null=True, default=0, blank=True, db_column='current_user')
+        CustomUser, on_delete=models.CASCADE, null=True, default=0, blank=True, primary_key=True)
     time = models.DateTimeField(
         default=timezone.now)
     cr_tipo = models.CharField(max_length=1000, default='')
