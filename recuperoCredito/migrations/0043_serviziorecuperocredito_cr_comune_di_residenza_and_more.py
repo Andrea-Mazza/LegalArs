@@ -12,11 +12,6 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AddField(
             model_name='serviziorecuperocredito',
-            name='cr_comune_di_residenza',
-            field=models.CharField(blank=True, default='', max_length=1000, null=True),
-        ),
-        migrations.AddField(
-            model_name='serviziorecuperocredito',
             name='cr_comune_sede_principale',
             field=models.CharField(blank=True, max_length=1000),
         ),
