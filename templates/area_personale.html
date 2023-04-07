@@ -13,53 +13,6 @@
 
 
 
-    {% if recupero_credito %}
-    <div class="user-area-home-section">
-        <div class="row-heading">Servizi attivati</div>
-        <div class="container-fluid">
-            <div class="row">
-                {% for field in recupero_credito reversed %}
-
-
-                <div class="col-lg-4 col-md-6 col-sm-12 service-column post-card-container">
-                    <div class="service-card">
-                        <div class="row">
-                            <div class="col-10">
-                                <h4>Recupero credito</h4>
-                            </div>
-                            <div class="col-2 text-end">
-                                <img src="{% static 'images/icons/icons8-wallet.gif' %}" class="tool-gif" alt="">
-                            </div>
-                        </div>
-                        <p>Dettagli:</p>
-                        <ul>
-                            <li class="details">Somma: {{field.somma}}€</li>
-                            <li class="details">Attivato il: {{field.time|date:"d/m/Y"}}</li>
-                            <li class="details">Comunicazioni da leggere: {{counter}}
-
-                                {% if avvisi %}
-                                <span class="avvisi-pratica"></span>
-                                {% endif %}
-                            </li>
-                        </ul>
-                        <a href="{% url 'userArea:servizio_attivo_details' field.pk %}" class="btn-gold-outline">Più
-                            dettagli</a>
-                    </div>
-                </div>
-
-                {% endfor %}
-                <div class="see-more"><a href="{% url 'userArea:servizi_attivi' %}">Vedi tutti <img alt=""
-                            src="/static/images/icons/Vector.png"></a></div>
-            </div>
-        </div>
-    </div>
-    {% else %}
-    <div class="nothing-to-show">
-        <div class="alert alert-primary" role="alert">
-            Al momento non risulta che tu abbia servizi attivi.
-        </div>
-    </div>
-    {% endif %}
 
     {% if post %}
     <div class="user-area-home-section">
