@@ -1,9 +1,13 @@
-
 from recuperoCredito.models import Comuni
 import os
 import django
+import sys
+from pathlib import Path
+
+sys.path.append(str(Path(__file__).resolve().parent.parent))
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
+django.setup()
 
 
 def import_comuni():

@@ -1,4 +1,5 @@
 from asyncio import Future
+from datetime import datetime
 from decimal import Decimal
 import os
 from django.shortcuts import render, redirect
@@ -77,7 +78,8 @@ def dati_creditore(request):
                 request.session['cr_nome'] = form.cleaned_data['cr_nome']
                 request.session['cr_cognome'] = form.cleaned_data['cr_cognome']
                 request.session['cr_luogo_di_nascita'] = form.cleaned_data['cr_luogo_di_nascita'].nome
-                request.session['cr_data_di_nascita'] = form.cleaned_data['cr_data_di_nascita']
+                request.session['cr_data_di_nascita'] = form.cleaned_data['cr_data_di_nascita'].strftime(
+                    '%Y-%m-%d')
                 request.session['cr_comune_di_residenza'] = form.cleaned_data[
                     'cr_comune_di_residenza'].nome
                 request.session['cr_indirizzo_di_residenza'] = form.cleaned_data[
@@ -213,7 +215,8 @@ def tipo_debitore(request):
         nome = request.session['cr_nome']
         cognome = request.session['cr_cognome']
         luogo_di_nascita = request.session['cr_luogo_di_nascita']
-        data_di_nascita = request.session['cr_data_di_nascita']
+        data_di_nascita = datetime.strptime(
+            request.session['cr_data_di_nascita'], '%Y-%m-%d').date()
         comune_di_residenza = request.session['cr_comune_di_residenza']
         indirizzo_di_residenza = request.session['cr_indirizzo_di_residenza']
         email = request.session['cr_email']
@@ -306,7 +309,8 @@ def dati_debitore(request):
         nome = request.session['cr_nome']
         cognome = request.session['cr_cognome']
         luogo_di_nascita = request.session['cr_luogo_di_nascita']
-        data_di_nascita = request.session['cr_data_di_nascita']
+        data_di_nascita = datetime.strptime(
+            request.session['cr_data_di_nascita'], '%Y-%m-%d').date()
         comune_di_residenza = request.session['cr_comune_di_residenza']
         indirizzo_di_residenza = request.session['cr_indirizzo_di_residenza']
         email = request.session['cr_email']
@@ -532,8 +536,9 @@ def dati_debitore(request):
             if tipo_debitore == 'Persona Fisica':
                 request.session['db_nome'] = form.cleaned_data['db_nome']
                 request.session['db_cognome'] = form.cleaned_data['db_cognome']
-                request.session['db_luogo_di_nascita'] = form.cleaned_data['db_luogo_di_nascita']
-                request.session['db_data_di_nascita'] = form.cleaned_data['db_data_di_nascita']
+                request.session['db_luogo_di_nascita'] = form.cleaned_data['db_luogo_di_nascita'].nome
+                request.session['db_data_di_nascita'] = form.cleaned_data['db_data_di_nascita'].strftime(
+                    '%Y-%m-%d')
                 request.session['db_indirizzo_di_residenza'] = form.cleaned_data[
                     'db_indirizzo_di_residenza']
                 request.session['df_codice_fiscale'] = form.cleaned_data['df_codice_fiscale']
@@ -662,7 +667,8 @@ def credito(request):
                 pratica_completa.cr_nome = request.session['cr_nome']
                 pratica_completa.cr_cognome = request.session['cr_cognome']
                 pratica_completa.cr_luogo_di_nascita = request.session['cr_luogo_di_nascita']
-                pratica_completa.cr_data_di_nascita = request.session['cr_data_di_nascita']
+                pratica_completa.cr_data_di_nascita = datetime.strptime(
+                    request.session['cr_data_di_nascita'], '%Y-%m-%d').date()
                 pratica_completa.cr_comune_di_residenza = request.session['cr_comune_di_residenza']
                 pratica_completa.cr_indirizzo_di_residenza = request.session[
                     'cr_indirizzo_di_residenza']
@@ -688,7 +694,8 @@ def credito(request):
                 pratica_completa.db_nome = request.session['db_nome']
                 pratica_completa.db_cognome = request.session['db_cognome']
                 pratica_completa.db_luogo_di_nascita = request.session['db_luogo_di_nascita']
-                pratica_completa.db_data_di_nascita = request.session['db_data_di_nascita']
+                pratica_completa.db_data_di_nascita = datetime.strptime(
+                    request.session['db_data_di_nascita'], '%Y-%m-%d').date()
                 pratica_completa.db_indirizzo_di_residenza = request.session[
                     'db_indirizzo_di_residenza']
                 pratica_completa.df_codice_fiscale = request.session['df_codice_fiscale']
@@ -816,7 +823,7 @@ def credito(request):
                 'nome': request.session['cr_nome'],
                 'cognome': request.session['cr_cognome'],
                 'luogo_di_nascita': request.session['cr_luogo_di_nascita'],
-                'data_di_nascita': request.session['cr_data_di_nascita'],
+                'data_di_nascita': datetime.strptime(request.session['cr_data_di_nascita'], '%Y-%m-%d').date(),
                 'comune_di_residenza': request.session['cr_comune_di_residenza'],
                 'indirizzo_di_residenza': request.session['cr_indirizzo_di_residenza'],
                 'email': request.session['cr_email'],
@@ -826,7 +833,7 @@ def credito(request):
                 'db_nome': request.session['db_nome'],
                 'db_cognome': request.session['db_cognome'],
                 'db_luogo_di_nascita': request.session['db_luogo_di_nascita'],
-                'db_data_di_nascita': request.session['db_data_di_nascita'],
+                'db_data_di_nascita': datetime.strptime(request.session['db_data_di_nascita'], '%Y-%m-%d').date(),
                 'db_indirizzo_di_residenza': request.session['db_indirizzo_di_residenza'],
                 'df_codice_fiscale': request.session['df_codice_fiscale'],
                 'df_partita_iva': request.session['df_partita_iva'],
@@ -846,7 +853,7 @@ def credito(request):
                 'db_nome': request.session['db_nome'],
                 'db_cognome': request.session['db_cognome'],
                 'db_luogo_di_nascita': request.session['db_luogo_di_nascita'],
-                'db_data_di_nascita': request.session['db_data_di_nascita'],
+                'db_data_di_nascita': datetime.strptime(request.session['db_data_di_nascita'], '%Y-%m-%d').date(),
                 'db_indirizzo_di_residenza': request.session['db_indirizzo_di_residenza'],
                 'df_codice_fiscale': request.session['df_codice_fiscale'],
                 'df_partita_iva': request.session['df_partita_iva'],
@@ -860,7 +867,7 @@ def credito(request):
                 'nome': request.session['cr_nome'],
                 'cognome': request.session['cr_cognome'],
                 'luogo_di_nascita': request.session['cr_luogo_di_nascita'],
-                'data_di_nascita': request.session['cr_data_di_nascita'],
+                'data_di_nascita': datetime.strptime(request.session['cr_data_di_nascita'], '%Y-%m-%d').date(),
                 'comune_di_residenza': request.session['cr_comune_di_residenza'],
                 'indirizzo_di_residenza': request.session['cr_indirizzo_di_residenza'],
                 'email': request.session['cr_email'],
@@ -984,7 +991,8 @@ def SuccessView(request):
         pratica_completa.cr_nome = request.session['cr_nome']
         pratica_completa.cr_cognome = request.session['cr_cognome']
         pratica_completa.cr_luogo_di_nascita = request.session['cr_luogo_di_nascita']
-        pratica_completa.cr_data_di_nascita = request.session['cr_data_di_nascita']
+        pratica_completa.cr_data_di_nascita = datetime.strptime(
+            request.session['cr_data_di_nascita'], '%Y-%m-%d').date()
         pratica_completa.cr_comune_di_residenza = request.session['cr_comune_di_residenza']
         pratica_completa.cr_indirizzo_di_residenza = request.session['cr_indirizzo_di_residenza']
         pratica_completa.cr_email = request.session['cr_email']
@@ -1005,7 +1013,8 @@ def SuccessView(request):
         pratica_completa.db_nome = request.session['db_nome']
         pratica_completa.db_cognome = request.session['db_cognome']
         pratica_completa.db_luogo_di_nascita = request.session['db_luogo_di_nascita']
-        pratica_completa.db_data_di_nascita = request.session['db_data_di_nascita']
+        pratica_completa.db_data_di_nascita = datetime.strptime(
+            request.session['db_data_di_nascita'], '%Y-%m-%d').date()
         pratica_completa.db_indirizzo_di_residenza = request.session['db_indirizzo_di_residenza']
         pratica_completa.df_codice_fiscale = request.session['df_codice_fiscale']
         pratica_completa.df_partita_iva = request.session['df_partita_iva']

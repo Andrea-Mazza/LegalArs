@@ -121,7 +121,7 @@ class DebitoreFisicoForm(forms.Form):
     db_luogo_di_nascita = forms.ModelChoiceField(queryset=models.Comuni.objects.all(
     ), label='Luogo di nascita del debitore', widget=forms.Select(attrs={'class': 'form-select'}), help_text="Il luogo di nascita è il posto in cui abbiamo fatto il nostro ingresso nel mondo. Seleziona il comune di nascita.")
     db_data_di_nascita = forms.DateField(
-        label='Data di nascita del debitore', widget=forms.DateInput(attrs={'class': 'form-control'}), help_text='La data di nascita è il giorno in cui si diventa un membro ufficiale del club "Esseri umani". Inserisci la data di nascita per aiutarci a determinare l\'età del debitore.')
+        label='Data di nascita del debitore', widget=forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}), help_text='La data di nascita è il giorno in cui si diventa un membro ufficiale del club "Esseri umani". Inserisci la data di nascita per aiutarci a determinare l\'età del debitore.')
     db_comune_di_residenza = forms.ModelChoiceField(
         queryset=models.Comuni.objects.all(), label="Comune della sede principale", widget=forms.Select(attrs={'class': 'form-select'}), help_text="Il comune della sede principale è il luogo in cui l'azienda ha il proprio ufficio centrale e dove viene svolta la maggior parte delle attività aziendali. Questo comune rappresenta l'ubicazione geografica dell'azienda e viene utilizzato per scopi fiscali e amministrativi.")
     db_indirizzo_di_residenza = forms.CharField(
