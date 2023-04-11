@@ -59,7 +59,7 @@ def userArea_base(request):
 def user_home(request):
     has_subscription = request.user.has_subscription
     recupero_credito = models.ServizioRecuperoCredito.objects.filter(
-        current_user=request.user)
+        current_user_id=request.user)
     post = list(reversed(Articolo.objects.filter(
         saved_by=request.user)))
     if request.method == 'POST':  # Aggiungi questo per gestire la richiesta POST del form di rimozione articolo
@@ -283,7 +283,7 @@ def cancel_subscription(request):
 @login_required(login_url='/accesso/')
 def servizi_attivi(request):
     recupero_credito = models.ServizioRecuperoCredito.objects.filter(
-        current_user=request.user)
+        current_user_id=request.user)
     has_subscription = request.user.has_subscription
     assistenzaForm = userArea_base(request)
     context = {'recupero_credito': recupero_credito,
@@ -306,7 +306,7 @@ def servizi_attivi(request):
 @login_required(login_url='/accesso/')
 def servizio_attivo_details(request, pk):
     recupero_credito = models.ServizioRecuperoCredito.objects.filter(
-        current_user=request.user)
+        current_user_id=request.user)
     pratica_credito = get_object_or_404(recupero_credito, pk=pk)
     request.user.last_viewed_servizi_attivi = timezone.now()
     request.user.save()

@@ -654,7 +654,7 @@ def credito(request):
         credito_form = forms.CreditoForm(request.POST)
         if credito_form.is_valid():
             pratica_completa = models.ServizioRecuperoCredito.objects.create(
-                current_user=request.user
+                current_user_id=request.user
             )
             # request.session['somma'] = request.POST['somma']
             if request.session['cr_tipo'] == 'Persona Fisica':
@@ -973,7 +973,7 @@ def SuccessView(request):
 
     pratica_completa = models.ServizioRecuperoCredito.objects.create(
         id=request.session['product_id'],
-        current_user=request.user,
+        current_user_id=request.user,
         cr_tipo=request.session['cr_tipo'],
         db_tipo=request.session['db_tipo'],
         somma=request.session['somma'],
