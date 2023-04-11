@@ -136,7 +136,7 @@ elif len(sys.argv) > 0 and sys.argv[1] != 'collectstatic':
 SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ALLOWED_HOSTS = ['legalars-app-9yyw9.ondigitalocean.app', 'localhost']
+ALLOWED_HOSTS = ['localhost']
 DJANGO_SETTINGS_MODULE = os.getenv('DJANGO_SETTINGS_MODULE')
 EMAIL_BACKEND = os.getenv('EMAIL_BACKEND')
 EMAIL_HOST = os.getenv('EMAIL_HOST')
@@ -162,9 +162,9 @@ MEDIA_ROOT = '/images/'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 STRIPE_PUBLISHABLE_KEY = os.getenv('STRIPE_PUBLISHABLE_KEY')
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
-BACKEND_DOMAIN = os.getenv('BACKEND_DOMAIN')
-PAYMENT_SUCCESS_URL = os.getenv('PAYMENT_SUCCESS_URL')
-PAYMENT_CANCEL_URL = os.getenv('PAYMENT_CANCEL_URL')
+# BACKEND_DOMAIN = os.getenv('BACKEND_DOMAIN')
+# PAYMENT_SUCCESS_URL = os.getenv('PAYMENT_SUCCESS_URL')
+# PAYMENT_CANCEL_URL = os.getenv('PAYMENT_CANCEL_URL')
 
 # # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = config('SECRET_KEY')
