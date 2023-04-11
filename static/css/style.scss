@@ -2645,6 +2645,7 @@ footer {
         display: flex;
         flex-direction: column;
         row-gap: 1.5rem;
+        min-height: 90vh;
     }
 
     .offcanvas-lg {

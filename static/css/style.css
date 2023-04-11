@@ -2361,6 +2361,7 @@ footer ul li {
   display: flex;
   flex-direction: column;
   row-gap: 1.5rem;
+  min-height: 90vh;
 }
 #area-personale-body .offcanvas-lg {
   height: 100%;
