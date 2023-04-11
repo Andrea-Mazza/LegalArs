@@ -20,10 +20,16 @@
     <script src="{% static 'js/showHelpText.js' %}"></script>
     <script src="{% static 'js/riepilogoEffect.js' %}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <script src="{% static 'js/loadingSpinner.js' %}"></script>
     {% block metatag %}{% endblock metatag %}
 </head>
 
 <body>
+    <div id="loading-animation" style="display: none;">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
     <section id="area-personale-body">
 
         <nav id="personal-mobile-nav">

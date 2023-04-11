@@ -20,14 +20,20 @@
     <script src="{% static 'js/enablePopovers.js' %}"></script>
     <script src="{% static 'js/passwordToggle.js' %}"></script>
     <script src="{% static 'js/scrollToTop.js' %}"></script>
+    <script src="{% static 'js/loadingSpinner.js' %}"></script>
     <!-- ANIMATE.CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     {% block metatag %}{% endblock metatag %}
 </head>
 
 <body id="body">
-    <!-- HEADER -->
 
+    <div id="loading-animation" style="display: none;">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+    <!-- HEADER -->
     <header itemscope itemtype="https://schema.org/WPHeader" id="header" class="container-fluid">
         <nav class="navbar navbar-expand-lg">
             <a class="navbar-brand" href="{% url 'home' %}">
