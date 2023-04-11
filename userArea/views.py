@@ -159,15 +159,13 @@ def servizi_all(request):
 @login_required(login_url='/accesso/')
 def create_checkout_subscription(request):
     if request.method == 'POST':
-        prices = stripe.Price.list(
-            lookup_keys=[request.POST['lookup_key']],
-            expand=['data.product']
-        )
+        prices = stripe.Price.retrieve(request.POST['lookup_key'],
+                                       )
 
         checkout_session = stripe.checkout.Session.create(
             line_items=[
                 {
-                    'price': prices.data[0].id,
+                    'price': prices.id,
                     'quantity': 1,
                 },
             ],
