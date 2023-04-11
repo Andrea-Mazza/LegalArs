@@ -88,8 +88,8 @@ def user_home(request):
             for messaggio in messaggi:
                 if not messaggio.letta:
                     counter += 1
-    context['avvisi'] = avvisi
-    context['counter'] = counter
+        context['avvisi'] = avvisi
+        context['counter'] = counter
     return render(request, 'area_personale.html', context)
 
 
