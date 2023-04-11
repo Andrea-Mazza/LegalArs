@@ -68,7 +68,7 @@
                 <div class="btn-row">
                     {% for price in prices %}
                     {% if price.product == product.id %}
-                    <form action="{% url 'userArea:create_checkout_subscription' %}" method="POST">
+                    <form action="{% url 'userArea:create_checkout_subscription' %}" method="post">
                         {% csrf_token %}
                         <!-- Add a hidden field with the lookup_key of your Price -->
                         <input type="hidden" name="lookup_key" value="{{price.lookup_key}}" />

@@ -173,9 +173,9 @@ def create_checkout_subscription(request):
             ],
             customer_email=request.user.email,
             mode='subscription',
-            success_url='http://192.168.1.88:8000/area-personale' +
+            success_url='https://legalars-app-v4ck7.ondigitalocean.app/area-personale' +
             '/success-subscription?session_id={CHECKOUT_SESSION_ID}',
-            cancel_url='http://192.168.1.88:8000/area-personale' +
+            cancel_url='https://legalars-app-v4ck7.ondigitalocean.app/area-personale' +
             '/cancel-subscription',
         )
         return redirect(checkout_session.url)
@@ -188,7 +188,7 @@ def customer_portal(request):
     checkout_session_id = request.POST.get('session_id')
     checkout_session = stripe.checkout.Session.retrieve(checkout_session_id)
 
-    return_url = 'https://legalars-app-9yyw9.ondigitalocean.app/area-personale'
+    return_url = 'https://legalars-app-v4ck7.ondigitalocean.app/area-personale'
 
     portalSession = stripe.billing_portal.Session.create(
         customer=checkout_session.customer,
