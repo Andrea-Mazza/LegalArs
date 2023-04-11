@@ -96,6 +96,7 @@ def write_procura_speciale(pratica):
     paragraph_10 = document.add_paragraph()
     paragraph_10.paragraph_format.alignment = WD_ALIGN_PARAGRAPH.CENTER
     paragraph_10.paragraph_format.line_spacing = Pt(22)
+    paragraph_10.paragraph_format.space_after = Pt(42)
     paragraph_10.add_run('Firma per esteso del mandante', 'HeadingStyle')
 
     paragraph_11 = document.add_paragraph()
