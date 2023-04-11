@@ -904,8 +904,9 @@ def credito(request):
 
 @login_required(login_url='/accesso/')
 def end(request):
-    # pratica_id = request.session['pratica_id']
-    somma = Decimal(request.session['somma'])
+    pratica_id = request.session['pratica_id']
+    pratica = models.ServizioRecuperoCredito.objects.get(id=pratica_id)
+    somma = pratica.somma
 
     context = {}
     if somma is not None:
