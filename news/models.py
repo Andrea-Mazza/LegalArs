@@ -27,7 +27,7 @@ class Articolo(models.Model):
     descrizione_alt = models.TextField(
         default='Nessuna descrizione alt fornita per questa immagine')
     categoria = models.ForeignKey(
-        Categoria, on_delete=models.SET_DEFAULT, default='Nessuna categoria')
+        Categoria, on_delete=models.SET_DEFAULT, default=0)
     meta_descrizione = models.CharField(max_length=130)
     autore = models.ForeignKey(
         CustomUser, on_delete=models.SET_DEFAULT, default=2)
