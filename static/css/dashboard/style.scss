@@ -1,0 +1,822 @@
+/*
+    TABLE OF CONTENTS
+    1. GENERAL SETTINGS + VARIABLES
+    2. HEADER
+    3. IMPOSTAZIONI ACCOUNT
+    4. CARD
+    5. SERVIZI
+    6. PRATICA
+    7. BACHECA
+*/
+
+/*
+    1. GENERAL SETTINGS + VARIABLES
+*/
+@import '../general/general.scss';
+
+$success-color: #0f5132;
+$danger-color: #842029;
+
+body {
+    display: grid;
+    grid-template-areas: "sidebar main";
+    grid-template-columns: 2fr 10fr;
+    gap: 1.5rem;
+    min-height: 100vh;
+}
+
+@media screen and (max-width: 991px) {
+    body {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.success-text {
+    color: $success-color !important;
+    font-weight: 600;
+}
+
+.danger-text {
+    color: $danger-color !important;
+    font-weight: 600;
+}
+
+.modal-hover:hover {
+    cursor: pointer;
+}
+
+main {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    padding-right: 15px;
+
+}
+
+@media screen and (max-width: 991px) {
+    main {
+        padding-top: 0;
+        padding-bottom: 10px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+
+.btn-gold-outline {
+    background: transparent;
+    color: $gold;
+    border: 2px solid $gold;
+    padding: 13px 30px 12px;
+    font-size: 13px;
+    width: fit-content;
+    letter-spacing: 2px;
+    font-weight: 600;
+    margin: 3px 0;
+    line-height: 1.2em;
+    font-family: 'Karla', sans-serif;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+}
+
+.btn-gold-outline:hover {
+    background: $gold;
+    color: $white-0;
+    text-decoration: none;
+}
+
+.btn-black-outline {
+    background: transparent;
+    color: $grey-2;
+    border: 2px solid $grey-2;
+    padding: 13px 30px 12px;
+    font-size: 13px;
+    width: fit-content;
+    letter-spacing: 2px;
+    font-weight: 600;
+    margin: 3px 0;
+    line-height: 1.2em;
+    font-family: 'Karla', sans-serif;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+}
+
+.btn-black-outline:hover {
+    background: $grey-2;
+    color: $white-0;
+    text-decoration: none;
+}
+
+.news_card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow: hidden;
+    box-shadow: 0 .1rem 1rem rgba(0, 0, 0, 0.1);
+    border-radius: 1em;
+    background: #ECE9E6;
+    background: linear-gradient(to right, #FFFFFF, #ECE9E6);
+
+}
+
+
+
+.card__body {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+
+.tag {
+    align-self: flex-start;
+    padding: .25em .75em;
+    border-radius: 1em;
+    font-size: .75rem;
+}
+
+.tag+.tag {
+    margin-left: .5em;
+}
+
+.tag-blue {
+    background: #56CCF2;
+    background: linear-gradient(to bottom, #2F80ED, #56CCF2);
+    color: #fafafa;
+}
+
+.tag-brown {
+    background: #D1913C;
+    background: linear-gradient(to bottom, #FFD194, #D1913C);
+    color: #fafafa;
+}
+
+.tag-red {
+    background: #cb2d3e;
+    background: linear-gradient(to bottom, #ef473a, #cb2d3e);
+    color: #fafafa;
+}
+
+.card__body h4 {
+    font-size: 1.5rem;
+    text-transform: capitalize;
+}
+
+.card__footer {
+    display: flex;
+    padding: 1rem;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.user {
+    display: flex;
+    gap: .5rem;
+}
+
+.user__image {
+    border-radius: 50%;
+}
+
+.user__info>small {
+    color: #666;
+}
+
+/*
+    1. GENERAL SETTINGS + VARIABLES END
+*/
+
+/*
+    2. HEADER
+*/
+aside {
+    grid-area: sidebar;
+    position: sticky;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+    padding: 25px 15px;
+    box-shadow: rgb(0 0 0 / 2%) -1px 0px 0px 0px inset;
+    border-right: 1px solid #EAECF0;
+    color: $grey-1;
+
+    a {
+        color: unset;
+        text-decoration: none;
+        display: flex;
+        flex-direction: row;
+        column-gap: 10px;
+
+        img {
+            width: 18px;
+            object-fit: contain;
+        }
+    }
+
+
+
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .accordion-button {
+        padding: 0;
+
+        img {
+            margin-right: 10px;
+        }
+    }
+
+    .accordion-button:focus {
+        box-shadow: none;
+        border: none;
+    }
+
+    .accordion-button:not(.collapsed) {
+        color: unset;
+        background-color: unset;
+        border: none;
+    }
+
+    nav ul,
+    #sidebar-bottom {
+        display: flex;
+        flex-direction: column;
+        row-gap: 15px;
+    }
+}
+
+header {
+    display: none;
+    padding: 10px;
+    background-color: #ffffff;
+
+    #headerBtn {
+        position: relative;
+        width: 35px;
+        height: 35px;
+        border: none;
+        background: none;
+
+        .line {
+            position: absolute;
+            right: 0;
+            width: 35px;
+            height: 3px;
+            background-color: $grey-0;
+            border-radius: 3px;
+        }
+
+        #lineOne {
+            top: 4px;
+        }
+
+        #lineTwo {
+            top: 14px;
+        }
+
+        #lineThree {
+            top: 24px;
+        }
+    }
+
+    a {
+        color: unset;
+        text-decoration: none;
+        display: flex;
+        flex-direction: row;
+        column-gap: 10px;
+
+        img {
+            width: 18px;
+            object-fit: contain;
+        }
+    }
+
+
+
+    ul {
+        list-style: none;
+        padding: 0;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        row-gap: 25px;
+        align-items: start;
+        padding-left: 20px;
+    }
+
+    .accordion-button {
+        padding: 0;
+
+        img {
+            margin-right: 10px;
+        }
+    }
+
+    .accordion-button:focus {
+        box-shadow: none;
+        border: none;
+    }
+
+    .accordion-button:not(.collapsed) {
+        color: unset;
+        background-color: unset;
+        border: none;
+        box-shadow: none;
+    }
+
+    .accordion-button::after {
+        margin-left: 10px;
+    }
+}
+
+
+@media screen and (max-width: 991px) {
+    aside {
+        display: none;
+    }
+
+    header {
+        display: flex;
+        flex-direction: row;
+        justify-content: end;
+        position: sticky;
+        top: 0;
+        z-index: 999;
+    }
+}
+
+
+
+/*
+    2. HEADER END
+*/
+
+/*
+    3. IMPOSTAZIONI ACCOUNT
+*/
+.profile-pic-container {
+    position: relative;
+    width: 151px;
+    height: 151px;
+    overflow-y: hidden;
+    overflow-x: hidden;
+
+
+    .add_photo {
+        position: absolute;
+        bottom: -200px;
+        width: 100%;
+        padding: 10px;
+        backdrop-filter: blur(10px);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all .3s ease-in-out;
+
+        img {
+            width: 25px;
+        }
+    }
+}
+
+.profile-pic-container:hover .add_photo {
+    bottom: 10px;
+}
+
+.profile-pic {
+    width: 150px;
+    max-width: 150px;
+}
+
+.info {
+    ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+
+        li {
+            color: rgb(117, 117, 117);
+            padding: 15px;
+
+            span {
+                color: rgb(79, 79, 79);
+            }
+        }
+
+        li:not(:last-child) {
+            border-bottom: 1px solid rgb(211, 211, 211);
+        }
+    }
+}
+
+/*
+    3. IMPOSTAZIONI ACCOUNT END
+*/
+
+/*
+    4. CARD
+*/
+.news_card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow: hidden;
+    box-shadow: 0 .1rem 1rem rgba(0, 0, 0, 0.1);
+    border-radius: 1em;
+    position: relative;
+}
+
+.card__header {
+    position: relative;
+}
+
+.card__header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    /* cambia il valore di alpha (0.5) per regolare la trasparenza */
+    z-index: 1;
+}
+
+.card__body {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    color: white;
+    z-index: 2;
+    /* cambia il colore del testo a bianco */
+}
+
+/*
+    4. CARD END
+*/
+
+/*
+    5. SERVIZI
+*/
+main {
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+}
+
+.servizi-main {
+
+    h2,
+    h1 {
+        margin-bottom: 0 !important;
+    }
+
+    section {
+        padding: 20px 0;
+        display: flex;
+        flex-direction: column;
+        row-gap: 15px;
+    }
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    border-bottom: 2px solid $gold;
+    border-top: 2px solid $gold;
+
+    img {
+        width: 20px;
+    }
+}
+
+th,
+td {
+    padding: 7px;
+}
+
+td {
+    font-weight: 100;
+}
+
+th {
+    font-weight: 600;
+}
+
+thead tr {
+    text-align: start;
+    border-bottom: 1px solid #dddddd;
+}
+
+tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.sm-show {
+    display: none;
+}
+
+@media screen and (max-width: 575px) {
+    .sm-hide {
+        display: none;
+    }
+
+    .sm-show {
+        display: block;
+    }
+
+    .pratica-card {
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        row-gap: 22px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+        border-radius: 10px;
+
+        p {
+            margin-bottom: 0 !important;
+            font-weight: 600;
+        }
+
+        .link {
+            display: flex;
+            flex-direction: row;
+            column-gap: 10px;
+            align-items: center;
+            justify-content: center;
+
+            img {
+                width: 22px;
+            }
+        }
+    }
+}
+
+
+/*
+    5. SERVIZI END
+*/
+
+/*
+    6. PRATICA
+*/
+#pratica_main {
+    .info {
+        ul {
+            list-style: none;
+            display: flex;
+            flex-direction: row;
+            width: unset;
+
+            li {
+                width: 80%;
+            }
+        }
+    }
+
+    h4 {
+        font-size: 1.3rem !important;
+        text-transform: uppercase;
+    }
+
+    .label-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        column-gap: 8px;
+
+        img {
+            width: 18px;
+            cursor: pointer;
+        }
+    }
+
+    .help-text {
+        display: none;
+
+        .closeHelpText {
+            color: $gold;
+        }
+
+        .closeHelpText:hover {
+            cursor: pointer;
+        }
+    }
+
+    .accordion-button {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        column-gap: 20px;
+    }
+
+    .accordion-button::after {
+        margin-left: 0;
+    }
+
+    .form-check-input {
+        height: unset;
+    }
+}
+
+/*
+    6. PRATICA END
+*/
+
+/*
+    7. BACHECA
+*/
+.bacheca-main {
+    min-height: 95vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.bacheca-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 50px;
+    text-align: center;
+    min-height: 95vh;
+
+    a {
+        color: #084298 !important;
+    }
+}
+
+#start {
+    padding-top: 65px;
+}
+
+
+
+.scroll-prompt {
+    position: relative;
+    bottom: 0;
+    z-index: 998;
+    width: 160px;
+    height: 160px;
+
+    .scroll-prompt-arrow-container {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        margin-left: -18px;
+        animation-name: bounce;
+        animation-duration: 1.5s;
+        animation-iteration-count: infinite;
+    }
+
+    .scroll-prompt-arrow {
+        animation-name: opacity;
+        animation-duration: 1.5s;
+        animation-iteration-count: infinite;
+    }
+
+    .scroll-prompt-arrow:last-child {
+        animation-direction: reverse;
+        margin-top: -6px;
+    }
+
+    .scroll-prompt-arrow>div {
+        width: 36px;
+        height: 36px;
+        border-right: 3px solid #084298;
+        border-bottom: 3px solid #084298;
+        transform: rotate(45deg) translateZ(1px);
+    }
+}
+
+@keyframes opacity {
+    0% {
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.1;
+    }
+
+    20% {
+        opacity: 0.2;
+    }
+
+    30% {
+        opacity: 0.3;
+    }
+
+    40% {
+        opacity: 0.4;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    60% {
+        opacity: 0.6;
+    }
+
+    70% {
+        opacity: 0.7;
+    }
+
+    80% {
+        opacity: 0.8;
+    }
+
+    90% {
+        opacity: 0.9;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+
+    10% {
+        transform: translateY(3px);
+    }
+
+    20% {
+        transform: translateY(6px);
+    }
+
+    30% {
+        transform: translateY(9px);
+    }
+
+    40% {
+        transform: translateY(12px);
+    }
+
+    50% {
+        transform: translateY(15px);
+    }
+
+    60% {
+        transform: translateY(18px);
+    }
+
+    70% {
+        transform: translateY(21px);
+    }
+
+    80% {
+        transform: translateY(24px);
+    }
+
+    90% {
+        transform: translateY(27px);
+    }
+
+    100% {
+        transform: translateY(30px);
+    }
+}
+
+.tour-step {
+    display: flex;
+    flex-direction: column;
+
+    .bold {
+        font-weight: bold;
+    }
+
+    ol {
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+    }
+}
+
+/*
+    7. BACHECA END
+*/

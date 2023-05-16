@@ -1,0 +1,159 @@
+$white-0: #ffffff;
+$white-1: #f8f8f8;
+$white-2: #f4f4f4;
+$white-3: #c9c9c9;
+$gold: #da9a23;
+$grey-0: #444444;
+$grey-1: #2d2d2d;
+$grey-2: #222222;
+$black: #000000;
+
+$section-padding: 50px 0;
+
+@font-face {
+    font-family: 'Lora';
+    src: url("../fonts/Lora/Lora-VariableFont_wght.ttf") format('truetype'),
+        url("../fonts/Lora/Lora-Italic-VariableFont_wght.ttf") format('truetype');
+    font-weight: 1 999;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Karla';
+    src: url("../fonts/Karla/Karla-VariableFont_wght.ttf") format('truetype'),
+        url("../fonts/Karla/Karla-Italic-VariableFont_wght.ttf") format('truetype');
+    font-weight: 1 999;
+    font-style: normal;
+}
+
+
+* {
+    box-sizing: border-box !important;
+}
+
+body {
+    font-family: 'Karla', sans-serif;
+    overflow-x: hidden;
+}
+
+::-moz-selection {
+    /* Code for Firefox */
+    color: $white-1;
+    background: $grey-2;
+}
+
+::selection {
+    color: $white-1;
+    background: $grey-2;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Lora', sans-serif;
+}
+
+p,
+a,
+u,
+li {
+    letter-spacing: 0.8px;
+    color: unset;
+    text-decoration: none;
+}
+
+h1 {
+    font-size: 2.5rem !important;
+    line-height: 3rem !important;
+}
+
+h2 {
+    font-size: 2.25rem !important;
+    line-height: 2.75rem;
+}
+
+h3 {
+    font-size: 2rem;
+    line-height: 2.5rem;
+}
+
+h4 {
+    font-size: 1.75rem;
+    line-height: 2.25rem;
+}
+
+h5 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+}
+
+h6 {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+}
+
+@media screen and (max-width: 991px) {
+    h1 {
+        font-size: 2.25rem;
+        line-height: 2.75rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+        line-height: 2.5rem;
+    }
+
+    h3 {
+        font-size: 1.75rem;
+        line-height: 2.25rem;
+    }
+
+    h4 {
+        font-size: 1.5rem;
+        line-height: 2rem;
+    }
+
+    h5 {
+        font-size: 1.25rem;
+        line-height: 1.75rem;
+    }
+
+    h6 {
+        font-size: 1.125rem;
+        line-height: 1.75rem;
+    }
+}
+
+
+
+#scroll-to-top {
+    display: none;
+    /* nasconde il pulsante all'avvio */
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    width: 48px;
+    height: 48px;
+    z-index: 9999;
+    color: #ffffff;
+    border: 2px solid #2d2d2d;
+    background-color: #2d2d2d;
+    border-radius: 2px;
+    transition: all 0.3s ease-out;
+}
+
+#scroll-to-top:hover {
+    color: #2d2d2d;
+    background-color: $white-0;
+    border: 2px solid $white-0;
+}
+
+@media screen and (max-width: 991px) {
+    #scroll-to-top {
+        bottom: 16px;
+        right: 16px;
+    }
+}
