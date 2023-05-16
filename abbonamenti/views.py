@@ -26,7 +26,16 @@ def create_checkout_session(request, servizio_slug):
 
     user = request.user
     if user.stripe_customer_id:
-        customer = stripe.Customer.retrieve(user.stripe_customer_id)
+        try:
+            customer = stripe.Customer.retrieve(user.stripe_customer_id)
+        except stripe.error.InvalidRequestError:
+            # The customer does not exist, create a new one.
+            customer = stripe.Customer.create(
+                email=f'{user.email}',
+                name=f'{user.nome} {user.cognome}'
+            )
+            user.stripe_customer_id = customer.id
+            user.save()
     else:
         customer = stripe.Customer.create(
             email=f'{user.email}',
