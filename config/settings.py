@@ -12,20 +12,27 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
+from . import stripe_portal
 import sys
 import dj_database_url
-from dotenv import load_dotenv
-from decouple import config
-
-load_dotenv()
-
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
+# SECURITY WARNING: keep the secret key used in production secret!
+# SECRET_KEY = 'django-insecure-)gvlm&bkfv=_%wvp30#&w9kwf@j3tl8=vo6cvi53cp-jryyu76'
+SECRET_KEY = os.getenv('SECRET_KEY')
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = True
+
+# ALLOWED_HOSTS = ['192.168.0.167', '192.168.1.88',
+#                  '127.0.0.1', '3d98-79-21-9-251.ngrok-free.app']
+ALLOWED_HOSTS = ['legalars-app-v4ck7.ondigitalocean.app', 'localhost']
 
 # Application definition
 
@@ -36,19 +43,24 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog.apps.BlogConfig',
-    'userArea.apps.UserareaConfig',
+    # apps
+    'vetrina.apps.VetrinaConfig',
+    'news.apps.NewsConfig',
+    'utenti.apps.UtentiConfig',
+    'dashboard.apps.DashboardConfig',
+    'abbonamenti.apps.AbbonamentiConfig',
+    'recupero_credito.apps.RecuperoCreditoConfig',
+    'pagamenti.apps.PagamentiConfig',
+    # third party
     'tinymce',
-    'recuperoCredito.apps.RecuperocreditoConfig',
-    'ckeditor',
-    # per la sitemap
-    'django.contrib.sitemaps',
+    # allauth
     'django.contrib.sites',
-    # for spaces
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    # dj-storages
     'storages',
 ]
-
-SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -60,8 +72,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-
 ROOT_URLCONF = 'config.urls'
+
+DJANGO_SETTINGS_MODULE = os.getenv('DJANGO_SETTINGS_MODULE')
 
 TEMPLATES = [
     {
@@ -71,9 +84,12 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
+                # `allauth` needs this one from django
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # custom context_processors
+                'dashboard.context_processors.CustomContext',
             ],
         },
     },
@@ -84,37 +100,6 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
-# DEVELOPMENT_MODE = False
-
-# if DEVELOPMENT_MODE is True:
-#     # SECURITY WARNING: keep the secret key used in production secret!
-#     SECRET_KEY = env('SECRET_KEY')
-#     # SECURITY WARNING: don't run with debug turned on in production!
-#     DEBUG = True
-#     ALLOWED_HOSTS = ['192.168.1.88',
-#                      '127.0.0.1', '192.168.0.167', '192.168.129.248', 'localhost']
-#     DJANGO_SETTINGS_MODULE = 'config.settings'
-#     EMAIL_BACKEND = env('EMAIL_BACKEND')
-#     EMAIL_HOST = env('EMAIL_HOST')
-#     EMAIL_HOST_USER = env('EMAIL_HOST_USER')
-#     EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
-#     EMAIL_PORT = env('EMAIL_PORT')
-#     EMAIL_USE_TLS = True
-#     EMAIL_USE_SSL = env('EMAIL_USE_SSL')
-#     STATIC_URL = 'static/'
-#     STATICFILES_DIRS = [str(BASE_DIR.joinpath('static'))]
-
-#     MEDIA_ROOT = 'static/images'
-
-#     MEDIA_URL = '/images/'
-#     STRIPE_PUBLISHABLE_KEY = os.getenv('STRIPE_PUBLISHABLE_KEY')
-#     STRIPE_SECRET_KEY = env('STRIPE_SECRET_KEY')
-#     BACKEND_DOMAIN = env('BACKEND_DOMAIN')
-#     PAYMENT_SUCCESS_URL = env('PAYMENT_SUCCESS_URL')
-#     PAYMENT_CANCEL_URL = env('PAYMENT_CANCEL_URL')
-# else:
-
 
 DEVELOPMENT_MODE = False
 
@@ -131,70 +116,6 @@ elif len(sys.argv) > 0 and sys.argv[1] != 'collectstatic':
     DATABASES = {
         "default": dj_database_url.parse(os.environ.get("DATABASE_URL")),
     }
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY')
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-ALLOWED_HOSTS = ['legalars-app-v4ck7.ondigitalocean.app', 'localhost']
-DJANGO_SETTINGS_MODULE = os.getenv('DJANGO_SETTINGS_MODULE')
-EMAIL_BACKEND = os.getenv('EMAIL_BACKEND')
-EMAIL_HOST = os.getenv('EMAIL_HOST')
-EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
-EMAIL_PORT = os.getenv('EMAIL_PORT')
-EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS')
-EMAIL_USE_SSL = False
-AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
-AWS_S3_ENDPOINT_URL = os.getenv('AWS_S3_ENDPOINT_URL')
-AWS_S3_OBJECT_PARAMETERS = {
-    'CacheControl': 'max-age=86400',
-}
-AWS_LOCATION = 'static'
-AWS_DEFAULT_ACL = 'public-read'
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATIC_URL = f'{AWS_S3_ENDPOINT_URL}/{AWS_LOCATION}/'
-STATIC_ROOT = 'static'
-MEDIA_URL = '{}/{}/'.format(AWS_S3_ENDPOINT_URL, '/blog/')
-MEDIA_ROOT = '/images/'
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STRIPE_PUBLISHABLE_KEY = os.getenv('STRIPE_PUBLISHABLE_KEY')
-STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
-BACKEND_DOMAIN = os.getenv('BACKEND_DOMAIN')
-PAYMENT_SUCCESS_URL = os.getenv('PAYMENT_SUCCESS_URL')
-PAYMENT_CANCEL_URL = os.getenv('PAYMENT_CANCEL_URL')
-
-# # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = config('SECRET_KEY')
-# # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-# ALLOWED_HOSTS = ['192.168.1.88',
-#                  '127.0.0.1', '192.168.0.167', '192.168.129.248', 'localhost']
-# DJANGO_SETTINGS_MODULE = 'config.settings'
-# EMAIL_BACKEND = config('EMAIL_BACKEND')
-# EMAIL_HOST = config('EMAIL_HOST')
-# EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-# EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
-# EMAIL_PORT = config('EMAIL_PORT')
-# EMAIL_USE_TLS = True
-# EMAIL_USE_SSL = config('EMAIL_USE_SSL')
-# STATIC_URL = 'static/'
-# STATICFILES_DIRS = [str(BASE_DIR.joinpath('static'))]
-# MEDIA_ROOT = 'static/images'
-# MEDIA_URL = '/images/'
-# STRIPE_PUBLISHABLE_KEY = os.getenv('STRIPE_PUBLISHABLE_KEY')
-# STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')
-# BACKEND_DOMAIN = config('BACKEND_DOMAIN')
-# PAYMENT_SUCCESS_URL = config('PAYMENT_SUCCESS_URL')
-# PAYMENT_CANCEL_URL = config('PAYMENT_CANCEL_URL')
-
-
-EMAIL_SUBJECT_PREFIX = '[Your Project Name]'
-PASSWORD_RESET_TIMEOUT_DAYS = 1
-
-AUTH_USER_MODEL = 'userArea.CustomUser'
 
 
 # Password validation
@@ -232,18 +153,91 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 # STATIC_URL = 'static/'
-# STATICFILES_DIRS = [str(BASE_DIR.joinpath('static'))]
-# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-# MEDIA_ROOT = 'static/images'
-
-# MEDIA_URL = '/images/'
+# STATICFILES_DIRS = [
+#     BASE_DIR / "static"
+# ]
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = 'media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Email
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = 'mazzaandrea45@gmail.com'
+# EMAIL_HOST_PASSWORD = 'itsngmdzygjliosc'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_USE_SSL = False
+# DEFAULT_FROM_EMAIL = 'mazzaandrea45@gmail.com'
 
-# STRIPE_PRICE_ID = os.getenv('STRIPE_PRICE_ID')
-# STRIPE_ENDPOINT_SECRET = os.getenv('STRIPE_ENDPOINT_SECRET')
+# Django-AllAuth
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+AUTH_USER_MODEL = 'utenti.CustomUser'
+
+SITE_ID = 1
+
+ACCOUNT_EMAIL_SUBJECT_PREFIX = 'LegalArs'
+
+ACCOUNT_FORMS = {
+    'signup': 'utenti.forms.CustomSignupForm',
+    'login': 'utenti.forms.CustomLoginForm',
+    'reset_password': 'utenti.forms.CustomResetPasswordForm',
+    'reset_password_from_key': 'utenti.forms.CustomResetPasswordKeyForm',
+}
+LOGIN_REDIRECT_URL = 'dashboard:bacheca'
+# ACCOUNT_SIGNUP_REDIRECT_URL = 'account_login'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = False
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 3
+ACCOUNT_LOGOUT_REDIRECT_URL = 'vetrina:home'
+
+
+# STRIPE CONFIGURATION
+# STRIPE_PK = 'pk_test_51MoqGRAq5niPGsLR5Jb7z3GGkPLq7iLVOiaM62SmX61ggBMY7qURIT7yzSTrrk9pSVxMK2u8NYKBBjbBRKZlSJBe009xYU0WrT'
+# STRIPE_SK = 'sk_test_51MoqGRAq5niPGsLRNetKP2Rmo9uxdroj2nE50xLWmNusoQOs2RPSAqRTcZXUI4o5GU1jJaYQnmTTtxoBvhwfJObI00HevlitDs'
+SUBSCRIPTION_DOMAIN = 'https://legalars-app-v4ck7.ondigitalocean.app/abbonamenti/'
+PAYMENT_DOMAIN = 'https://legalars-app-v4ck7.ondigitalocean.app/pagamenti/'
+stripe_portal.customer_portal()
+
+
+EMAIL_BACKEND = os.getenv('EMAIL_BACKEND')
+EMAIL_HOST = os.getenv('EMAIL_HOST')
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = os.getenv('EMAIL_PORT')
+EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS')
+EMAIL_USE_SSL = False
+AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
+AWS_S3_ENDPOINT_URL = os.getenv('AWS_S3_ENDPOINT_URL')
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+AWS_LOCATION = 'static'
+AWS_DEFAULT_ACL = 'public-read'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATIC_URL = f'{AWS_S3_ENDPOINT_URL}/{AWS_LOCATION}/'
+STATIC_ROOT = 'static'
+MEDIA_URL = '{}/{}/'.format(AWS_S3_ENDPOINT_URL, '/blog/')
+MEDIA_ROOT = '/images/'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STRIPE_PK = os.getenv('STRIPE_PUBLISHABLE_KEY')
+STRIPE_SK = os.getenv('STRIPE_SECRET_KEY')
+BACKEND_DOMAIN = os.getenv('BACKEND_DOMAIN')
