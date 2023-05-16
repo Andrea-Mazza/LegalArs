@@ -240,4 +240,5 @@ MEDIA_ROOT = '/images/'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 STRIPE_PK = os.getenv('STRIPE_PUBLISHABLE_KEY')
 STRIPE_SK = os.getenv('STRIPE_SECRET_KEY')
+STRIPE_WH_KEY = os.getenv('STRIPE_WH_KEY')
 BACKEND_DOMAIN = os.getenv('BACKEND_DOMAIN')

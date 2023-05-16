@@ -9,7 +9,7 @@ from dashboard.models import ServizioAttivato
 
 stripe.api_key = settings.STRIPE_SK
 
-endpoint_secret = 'whsec_3hNz9sOi5vKFLYYqVvx9QYNLg4oQZpyL'
+endpoint_secret = settings.STRIPE_WH_KEY
 
 
 @csrf_exempt
