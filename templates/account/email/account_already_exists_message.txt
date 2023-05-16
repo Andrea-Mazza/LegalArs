@@ -1,0 +1,19 @@
+{% extends "account/email/base_message.txt" %}
+{% load i18n %}
+
+{% block content %}{% autoescape off %}{% blocktrans %}
+Gentile {{nome}},
+
+Ricevi questa email perché qualcuno ha provato a registrare un account utilizzando questa email:
+
+{{ email }}
+
+Un account con questo indirizzo email esiste già. Se sei stato tu, che nel tentativo di accedere hai per sbaglio compilato il modulo di registrazione, puoi ignorare questa email e compilare il modulo corretto.
+
+Se non sei stato tu, oppure non ricordi la password, clicca su questo link per iniziare la procedura di cambio della password:
+
+{{ password_reset_url }}
+
+Ti ricordiamo che per qualsiasi dubbio puoi contattarci scrivendo un'email indirizzata a info@legalars.net.
+
+{% endblocktrans %}{% endautoescape %}{% endblock %}

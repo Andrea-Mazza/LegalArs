@@ -1,0 +1,127 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block title %}{% endblock title %}
+
+{% block metatag %}
+<script src="{% static 'js/setFullHeight.js' %}"></script>
+{% endblock metatag %}
+
+{% block main %}
+<main class="bacheca-main">
+    <div class="bacheca-hero full_height">
+        <h2>Ti diamo il benvenuto nella tua area personale</h2>
+        <a href="#start">Inizia il tour guidato</a>
+        <div class="scroll-prompt" scroll-prompt="" ng-show="showPrompt" style="opacity: 1;">
+            <div class="scroll-prompt-arrow-container">
+                <div class="scroll-prompt-arrow">
+                    <div></div>
+                </div>
+                <a href="#start" class="scroll-prompt-arrow">
+                    <div></div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div id="start">
+        <p class="text-center">Attraverso questa guida, acquisirai le competenze necessarie per navigare e sfruttare al
+            massimo le molteplici funzionalità offerte dal nostro sito.</p>
+        <p class="text-center">Siamo pronti ad iniziare? Allora, andiamo!</p>
+    </div>
+    <div class="tour-step">
+        <h3 class="text-center">Step 1 di 2</h3>
+        <h4 class="text-center">Menu di Navigazione</h4>
+        <p>Il nostro obiettivo è garantire che tu possa navigare agevolmente nel tuo spazio personale e sfruttare
+            appieno tutte le funzionalità disponibili.</p>
+        <p>Ora, esploreremo insieme le voci del menu, fornendo una panoramica esaustiva delle loro funzioni e dei
+            benefici che potrai ottenere da ciascuna di esse.</p>
+        <p>Il menu è composto da sei voci:</p>
+        <ol>
+            <li>
+                <h5>Bacheca</h5>
+                La bacheca è il cuore della tua esperienza sul nostro sito.
+                Inizialmente, ti
+                condurrà a un tour
+                guidato che ti illustrerà le funzionalità disponibili (come in questo momento). Una volta che inizierai
+                ad utilizzare le varie
+                funzioni del sito, la bacheca si trasformerà in una sintesi delle tue attività, offrendoti una
+                panoramica completa del tuo utilizzo.
+            </li>
+            <li>
+                <h5>Servizi</h5>
+                Questa voce di menu espande un sottomenu che contiene due opzioni.
+                La prima è "Scopri i
+                servizi", dove potrai esplorare e scoprire i vari servizi digitali che offriamo, con la possibilità di
+                conoscere i dettagli e sottoscriverli. La seconda voce, "Le mie pratiche", ti permette di accedere ai
+                dettagli delle pratiche correlate ai servizi che hai sottoscritto.
+            </li>
+            <li>
+                <h5>Articoli salvati</h5>
+                Qui troverai una lista degli articoli del nostro blog che
+                hai scelto di salvare.
+                Potrai facilmente rivedere e accedere a questi articoli salvati per una consultazione rapida e comoda.
+            </li>
+            <li>
+                <h5>Impostazioni account</h5>
+                Questa sezione ti consente di visualizzare e gestire le
+                informazioni associate al
+                tuo account. Potrai vedere i dettagli che hai inserito al momento della registrazione e gestire i tuoi
+                abbonamenti ai servizi che hai sottoscritto, offrendoti un controllo completo sulla tua esperienza
+                personalizzata.
+            </li>
+            <li>
+                <h5>Assistenza</h5>
+                Indipendentemente dalla pagina in cui ti trovi all'interno
+                dell'area riservata, avrai sempre
+                accesso immediato all'assistenza. Cliccando su "Assistenza", si aprirà un popup contenente un modulo di
+                contatto per raggiungere direttamente il nostro team di assistenza. Siamo qui per aiutarti in caso di
+                problemi o domande.
+            </li>
+            <li>
+                <h5>Torna sul sito</h5>
+                Ti permette di ritornare a navigare sul sito disponibile anche a chi non è
+                iscritto.
+            </li>
+        </ol>
+    </div class="tour-step">
+    <div class="tour-step">
+        <h3 class="text-center">Step 2 di 2</h3>
+        <h4 class="text-center">Funzionalità</h4>
+        <p>Sfruttando le funzionalità avanzate riservate agli utenti iscritti, potrai godere di un'esperienza più
+            completa, personalizzata e interattiva nel tuo spazio personale.</p>
+        <p>Ecco una panoramica delle funzionalità offerte:</p>
+        <ol>
+            <li>
+                <h5>Scoperta dei servizi</h5>
+                Nella sezione "Scopri i servizi", avrai accesso a un
+                elenco completo dei servizi
+                offerti. Potrai esplorare i dettagli di ciascun servizio, ottenere informazioni chiare sulle
+                caratteristiche e i benefici offerti, e decidere quali servizi sono più adatti alle tue esigenze. Questo
+                ti permetterà di effettuare abbonamenti ai servizi che desideri, personalizzando l'esperienza secondo le
+                tue preferenze.
+            </li>
+            <li>
+                <h5>Servizi digitalizzati</h5>
+                Grazie all'iscrizione al nostro sito, potrai usufruire
+                dei servizi che stiamo
+                progressivamente digitalizzando. All'interno della pagina "Le mie pratiche", avrai a disposizione un
+                riepilogo dettagliato di ogni pratica correlata ai servizi che hai sottoscritto. Questo ti permetterà di
+                tenere sotto controllo i dettagli e lo stato delle tue pratiche in modo facile e immediato. Inoltre,
+                avrai la possibilità di ricevere messaggi direttamente dall'avvocato, garantendoti comunicazioni in
+                tempo reale per una gestione ancora più efficiente delle tue pratiche.
+            </li>
+            <li>
+                <h5>Salvataggio degli articoli</h5>
+                Come utente iscritto, avrai la possibilità di
+                salvare gli articoli del blog
+                che ti hanno colpito di più o che desideri leggere in un secondo momento. Questa funzionalità ti offre
+                una fruizione più veloce e personalizzata del contenuto, consentendoti di accedere rapidamente ai tuoi
+                articoli preferiti.
+            </li>
+        </ol>
+    </div>
+    <div class="w-100 d-flex flex-row justify-content-center align-items-center">
+        <a href="{% url 'dashboard:servizi' %}" class="btn-gold-outline">Scopri ora i servizi disponibili</a>
+    </div>
+</main>
+{% endblock main %}

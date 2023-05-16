@@ -1,0 +1,133 @@
+{% extends 'vetrina/base.html' %}
+{% load static %}
+
+{% block title %}Investimenti e Truffe Online - LegalArs{% endblock title %}
+
+{% block metatag %}
+<script src="{% static 'js/activityEffect.js' %}"></script>
+{% endblock metatag %}
+
+{% block main %}
+<article class="truffe-online activity-content">
+    <section id="hero">
+        <h1>Investimenti e Truffe Online</h1>
+    </section>
+    <section id="activity-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-8 col-sm-12">
+                    <h2>Il forex online è ormai uno dei canali più famosi, mediante cui operare nei mercati finanziari,
+                        accessibile a tutti e caratterizzato da un’ampia operatività, sia per varietà di strumenti
+                        finanziari (valute ecc.) che per varietà dei mercati in cui è possibile operare (asiatici,
+                        europei ecc.), oltre che per i costi contenuti.
+                    </h2>
+                    <div class="divider"></div>
+                    <p>Tuttavia, in molti casi, si sono verificate ipotesi delittuose, riconducibili spesso alla truffa
+                        o alla appropriazione indebita, o anche altre ipotesi di reato.</p>
+                    <p>Purtroppo, sono tanti i casi in cui i broker promettono grandi guadagni in poco tempo e con un
+                        capitale non molto elevato, utilizzando la cosiddetta leva finanziaria, che consente di
+                        moltiplicare in maniera esponenziale il capitale di cui disporre, con l’opportunità di grandi
+                        guadagni, a cui -però- si accompagna anche il rischio di perdite pesanti.</p>
+                    <h3 class="text-center"><em>“Il problema insorge (e di questi casi, purtroppo, lo Studio Legale ne
+                            ha
+                            affrontati tanti) quando i gestori delle piattaforme, spesso insediati in paradisi fiscali,
+                            fanno perdere ogni traccia dei capitali investiti ed eventualmente dei ricavi
+                            ottenuti.”</em></h3>
+                    <p>Ferme restando le iniziative ordinarie, sviluppate nel tentativo -spesso complicato- di mettere
+                        in mora i predetti gestori, la mission dello Studio Legale, su questa materia, è quella di far
+                        valere le responsabilità di ogni altro soggetto coinvolto nelle operazioni, comprese le banche
+                        depositarie, il più delle volte incuranti d’ogni obbligo imposto dalla normativa a tutela del
+                        consumatore bancario.</p>
+                    <p>Ecco perché si tratta di materia affidata al nostro staff di esperti in contenzioso bancario, a
+                        cui si deve il tentativo di recuperare per altra via quanto trafugato illecitamente.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="container">
+        <div class="row row-2">
+            <div class="col-lg-6 col-md-8 col-sm-12">
+                <h3 class="text-center">Potrebbero interessarti</h3>
+                <div class="row custom-row">
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-position">
+                        <div class="img-container">
+                            <img src="{% static 'images/icons/attivita/crisi-di-impresa.png' %}" alt="...">
+                            <div class="overlay">
+                                <img src="{% static 'images/icons/attivita/white-icons/crisi-impresa.png' %}" alt="...">
+                                <p>CRISI DI IMPRESA <br> E RISANAMENTO</p>
+                                <a href="#">Scopri</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-position">
+                        <div class="img-container">
+                            <img src="{% static 'images/icons/attivita/tutela-img-web.png' %}" alt="...">
+                            <div class="overlay">
+                                <img src="{% static 'images/icons/attivita/white-icons/tutela-img-web.png' %}"
+                                    alt="...">
+                                <p>TUTELA DELLA <br> IMMAGINE SUL WEB</p>
+                                <a href="#">Scopri</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-position">
+                        <div class="img-container">
+                            <img src="{% static 'images/icons/attivita/reati-ambientali.png' %}" alt="...">
+                            <div class="overlay">
+                                <img src="{% static 'images/icons/attivita/white-icons/reati-ambientali.png' %}"
+                                    alt="...">
+                                <p>REATI <br> AMBIENTALI</p>
+                                <a href="#">Scopri</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <section id="home-section-seven" class="container-fluid">
+        <div class="container content">
+            <div class="row gy-5">
+                <div class="col-lg-6 col-sm-12">
+                    <h3>Contattaci per maggiori <br> informazioni</h3>
+                    <a href="#">Via Lovanio, 10, 20121 Milano, Italy</a>
+                    <a href="#">Telefono +39 02.82.95.18.61</a>
+                    <a href="#">Fax: 178.6060.284</a>
+                    <a href="#">E-mail: info@legalars.net</a>
+                </div>
+                <div class="col-lg-6 col-sm-12">
+
+                    <form class="row g-3 form-white">
+                        <div class="col-md-6 form-floating">
+                            <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com"
+                                required>
+                            <label for="floatingInput">Nome*</label>
+                        </div>
+                        <div class="col-md-6 form-floating">
+                            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
+                                required>
+                            <label for="floatingInput">Email*</label>
+                        </div>
+                        <div class="col-12 form-floating">
+                            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"
+                                rows="5" required></textarea>
+                            <label for="floatingTextarea">Messaggio*</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Accetto l’informativa sulla <a href="#">privacy</a> *
+                            </label>
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn-gold-outline">INVIA</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</article>
+{% endblock main %}

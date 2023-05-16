@@ -1,0 +1,360 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block title %}{% endblock title %}
+
+{% block metatag %}
+<script src="{% static 'js/showHelpText.js' %}"></script>
+<script src="{% static 'js/enableToolTips.js' %}"></script>
+{% endblock metatag %}
+
+{% block main %}
+<main id="pratica_main">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="info">
+                    <h2>Dettagli della tua pratica</h2>
+                    <ul>
+                        <li><span>Codice pratica:</span> {{pratica.identificativo}}</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-12 info">
+                <h3>Dati</h3>
+                {% if pratica.compilazione_terminata %}
+                <h4>Creditore</h4>
+                <ul class="row">
+                    {% if pratica.cr_tipo == 'Persona Fisica' %}
+
+                    <div class="col-lg-6 col-md-12">
+                        <li><span>Nome e Cognome:</span> {{pratica.cr_nome}} {{pratica.cr_cognome}}</li>
+                        <li><span>Luogo di nascita:</span> {{pratica.cr_luogo_di_nascita}}</li>
+                        <li><span>Data di nascita:</span> {{pratica.cr_data_di_nascita}}</li>
+                        <li><span>Comune di residenza:</span> {{pratica.cr_comune_di_residenza}}</li>
+                        <li><span>Indirizzo di residenza:</span> {{pratica.cr_indirizzo_di_residenza}}</li>
+                    </div>
+                    <div class="col-lg-6 col-md-12">
+                        {% if pratica.cr_email and pratica.cr_pec %}
+                        <li><span>Indirizzo e-mail:</span> {{pratica.cr_indirizzo_di_residenza}}</li>
+                        <li><span>Indirizzo pec:</span> {{pratica.cr_pec}}</li>
+                        {% elif pratica.cr_email and not pratica.cr_pec %}
+                        <li><span>Indirizzo e-mail:</span> {{pratica.cr_indirizzo_di_residenza}}</li>
+                        {% elif pratica.cr_pec and not pratica.cr_email %}
+                        <li><span>Indirizzo pec:</span> {{pratica.cr_pec}}</li>
+                        {% endif %}
+                        {% if pratica.cr_codice_fiscale and pratica.cr_partita_iva %}
+                        <li><span>Codie Fiscale:</span> {{pratica.cr_codice_fiscale}}</li>
+                        <li><span>Partita IVA:</span> {{pratica.cr_partita_iva}}</li>
+                        {% elif pratica.cr_codice_fiscale and not pratica.cr_partita_iva %}
+                        <li><span>Codie Fiscale:</span> {{pratica.cr_codice_fiscale}}</li>
+                        {% elif pratica.cr_partita_iva and not pratica.cr_codice_fiscale %}
+                        <li><span>Partita IVA:</span> {{pratica.cr_partita_iva}}</li>
+                        {% endif %}
+                    </div>
+
+
+                    {% elif pratica.cr_tipo == 'Persona Giuridica' %}
+                    <div class="col-lg-6 col-md-12">
+                        <li><span>Denominazione sociale:</span> {{pratica.cr_denominazione_sociale}}</li>
+                        <li><span>Comune della sede principale:</span> {{pratica.cr_comune_sede_principale}}</li>
+                        <li><span>Indirizzo della sede principale:</span> {{pratica.cr_indirizzo_sede_principale}}</li>
+                        {% if pratica.cr_email and pratica.cr_pec %}
+                        <li><span>Indirizzo e-mail:</span> {{pratica.cr_indirizzo_di_residenza}}</li>
+                        <li><span>Indirizzo pec:</span> {{pratica.cr_pec}}</li>
+                        {% elif pratica.cr_email and not pratica.cr_pec %}
+                        <li><span>Indirizzo e-mail:</span> {{pratica.cr_indirizzo_di_residenza}}</li>
+                        {% elif pratica.cr_pec and not pratica.cr_email %}
+                        <li><span>Indirizzo pec:</span> {{pratica.cr_pec}}</li>
+                        {% endif %}
+                    </div>
+                    <div class="col-lg-6 col-md-12">
+                        {% if pratica.cr_codice_fiscale and pratica.cr_partita_iva %}
+                        <li><span>Codie Fiscale:</span> {{pratica.cr_codice_fiscale}}</li>
+                        <li><span>Partita IVA:</span> {{pratica.cr_partita_iva}}</li>
+                        {% elif pratica.cr_codice_fiscale and not pratica.cr_partita_iva %}
+                        <li><span>Codie Fiscale:</span> {{pratica.cr_codice_fiscale}}</li>
+                        {% elif pratica.cr_partita_iva and not pratica.cr_codice_fiscale %}
+                        <li><span>Partita IVA:</span> {{pratica.cr_partita_iva}}</li>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                </ul>
+                <h4>Debitore</h4>
+                <ul class="row">
+                    {% if pratica.db_tipo == 'Persona Fisica' %}
+                    <div class="col-lg-6 col-md-12">
+                        <li><span>Nome e Cognome:</span> {{pratica.db_nome}} {{pratica.db_cognome}}</li>
+                        <li><span>Luogo di nascita:</span> {{pratica.db_luogo_di_nascita}}</li>
+                        <li><span>Data di nascita:</span> {{pratica.db_data_di_nascita}}</li>
+                        <li><span>Comune di residenza:</span> {{pratica.db_comune_di_residenza}}</li>
+                        <li><span>Indirizzo di residenza:</span> {{pratica.db_indirizzo_di_residenza}}</li>
+                    </div>
+                    <div class="col-lg-6 col-md-12">
+                        {% if pratica.df_codice_fiscale and pratica.df_partita_iva %}
+                        <li><span>Codie Fiscale:</span> {{pratica.df_codice_fiscale}}</li>
+                        <li><span>Partita IVA:</span> {{pratica.df_partita_iva}}</li>
+                        {% elif pratica.df_codice_fiscale and not pratica.df_partita_iva %}
+                        <li><span>Codie Fiscale:</span> {{pratica.df_codice_fiscale}}</li>
+                        {% elif pratica.df_partita_iva and not pratica.df_codice_fiscale %}
+                        <li><span>Partita IVA:</span> {{pratica.df_partita_iva}}</li>
+                        {% endif %}
+                    </div>
+
+
+
+
+                    {% elif pratica.db_tipo == 'Persona Giuridica' %}
+                    <div class="col-lg-6 col-md-12">
+                        <li><span>Denominazione sociale:</span> {{pratica.db_denominazione_sociale}}</li>
+                        <li><span>Comune della sede principale:</span> {{pratica.db_comune_sede_principale}}</li>
+                        <li><span>Indirizzo della sede principale:</span> {{pratica.db_indirizzo_sede_principale}}</li>
+                    </div>
+                    <div class="col-lg-6 col-md-12">
+                        {% if pratica.dj_codice_fiscale and pratica.dj_partita_iva %}
+                        <li><span>Codie Fiscale:</span> {{pratica.dj_codice_fiscale}}</li>
+                        <li><span>Partita IVA:</span> {{pratica.dj_partita_iva}}</li>
+                        {% elif pratica.dj_codice_fiscale and not pratica.dj_partita_iva %}
+                        <li><span>Codie Fiscale:</span> {{pratica.dj_codice_fiscale}}</li>
+                        {% elif pratica.dj_partita_iva and not pratica.dj_codice_fiscale %}
+                        <li><span>Partita IVA:</span> {{pratica.dj_partita_iva}}</li>
+                        {% endif %}
+                    </div>
+
+                    {% endif %}
+                </ul>
+                <h4>Somma</h4>
+                <ul>
+                    <li><span>Somma:</span> €{{pratica.somma}}</li>
+                </ul>
+
+
+
+                {% if pratica.pagamento_iniziale %}
+                
+                {% else %}
+                <p>Totale: {{totale}}</p>
+                <a
+                    href="{% url 'pagamenti:checkout_session' servizio_slug=servizio.slug pratica=pratica.identificativo %}">Checkout</a>
+                {% endif %}
+                {% else %}
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Dati del creditore
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <form method="post">
+                                    {% csrf_token %}
+                                    {% for field in tipo_creditore %}
+                                    <div class="mb-3 mt-3">
+                                        <label class="label-container mb-2" for="{{field.auto_id}}">{{field.label}} <img
+                                                class="question-mark" src="{% static 'images/icons/help.svg' %}" alt=""
+                                                data-bs-toggle="tooltip" data-bs-placement="top"
+                                                data-bs-custom-class="custom-tooltip"
+                                                data-bs-title="Bisogno di aiuto? Clicca qui"></label>
+                                        {{field}}
+                                    </div>
+                                    <p class="help-text">{{field.help_text}} <span class="closeHelpText">Chiudi</span>
+                                    </p>
+                                    {% endfor %}
+                                    <input type="hidden" name="tipo_creditore">
+                                    <button type="submit">Conferma dati</button>
+                                </form>
+                                {% if pratica.cr_tipo == 'Persona Fisica' %}
+                                <form method="post">
+                                    {% csrf_token %}
+                                    {% for field in creditore_pf %}
+                                    <div class="mb-3 mt-3">
+                                        <label class="label-container mb-2" for="{{field.auto_id}}">{{field.label}} <img
+                                                class="question-mark" src="{% static 'images/icons/help.svg' %}" alt=""
+                                                data-bs-toggle="tooltip" data-bs-placement="top"
+                                                data-bs-custom-class="custom-tooltip"
+                                                data-bs-title="Bisogno di aiuto? Clicca qui"></label>
+                                        {{field}}
+                                    </div>
+                                    <p class="help-text">{{field.help_text}} <span class="closeHelpText">Chiudi</span>
+                                    </p>
+                                    {% endfor %}
+                                    <input type="hidden" name="creditore_pf">
+                                    <button type="submit">Conferma dati</button>
+                                </form>
+                                {% elif pratica.cr_tipo == 'Persona Giuridica' %}
+                                <form method="post">
+                                    {% csrf_token %}
+                                    {% for field in creditore_pj %}
+                                    <div class="mb-3 mt-3">
+                                        <label class="label-container mb-2" for="{{field.auto_id}}">{{field.label}} <img
+                                                class="question-mark" src="{% static 'images/icons/help.svg' %}" alt=""
+                                                data-bs-toggle="tooltip" data-bs-placement="top"
+                                                data-bs-custom-class="custom-tooltip"
+                                                data-bs-title="Bisogno di aiuto? Clicca qui"></label>
+                                        {{field}}
+                                    </div>
+                                    <p class="help-text">{{field.help_text}} <span class="closeHelpText">Chiudi</span>
+                                    </p>
+                                    {% endfor %}
+                                    <input type="hidden" name="creditore_pj">
+                                    <button type="submit">Conferma dati</button>
+                                </form>
+                                {% endif %}
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Dati del debitore
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <form method="post">
+                                    {% csrf_token %}
+                                    {% for field in tipo_debitore %}
+                                    <div class="mb-3 mt-3">
+                                        <label class="label-container mb-2" for="{{field.auto_id}}">{{field.label}} <img
+                                                class="question-mark" src="{% static 'images/icons/help.svg' %}" alt=""
+                                                data-bs-toggle="tooltip" data-bs-placement="top"
+                                                data-bs-custom-class="custom-tooltip"
+                                                data-bs-title="Bisogno di aiuto? Clicca qui"></label>
+                                        {{field}}
+                                    </div>
+                                    <p class="help-text">{{field.help_text}} <span class="closeHelpText">Chiudi</span>
+                                    </p>
+                                    {% endfor %}
+                                    <input type="hidden" name="tipo_debitore">
+                                    <button type="submit">Conferma dati</button>
+                                </form>
+                                {% if pratica.db_tipo == 'Persona Fisica' %}
+                                <form method="post">
+                                    {% csrf_token %}
+                                    {% for field in debitore_pf %}
+                                    <div class="mb-3 mt-3">
+                                        <label class="label-container mb-2" for="{{field.auto_id}}">{{field.label}} <img
+                                                class="question-mark" src="{% static 'images/icons/help.svg' %}" alt=""
+                                                data-bs-toggle="tooltip" data-bs-placement="top"
+                                                data-bs-custom-class="custom-tooltip"
+                                                data-bs-title="Bisogno di aiuto? Clicca qui"></label>
+                                        {{field}}
+                                    </div>
+                                    <p class="help-text">{{field.help_text}} <span class="closeHelpText">Chiudi</span>
+                                    </p>
+                                    {% endfor %}
+                                    <input type="hidden" name="debitore_pf">
+                                    <button type="submit">Conferma dati</button>
+                                </form>
+                                {% elif pratica.db_tipo == 'Persona Giuridica' %}
+                                <form method="post">
+                                    {% csrf_token %}
+                                    {% for field in debitore_pj %}
+                                    <div class="mb-3 mt-3">
+                                        <label class="label-container mb-2" for="{{field.auto_id}}">{{field.label}}
+                                            <img class="question-mark" src="{% static 'images/icons/help.svg' %}" alt=""
+                                                data-bs-toggle="tooltip" data-bs-placement="top"
+                                                data-bs-custom-class="custom-tooltip"
+                                                data-bs-title="Bisogno di aiuto? Clicca qui"></label>
+                                        {{field}}
+                                    </div>
+                                    <p class="help-text">{{field.help_text}} <span class="closeHelpText">Chiudi</span>
+                                    </p>
+                                    {% endfor %}
+                                    <input type="hidden" name="debitore_pj">
+                                    <button type="submit">Conferma dati</button>
+                                    {% endif %}
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                Somma
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <form method="post">
+                                    {% csrf_token %}
+                                    {% for field in somma_form %}
+                                    <div class="mb-3 mt-3">
+                                        <label class="label-container mb-2" for="{{field.auto_id}}">{{field.label}}
+                                            <img class="question-mark" src="{% static 'images/icons/help.svg' %}" alt=""
+                                                data-bs-toggle="tooltip" data-bs-placement="top"
+                                                data-bs-custom-class="custom-tooltip"
+                                                data-bs-title="Bisogno di aiuto? Clicca qui"></label>
+                                        {{field}}
+                                    </div>
+                                    <p class="help-text">{{field.help_text}} <span class="closeHelpText">Chiudi</span>
+                                    </p>
+                                    {% endfor %}
+                                    <input type="hidden" name="somma_form">
+                                    <button type="submit">Conferma dato</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <p>Con il campo immediatamente qui sotto dovrai indicare se sei in possesso, o no, di una firma
+                    digitale.</p>
+                <p>Se sei in possesso di una firma digitale, la procedura sarà più snella in quanto non avremo bisogno
+                    di ulteriori verifiche dellla tuta identità.</p>
+                <p>Se non sei in possesso di una firma digitale, dovrai compiere un due passi aggiuntivi. Ti sarà
+                    chiesto di
+                    allegare una scansione del tuo documento di indentità e avremo bisogno di verificare la tua identità
+                    tramite un video-collegamento.</p>
+
+                <form method="post">
+                    {% csrf_token %}
+                    {% for field in firma_form %}
+                    <div class="mb-3 mt-3">
+                        <label class="label-container mb-2" for="{{field.auto_id}}">{{field.label}}</label>
+                        {{field}}
+                    </div>
+                    </p>
+                    {% endfor %}
+                    <input type="hidden" name="firma_form">
+                    <button type="submit">Conferma dato</button>
+                </form>
+
+                {% if pratica.firma_digitale == "No" %}
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% for field in documenti_form %}
+                    <div class="mb-3 mt-3">
+                        <label class="label-container mb-2" for="{{field.auto_id}}">{{field.label}}</label>
+                        {{field}}
+                    </div>
+                    </p>
+                    {% endfor %}
+                    <input type="hidden" name="documenti_form">
+                    <button type="submit">Conferma dato</button>
+                </form>
+                {% endif %}
+
+                {% endif %}
+
+
+            </div>
+            <div class="col-12">
+                <h3 class="mt-3">Notifiche</h3>
+                {% if notifiche %}
+                {% for notifica in notifiche.all %}
+                {{notifica.contenuto|safe}}
+                {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock main %}

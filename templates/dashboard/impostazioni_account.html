@@ -1,0 +1,39 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block title %}{% endblock title %}
+
+{% block metatag %}
+<script src="{% static 'js/enableToolTips.js' %}"></script>
+{% endblock metatag %}
+
+{% block main %}
+<main id="impostazioni_account">
+    <div class="container">
+        <div class="row gy-5">
+            <div class="col-12 d-flex flex-column text-center align-items-center">
+                <div class="profile-pic-container">
+                    <img class="profile-pic" src="{% static 'images/profile_pic_placeholder.jpeg' %}">
+                    <div class="add_photo">
+                        <img src="{% static 'images/icons/add_a_photo.svg' %}" alt="" class="icon"
+                            data-bs-toggle="tooltip" data-bs-title="Aggiungi una foto">
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="info">
+                    <h2>Dettagli</h2>
+                    <ul>
+                        <li><span>Nome e Cognome:</span> {{user.nome}} {{user.cognome}}</li>
+                        <li><span>Indirizzo E-mail:</span> {{user.email}}</li>
+                        <li><span>Abbonamenti:</span> <a
+                                href="{% url 'abbonamenti:customer_portal_session' %}">Gestisci
+                                abbonamenti</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- https://stackoverflow.com/questions/5813344/how-to-customize-input-type-file -->
+</main>
+{% endblock main %}

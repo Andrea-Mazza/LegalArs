@@ -1,0 +1,81 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block title %}{% endblock title %}
+
+{% block metatag %}
+
+{% endblock metatag %}
+
+{% block main %}
+<main class="servizi-main">
+    <section>
+        <h1>Scopri i nostri servizi</h1>
+        <p>Benvenuto nella sezione dedicata ai servizi offerti dal nostro studio legale digitale. Qui potrai trovare
+            informazioni sui servizi attualmente disponibili. Scopri come la nostra
+            piattaforma può aiutarti a risolvere le tue esigenze legali in modo semplice, veloce e conveniente.</p>
+    </section>
+    <section>
+        <h2>Lista dei servizi disponibili</h2>
+        <div class="container-fluid">
+            <div class="row gy-5 sm-show">
+                {% for servizio in servizi %}
+                <div class="col-lg-4 col-md-6 col-sm-12">
+                    <div class="news_card">
+                        <div class="card__header">
+                            <img src="{{servizio.copertina.url}}" alt="card__image" class="card__image img-fluid"
+                                width="600">
+                        </div>
+                        <div class="card__body">
+                            <h4>{{servizio.nome}}</h4>
+                            <a href="{% url 'dashboard:spiegazione_servizio' servizio_slug=servizio.slug %}"
+                                class="btn-gold-outline">Dettagli</a>
+                            <form action="{% url 'abbonamenti:create_checkout_session' servizio_slug=servizio.slug %}"
+                                method="post">
+                                {% csrf_token %}
+                                <input class="btn-gold-outline" type="submit" value="Abbonati">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <table class="sm-hide">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for servizio in servizi %}
+                    <tr>
+                        <td>{{servizio.nome}}</td>
+                        <td><a
+                                href="{% url 'dashboard:spiegazione_servizio' servizio_slug=servizio.slug %}">Dettagli</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <section>
+        <h2>Contatti</h2>
+        <p>Se hai domande sui nostri servizi o desideri maggiori informazioni, non esitare a contattarci. Per farlo puoi
+            contattare l'assistenza cliccando sulla voce, del menu, 'Assistenza'. In alternativa puoi scrivere a <a
+                href="mailto:info@legalars.net">info@legalars.net</a> o compilare il form qui sotto.</p>
+        <div class="row d-flex flex-row justify-content-center">
+            <div class="col-lg-8 col-md-12 col-12">
+                <form method="post">
+                    {% csrf_token %}
+                    {{assistenza_form}}
+                    <div class="text-center mt-3">
+                        <input type="submit" value="Invia" class="btn-black-outline">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock main %}

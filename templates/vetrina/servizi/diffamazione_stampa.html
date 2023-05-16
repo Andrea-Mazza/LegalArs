@@ -1,0 +1,129 @@
+{% extends 'vetrina/base.html' %}
+{% load static %}
+
+{% block title %}Diffamazione a mezzo stampa - LegalArs{% endblock title %}
+
+{% block metatag %}
+<script src="{% static 'js/activityEffect.js' %}"></script>
+{% endblock metatag %}
+
+{% block main %}
+<article class="diffamazione activity-content">
+    <section id="hero">
+        <h1>Diffamazione a mezzo stampa</h1>
+    </section>
+    <section id="activity-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-8 col-sm-12">
+                    <h2>La diffamazione, così come l’ingiuria, si caratterizzano per una offensività che è rivolta sulla
+                        reputazione della persona danneggiata, che può essere lesa o messa in pericolo da chiunque le
+                        attribuisca qualità o fatti in qualche modo disonoranti.</h2>
+                    <div class="divider"></div>
+                    <p>Tale offesa implica in concreto, ma non necessariamente, che la persona si senta colpita nel
+                        proprio onore e che ne risenta la sua reputazione in termini di perdita di stima.</p>
+                    <p>Il reato in argomento è sanzionato con maggiore rigore, quando la diffamazione avviene mediante
+                        la stampa, previsione che si pone come limite alla libertà di espressione e di manifestazione
+                        del pensiero, per la necessità di tutelare in determinati casi la reputazione e l’onore (ottica
+                        di bilanciamento tra diritti contrapposti).</p>
+                    <h3 class="text-center"><em>“Sul fronte opposto, si segnala un’ampia tutela del diritto di ciascun
+                            consociato a ricevere informazioni di interesse generale e a garantire, ai giornalisti,
+                            l’esercizio della libertà di informazione.”</em></h3>
+                    <p>Il grado elevato di tutela si deve al ruolo delicatissimo ed essenziale che la
+                        stampa/l’informazione svolge nella società democratica (in varie pronunce della Corte EDU, la
+                        stampa viene definita ‘watchdog’, il cane da guardia della democrazia).</p>
+                    <p>All’essenzialità del ruolo consegue una esigua possibilità, per gli stati membri, di apporre
+                        restrizioni sul piano delle scelte normative.</p>
+                    <p>La delicatezza e la complessità di questo bilanciamento di interessi contrapposti impone il
+                        ricorso a Partners che hanno una specifica esperienza a familiarità sul tema.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="container">
+        <div class="row row-2">
+            <div class="col-lg-6 col-md-8 col-sm-12">
+                <h3 class="text-center">Potrebbero interessarti</h3>
+                <div class="row custom-row">
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-position">
+                        <div class="img-container">
+                            <img src="{% static 'images/icons/attivita/crisi-di-impresa.png' %}" alt="...">
+                            <div class="overlay">
+                                <img src="{% static 'images/icons/attivita/white-icons/crisi-impresa.png' %}" alt="...">
+                                <p>CRISI DI IMPRESA <br> E RISANAMENTO</p>
+                                <a href="#">Scopri</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-position">
+                        <div class="img-container">
+                            <img src="{% static 'images/icons/attivita/reati-ambientali.png' %}" alt="...">
+                            <div class="overlay">
+                                <img src="{% static 'images/icons/attivita/white-icons/reati-ambientali.png' %}"
+                                    alt="...">
+                                <p>REATI <br> AMBIENTALI</p>
+                                <a href="#">Scopri</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-position">
+                        <div class="img-container">
+                            <img src="{% static 'images/icons/attivita/tutela-img-web.png' %}" alt="...">
+                            <div class="overlay">
+                                <img src="{% static 'images/icons/attivita/white-icons/tutela-img-web.png' %}"
+                                    alt="...">
+                                <p>TUTELA DELLA <br> IMMAGINE SUL WEB</p>
+                                <a href="#">Scopri</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <section id="home-section-seven" class="container-fluid">
+        <div class="container content">
+            <div class="row gy-5">
+                <div class="col-lg-6 col-sm-12">
+                    <h3>Contattaci per maggiori <br> informazioni</h3>
+                    <a href="#">Via Lovanio, 10, 20121 Milano, Italy</a>
+                    <a href="#">Telefono +39 02.82.95.18.61</a>
+                    <a href="#">Fax: 178.6060.284</a>
+                    <a href="#">E-mail: info@legalars.net</a>
+                </div>
+                <div class="col-lg-6 col-sm-12">
+
+                    <form class="row g-3 form-white">
+                        <div class="col-md-6 form-floating">
+                            <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com"
+                                required>
+                            <label for="floatingInput">Nome*</label>
+                        </div>
+                        <div class="col-md-6 form-floating">
+                            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
+                                required>
+                            <label for="floatingInput">Email*</label>
+                        </div>
+                        <div class="col-12 form-floating">
+                            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"
+                                rows="5" required></textarea>
+                            <label for="floatingTextarea">Messaggio*</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Accetto l’informativa sulla <a href="#">privacy</a> *
+                            </label>
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn-gold-outline">INVIA</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</article>
+{% endblock main %}

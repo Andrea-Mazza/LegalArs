@@ -1,0 +1,80 @@
+{% extends 'vetrina/base.html' %}
+{% load static %}
+
+{% block title %}News - LegalArs{% endblock title %}
+
+
+{% block metatag %}{% endblock metatag %}
+
+
+{% block main %}
+<h1>I nostri articoli giuridici</h1>
+<section id="blog-news-content" class="container">
+    <div class="row gy-5">
+        {% for post in posts %}
+        <div class="col-lg-4 col-md-6 col-sm-12 post-card d-flex flex-column justify-content-between">
+            <div class="news_card">
+                <div class="card__header">
+                    <img src="{{post.copertina.url}}" alt="card__image" class="card__image" width="600">
+                </div>
+                <div class="card__body">
+                    <a href="{% url 'news:categoria_details' categoria_slug=post.categoria.slug %}"
+                        class="tag tag-blue">{{post.categoria.nome}}</a>
+                    <h4>{{post.titolo}}</h4>
+                    <p>{{post.meta_descrizione}}</p>
+                </div>
+                <div class="card__footer">
+                    <div class="user">
+                        <div class="user__info">
+                            <h5>{{post.autore.username}}</h5>
+                            <small>{{post.data_pubblicazione|date:'d F Y'}}</small>
+                        </div>
+                    </div>
+                    <a href="{% url 'news:articolo_details' categoria_slug=post.categoria.slug post_slug=post.slug %}"
+                        class="btn-gold-outline">Leggi</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+
+        <!-- DA AGGIUSTARE PER LA VERSIONE MOBILE -->
+        <nav aria-label="Page navigation" class="d-flex flex-row justify-content-center">
+            <ul class="pagination">
+                {% if posts.has_previous %}
+                <li class="page-item first-page-btn"><a class="page-link" href="?page=1" data-bs-toggle="tooltip"
+                        data-bs-placement="top" data-bs-title="1">&laquo;</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="?page={{ posts.previous_page_number }}"
+                        data-bs-toggle="tooltip" data-bs-placement="top"
+                        data-bs-title="{{posts.previous_page_number}}">&lsaquo;</a>
+                </li>
+                {% endif %}
+
+                {% for i in posts.paginator.page_range %}
+                {% if i == posts.number %}
+                <li class="page-item active" aria-current="page"><a href="?page={{ i }}" class="page-link">{{i}}</a>
+                </li>
+                {% elif i > posts.number|add:-2 and i < posts.number|add:2 %} <li class="page-item"><a
+                        href="?page={{ i }}" class="page-link">{{i}}</a></li>
+                    {% elif i == posts.paginator.num_pages %}
+                    <li class="page-item"><a href="?page={{ i }}" class="page-link">{{i}}</a></li>
+                    {% elif i == posts.number|add:-2 or i == posts.number|add:2 %}
+                    <li class="page-item disabled"><a href="#" class="page-link">...</a></li>
+                    {% endif %}
+                    {% endfor %}
+
+                    {% if posts.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ posts.next_page_number }}"
+                            data-bs-toggle="tooltip" data-bs-placement="top"
+                            data-bs-title="{{posts.next_page_number}}">&rsaquo;</a></li>
+                    <li class="page-item"><a class="page-link" href="?page={{ posts.paginator.num_pages }}"
+                            data-bs-toggle="tooltip" data-bs-placement="top"
+                            data-bs-title="{{posts.paginator.num_pages}}">&raquo;</a>
+                    </li>
+                    {% endif %}
+            </ul>
+        </nav>
+    </div>
+</section>
+{% endblock main %}

@@ -1,0 +1,39 @@
+{% extends 'vetrina/base.html' %}
+{% load static %}
+
+{% block title %}News - LegalArs{% endblock title %}
+
+
+{% block metatag %}{% endblock metatag %}
+
+
+{% block main %}
+<section class="container mt-5 mb-5">
+    <div class="row gy-3 d-flex flex-row justify-content-center">
+        <div class="col-lg-6 col-md-12 d-flex justify-content-center">
+            <div class="blog_home_card one">
+                <a href="{% url 'news:articoli_home' %}">
+                    <img src="{% static 'images/icons/blog-64.png' %}" alt="">
+                    <p>Articoli giuridici</p>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-12 d-flex justify-content-center">
+            <div class="blog_home_card two">
+                <a href="#">
+                    <img src="{% static 'images/icons/product-documents-96.png' %}" alt="">
+                    <p>Fonti normative</p>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-12 d-flex justify-content-center">
+            <div class="blog_home_card three">
+                <a href="{% url 'news:vantaggi' %}">
+                    <img src="{% static 'images/icons/benefit-64.png' %}" alt="">
+                    <p>Scopri i vantaggi di iscriverti su LegalArs</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock main %}

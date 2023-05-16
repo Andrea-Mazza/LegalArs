@@ -1,0 +1,45 @@
+{% extends 'vetrina/base.html' %}
+{% load static %}
+
+{% block title %}Articoli giuridici - LegalArs{% endblock title %}
+
+
+{% block metatag %}
+
+{% endblock metatag %}
+
+
+{% block main %}
+<section id="blog-news-content" class="container">
+    <div class="row g-5">
+        <h1>Categoria: {{categoria.nome}}</h1>
+
+        {% for post in posts %}
+        <div class="col-lg-4 col-md-6 col-sm-12 post-card d-flex flex-column justify-content-between">
+            <div class="news_card">
+                <div class="card__header">
+                    <img src="{{post.copertina.url}}" alt="card__image" class="card__image" width="600">
+                </div>
+                <div class="card__body">
+                    <a href="{% url 'news:categoria_details' categoria_slug=post.categoria.slug %}"
+                        class="tag tag-blue">{{post.categoria.nome}}</a>
+                    <h4>{{post.titolo}}</h4>
+                    <p>{{post.meta_descrizione}}</p>
+                </div>
+                <div class="card__footer">
+                    <div class="user">
+                        <div class="user__info">
+                            <h5>{{post.autore.username}}</h5>
+                            <small>{{post.data_pubblicazione|date:'d F Y'}}</small>
+                            <a href="{% url 'news:articolo_details' categoria_slug=post.categoria.slug post_slug=post.slug %}"
+                                class="btn-gold-outline">Leggi</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+</section>
+{% endblock main %}

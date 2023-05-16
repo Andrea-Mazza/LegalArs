@@ -1,0 +1,418 @@
+{% extends 'vetrina/base.html' %}
+{% load static %}
+
+{% block title %}LegalArs - Studio legale Milano{% endblock title %}
+
+{% block metatag %}
+<script src="{% static 'js/home.js' %}"></script>
+<meta name="description"
+    content="LegalArs - Studio Legale a Milano è un network internazionale di avvocati a tua disposizione che si avvale della collaborazione di avvocati professionisti che spaziano in tutti i settori">
+<link rel="canonical" href="https://www.legalars.net/">
+<meta property="og:locale" content="it_IT">
+<meta property="og:type" content="website">
+<meta property="og:title" content="LegalArs - Studio Legale Milano">
+<meta property="og:description"
+    content="LegalArs - Studio Legale a Milano è un network internazionale di avvocati a tua disposizione che si avvale della collaborazione di avvocati professionisti che spaziano in tutti i settori">
+<meta property="og:url" content="https://www.legalars.net/">
+<meta property="og:site_name" content="Legalars">
+<meta property="article:publisher" content="https://www.facebook.com/legalars.net/">
+<meta property="article:modified_time" content="2023-1-5T15:22:30+00:00">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:label1" content="Tempo di lettura stimato">
+<meta name="twitter:data1" content="55 minuti">
+{% endblock metatag %}
+
+
+{% block main %}
+<section class="container-fluid" id="hero">
+    <div class="text-hero container">
+        <p class="animate__animated animate__zoomInDown">LEGALARS MILANO</p>
+        <h1 class="animate__animated animate__zoomInDown">Lo studio legale interattivo, <br> la communitiy del diritto
+            vivente, <br> a portata di click</h1>
+        <a href="#home-section-seven" class="animate__animated animate__zoomInDown btn-gold-outline">RICHIEDI UN
+            CONTATTO</a>
+    </div>
+</section>
+
+<section id="home-section-one" class="container">
+    <div class="row gy-5 d-flex flex-row align-items-center justify-content-center">
+        <div class="col-lg-6 col-md-12 order-lg-1 order-2 text-center">
+            <img src="{% static 'images/businessman-working.webp' %}" class="img-fluid"
+                alt="Professionista che lavora al computer">
+        </div>
+        <div class="col-lg-6 col-md-12 order-lg-2 order-1 d-flex flex-column text-responsive">
+            <h3>Lo studio "LegalArs.net" nasce a Milano con l'idea di:</h3>
+            <ul>
+                <li>promuovere una community sul diritto vivente,</li>
+                <li>retta da uno studio legale interattivo,</li>
+                <li>in un tavolo di lavoro comune,</li>
+                <li>su misura del bisogno e delle aspirazioni di tutti.</li>
+            </ul>
+            <p>LEGGI CHI SIAMO: UN PUNTO DI FORZA ANCHE PER TE</p>
+            <a href="#" class="btn-gold-outline">CHI SIAMO</a> 
+        </div>
+    </div>
+</section>
+
+<section id="home-section-two" class="container text-center">
+    <div class="heading-section">
+        <p class="p-heading">I PROFESSIONISTI LEGALARS</p>
+        <h3>Lo Studio Legale coltiva e privilegia la vita associativa e forti interazioni con altri professionisti
+        </h3>
+    </div>
+    <div class="row custom-row">
+        <div class="col-md-6 col-12 home-number">
+            <p class="number">12</p>
+            <div class="custom-hr">
+                <div class="hr-inner"></div>
+            </div>
+            <p>Collaboratori nel territorio nazionale</p>
+        </div>
+        <div class="col-md-6 col-12 home-number">
+            <p class="number">2</p>
+            <div class="custom-hr">
+                <div class="hr-inner"></div>
+            </div>
+            <p>Partners a Londra e Tunisi</p>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <a href="#" class="btn-gold-outline">SCOPRI</a>
+    </div>
+</section>
+
+<section id="home-section-three" class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-12 text-section">
+                <p>LE AREE DI ATTIVITÀ</p>
+                <h3>Una collaborazione di professionisti specializzati</h3>
+                <p>Dal civile al penale, dall’amministrativo al diritto del lavoro, seguendo tutte le tematiche di
+                    attualità. La struttura dello studio è volutamente flessibile ed internazionale per soddisfare
+                    tutte
+                    le esigenze della clientela: si è tentato sempre di ricercare collaborazioni che risultassero
+                    più
+                    adeguate agli obiettivi di ogni singolo cliente.</p>
+                <p>Il Portale Giuridico di Legalars.net è un portale informativo, senza fini di lucro, diretto alla
+                    divulgazione di informazioni e opinioni in ogni materia giuridica.</p>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-12 col-position">
+                        <div class="img-container">
+                            <img src="{% static 'images/icons/diritto-civile.png' %}" alt="...">
+                            <div class="overlay">
+                                <p>Diritto <br> civile</p>
+                                <a href="#">Scopri</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-12 col-position">
+                        <div class="img-container">
+                            <img src="{% static 'images/icons/diritto-penale.png' %}" alt="...">
+                            <div class="overlay">
+                                <p>Diritto <br> penale</p>
+                                <a href="#">Scopri</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-12 col-position">
+                        <div class="img-container">
+                            <img src="{% static 'images/icons/diritto-amministrativo.png' %}" alt="...">
+                            <div class="overlay">
+                                <p>Diritto <br> amministrativo</p>
+                                <a href="#">Scopri</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-12 col-position">
+                        <div class="img-container">
+                            <img src="{% static 'images/icons/diritto-del-lavoro.png' %}" alt="...">
+                            <div class="overlay">
+                                <p>Diritto <br> del lavoro</p>
+                                <a href="#">Scopri</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="home-section-four">
+    <div class="container d-flex flex-column align-items-center">
+        <div class="heading-section text-center">
+            <h3>Tutti i nostri servizi</h3>
+            <p>La struttura dello studio è volutamente flessibile, nel senso
+                che si è tentato sempre di ricercare collaborazioni, che risultassero
+                più adeguate agli obiettivi posti in ogni singolo incarico</p>
+        </div>
+        <div class="row custom-row">
+            <div class="col-lg-2 col-md-6 col-sm-12 col-position">
+                <div class="img-container">
+                    <img src="{% static 'images/icons/attivita/investimenti-e-truffe.png' %}" alt="...">
+                    <div class="overlay">
+                        <img src="{% static 'images/icons/attivita/white-icons/investimenti-e-truffe.png' %}" alt="...">
+                        <p>INVESTIMENTI E <br> TRUFFE ONLINE</p>
+                        <a href="#">Scopri</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6 col-sm-12 col-position">
+                <div class="img-container">
+                    <img src="{% static 'images/icons/attivita/separazione.png' %}" alt="...">
+                    <div class="overlay">
+                        <img src="{% static 'images/icons/attivita/white-icons/divorzi.png' %}" alt="...">
+                        <p>SEPARAZIONE <br> E DIVORZI</p>
+                        <a href="#">Scopri</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6 col-sm-12 col-position">
+                <div class="img-container">
+                    <img src="{% static 'images/icons/attivita/esdebitazione.png' %}" alt="...">
+                    <div class="overlay">
+                        <img src="{% static 'images/icons/attivita/white-icons/credit-card.png' %}" alt="...">
+                        <p>ESDEBITAZIONE</p>
+                        <a href="#">Scopri</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6 col-sm-12 col-position">
+                <div class="img-container">
+                    <img src="{% static 'images/icons/attivita/tutela-rapporti-bank.png' %}" alt="...">
+                    <div class="overlay">
+                        <img src="{% static 'images/icons/attivita/white-icons/tutela-rapp-bancari.png' %}" alt="...">
+                        <p>TUTELA DEI <br> RAPPORTI BANCARI</p>
+                        <a href="#">Scopri</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6 col-sm-12 col-position">
+                <div class="img-container">
+                    <img src="{% static 'images/icons/attivita/colpa-medica.png' %}" alt="...">
+                    <div class="overlay">
+                        <img src="{% static 'images/icons/attivita/white-icons/colpa-medica.png' %}" alt="...">
+                        <p>COLPA <br> MEDICA</p>
+                        <a href="#">Scopri</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6 col-sm-12 col-position">
+                <div class="img-container">
+                    <img src="{% static 'images/icons/attivita/tutela-img-web.png' %}" alt="...">
+                    <div class="overlay">
+                        <img src="{% static 'images/icons/attivita/white-icons/tutela-img-web.png' %}" alt="...">
+                        <p>TUTELA DELLA <br> IMMAGINE SUL WEB</p>
+                        <a href="#">Scopri</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6 col-sm-12 col-position">
+                <div class="img-container">
+                    <img src="{% static 'images/icons/attivita/crisi-di-impresa.png' %}" alt="...">
+                    <div class="overlay">
+                        <img src="{% static 'images/icons/attivita/white-icons/crisi-impresa.png' %}" alt="...">
+                        <p>CRISI DI IMPRESA <br> E RISANAMENTO</p>
+                        <a href="#">Scopri</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6 col-sm-12 col-position">
+                <div class="img-container">
+                    <img src="{% static 'images/icons/attivita/reati-ambientali.png' %}" alt="...">
+                    <div class="overlay">
+                        <img src="{% static 'images/icons/attivita/white-icons/reati-ambientali.png' %}" alt="...">
+                        <p>REATI <br> AMBIENTALI</p>
+                        <a href="#">Scopri</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6 col-sm-12 col-position">
+                <div class="img-container">
+                    <img src="{% static 'images/icons/attivita/recupero-crediti.png' %}" alt="...">
+                    <div class="overlay">
+                        <img src="{% static 'images/icons/attivita/white-icons/recupero-crediti.png' %}" alt="...">
+                        <p>RECUPERO <br> CREDITI</p>
+                        <a href="#">Scopri</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6 col-sm-12 col-position">
+                <div class="img-container">
+                    <img src="{% static 'images/icons/attivita/diritto-di-impresa.png' %}" alt="...">
+                    <div class="overlay">
+                        <img src="{% static 'images/icons/attivita/white-icons/diritto-impresa.png' %}" alt="...">
+                        <p>DIRITTO DI <br> IMPRESA</p>
+                        <a href="#">Scopri</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6 col-sm-12 col-position">
+                <div class="img-container">
+                    <img src="{% static 'images/icons/attivita/arresto-europeo.png' %}" alt="...">
+                    <div class="overlay">
+                        <img src="{% static 'images/icons/attivita/white-icons/arresto-europeo.png' %}" alt="...">
+                        <p>MANDATO DI <br> ARRESTO EUROPEO</p>
+                        <a href="#">Scopri</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6 col-sm-12 col-position">
+                <div class="img-container">
+                    <img src="{% static 'images/icons/attivita/diffamazione-stampa.png' %}" alt="...">
+                    <div class="overlay">
+                        <img src="{% static 'images/icons/attivita/white-icons/diffamazione-stampa.png' %}" alt="...">
+                        <p>DIFFAMAZIONE A <br> MEZZO STAMPA</p>
+                        <a href="#">Scopri</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6 col-sm-12 col-position">
+                <div class="img-container">
+                    <img src="{% static 'images/icons/attivita/permesso-di-soggiorno.png' %}" alt="...">
+                    <div class="overlay">
+                        <img src="{% static 'images/icons/attivita/white-icons/passport.png' %}" alt="...">
+                        <p>PERMESSO DI <br> SOGGIORNO</p>
+                        <a href="#">Scopri</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6 col-sm-12 col-position">
+                <div class="img-container">
+                    <img src="{% static 'images/icons/attivita/real-estate.png' %}" alt="...">
+                    <div class="overlay">
+                        <img src="{% static 'images/icons/attivita/white-icons/house.png' %}" alt="...">
+                        <p>REAL <br> ESTATE</p>
+                        <a href="#">Scopri</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="home-section-five" class="container-fluid">
+    <div class="container carousel-container">
+        <h3>Cosa dicono di noi</h3>
+        <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <p>
+                        <em>The Italian government launched the new program in order to join the growing investment
+                            migration movement, paving the way for the development of a residence-by-investment
+                            program in the country that owns most of the cultural heritage in the world.</em>
+                    </p>
+                    <p>Andrea Parisi – Milan-based lawyer who is part of the legal network called Legalars</p>
+                </div>
+                <div class="carousel-item">
+                    <p>
+                        <em>Membro del network di giuristi internazionali “LegalArs” è stato eletto Coordinatore
+                            regionale dell’AIGA, Associazione Italiana Giovani Avvocati</em>
+                    </p>
+                    <p>LegalArs</p>
+                </div>
+                <div class="carousel-item">
+                    <p><em>Avvocati specialisti di riferimento primario per la produzione del film Progrom, con
+                            Gerard Depardieu e Zoe Félix</em></p>
+                    <p>Francesco Di Silvio – Produttore</p>
+                </div>
+            </div>
+        </div>
+        <div class="stars-container">
+            <img src="{% static 'images/icons/star-fill.svg' %}" alt="Icona di una stella color oro">
+            <img src="{% static 'images/icons/star-fill.svg' %}" alt="Icona di una stella color oro">
+            <img src="{% static 'images/icons/star-fill.svg' %}" alt="Icona di una stella color oro">
+            <img src="{% static 'images/icons/star-fill.svg' %}" alt="Icona di una stella color oro">
+            <img src="{% static 'images/icons/star-fill.svg' %}" alt="Icona di una stella color oro">
+        </div>
+    </div>
+</section>
+
+<section id="home-section-six" class="container-fluid">
+    <div class="container">
+        <h3>Portale Giuridico</h3>
+        {% comment %} <div id="carouselExampleSlidesOnly" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                {% for post in posts %}
+                {% if forloop.counter0|divisibleby:3 %}
+                {% if forloop.first %}
+                <div class="carousel-item active">
+                    {% else %}
+                    <div class="carousel-item">
+                        {% endif %}
+                        <div class="row">
+                            {% endif %}
+                            <div class="col-lg-4 col-md-6 col-sm-12 post-card d-flex flex-column">
+                                <div class="blog-card-image">
+                                    <img src="{{post.copertina.url}}" alt="" class="img-fluid">
+                                </div>
+                                <div class="blog-card-heading">
+                                    <h2>{{post.titolo}}</h2>
+                                </div>
+                                <div class="blog-card-description d-flex flex-column justify-content-end">
+                                    <a href="{% url 'blog_category_details' slug=post.categoria.slug %}">
+                                        {{post.categoria.nome}}</a>
+                                    <small>Pubblicazione: {{post.publish|date:'d F Y'}}</small>
+                                    <small>Autore: {{post.autore.name}} {{post.autore.surname}}</small>
+                                    <p>{{post.descrizione|safe}}</p>
+                                    <a href="{% url 'blog_news_details' slug=post.slug %}"
+                                        class="btn-gold-outline">Leggi</a>
+                                </div>
+                            </div>
+                            {% if forloop.counter0|add:1|divisibleby:3 or forloop.last %}
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div> {% endcomment %}
+</section>
+
+<section id="home-section-seven" class="container-fluid">
+    <div class="container content">
+        <div class="row gy-5">
+            <div class="col-lg-6 col-sm-12">
+                <h3>Contattaci per maggiori <br> informazioni</h3>
+                <p>Via Lovanio, 10, 20121 Milano, Italy</p>
+                <a href="tel:+390282951861">Telefono: +39 02.82.95.18.61</a>
+                <p>Fax: 178.6060.284</p>
+                <a href="mailto:info@legalars.net">E-mail: info@legalars.net</a>
+            </div>
+            <div class="col-lg-6 col-sm-12">
+
+                <form class="row g-3 form-white">
+                    <div class="col-md-6 form-floating">
+                        <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com"
+                            required>
+                        <label for="floatingInput">Nome*</label>
+                    </div>
+                    <div class="col-md-6 form-floating">
+                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
+                            required>
+                        <label for="floatingInput">Email*</label>
+                    </div>
+                    <div class="col-12 form-floating">
+                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" rows="5"
+                            required></textarea>
+                        <label for="floatingTextarea">Messaggio*</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Accetto l’informativa sulla <a href="#">privacy</a> *
+                        </label>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn-gold-outline">INVIA</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock main %}

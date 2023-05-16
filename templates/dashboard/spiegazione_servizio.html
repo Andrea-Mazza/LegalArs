@@ -1,0 +1,34 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block title %}{% endblock title %}
+
+{% block metatag %}
+
+{% endblock metatag %}
+
+{% block main %}
+<main>
+    <h1>{{servizio.nome}}</h1>
+    {{servizio.descrizione|safe}}
+    <div class="w-100 d-flex flex-row justify-content-center align-items-center">
+        <a href="{% url 'abbonamenti:create_checkout_session' servizio_slug=servizio.slug %}"
+            class="btn-gold-outline">Abbonati</a>
+    </div>
+    <h2>Contatti</h2>
+    <p>Se hai domande sui nostri servizi o desideri maggiori informazioni, non esitare a contattarci. Per farlo puoi
+        contattare l'assistenza cliccando sulla voce, del menu, 'Assistenza'. In alternativa puoi scrivere a <a
+            href="mailto:info@legalars.net">info@legalars.net</a> o compilare il form qui sotto.</p>
+    <div class="row d-flex flex-row justify-content-center">
+        <div class="col-lg-8 col-md-12 col-12">
+            <form method="post">
+                {% csrf_token %}
+                {{assistenza_form}}
+                <div class="text-center mt-3">
+                    <input type="submit" value="Invia" class="btn-black-outline">
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+{% endblock main %}

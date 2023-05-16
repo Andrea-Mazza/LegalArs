@@ -1,4 +1,4 @@
-#!/Users/andrea/Desktop/Git_Live/LegalArs/virtual/bin/python3
+#!/Users/andrea/Desktop/new_LA/virtual/bin/python3
 
 import sys
 import json

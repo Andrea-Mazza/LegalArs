@@ -1,0 +1,133 @@
+{% extends 'vetrina/base.html' %}
+{% load static %}
+
+{% block title %}{{post.titolo}} - LegalArs{% endblock title %}
+
+
+{% block metatag %}
+<meta name="description" content="{{post.meta_descrizione}}">
+<meta property="og:locale" content="it_IT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="{{post.titolo}} - Legalars">
+<meta property="og:description" content="{{post.descrizione}}">
+<!-- <meta property="og:url" content="https://www.legalars.net/le-polizze-unit-linked/"> -->
+<meta property="og:site_name" content="Legalars">
+<meta property="article:publisher" content="{{post.copertina.url}}">
+<meta property="article:published_time" content="{{post.data_pubblicazione}}">
+<meta property="article:modified_time" content="{{post.data_pubblicazione}}">
+<meta property="og:image" content="{{post.copertina.url}}">
+<meta property="og:image:width" content="1500">
+<meta property="og:image:height" content="844">
+<!-- ANIMATE.CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+<!-- CUSTOM JS -->
+<script src="{% static 'js/enableToolTips.js' %}"></script>
+{% endblock metatag %}
+
+
+{% block main %}
+<article id="blog-content" itemscope itemtype="https://schema.org/Article">
+    <div id="copertina-lg" class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-8 col-sm-12" itemprop="image" itemscope itemtype="https://schema.org/URL">
+                <h1 id="titolo-lg" itemprop="headline">{{post.titolo}}</h1>
+                <img itemprop="url" src="{{post.copertina.url}}" class="img-fluid" alt="">
+            </div>
+        </div>
+    </div>
+    <div id="copertina-sm" style="background-image: url({{post.copertina.url}});">
+        <h1 itemprop="headline">{{post.titolo}}</h1>
+    </div>
+    <div id="blog-body" class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-8 col-sm-12">
+
+                {% if request.user.is_authenticated %}
+                {% if request.user in post.saved_by.all %}
+                <form method="post" action="{% url 'news:remove_article' post.id %}?next={{ request.path }}"
+                    style="display: flex; flex-direction: column; align-items: center;">
+                    {% csrf_token %}
+                    <input type="hidden" name="article_id" value="{{ post.id }}">
+                    <input type="hidden" name="next" value="{{ request.path }}">
+                    <button type="submit" class="save-btn" data-bs-toggle="tooltip" data-bs-placement="right"
+                        data-bs-title="Hai già salvato questo articolo. Clicca per eliminarlo dagli articoli salvati.">
+
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M6.3 23.3675C6.0375 23.3675 5.8125 23.33 5.55 23.2175C4.9125 22.9175 4.5 22.28 4.5 21.5675V3.07999C4.5 
+                                1.76749 5.5875 0.679993 6.9 0.679993H17.1375C18.45 0.679993 19.5375 1.76749 19.5375 
+                                3.07999V21.4925C19.5375 22.205 19.125 22.8425 18.4875 23.1425C17.85 23.4425 17.1 23.33 16.5375 
+                                22.8425L12.4125 19.2425C12.15 19.055 11.85 19.0925 11.5875 19.2425L7.4625 22.88C7.125 23.18 6.7125 
+                                23.3675 6.3 23.3675ZM6 21.18C5.5875 21.18 6.15 2.70499 6.15 3.07999L6.05804 19.68C6.05804 19.7175 
+                                7.775 17.4675 6 21.18C7.5 20.68 6 20.18 6 20.18L10.5375 17.9675C11.4 17.2925 12.1375 17.2925 13 17.9675L14.5 
+                                16.68L17.7375 21.1187C17.7375 21.1187 17.5627 21.0194 17.6377 20.9819C17.7127 20.9444 16.5375 18.005 16.5375 
+                                17.9675L17.8125 3.07999C17.8125 2.66749 18.0127 20.9819 17.6377 20.9819L11.5875 17.4975L9.5 18.8846L8.5 20.5925L7.5 21.18H6Z"
+                                fill="#DA9A23" />
+                        </svg>
+
+                    </button>
+                </form>
+                {% else %}
+                <form method="post" action="{% url 'news:save_article' post.id %}?next={{ request.path }}"
+                    style="display: flex; flex-direction: column; align-items: center;">
+                    {% csrf_token %}
+                    <input type="hidden" name="article_id" value="{{ post.id }}">
+                    <button type="submit" class="save-btn" data-bs-toggle="tooltip" data-bs-placement="right"
+                        data-bs-title="Clicca per salvare questo articolo nella tua area personale.">
+
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="24" height="24" fill="white" />
+                            <path d="M6.3 23.3625C6.0375 23.3625 5.8125 23.325 5.55 23.2125C4.9125 
+                                22.9125 4.5 22.275 4.5 21.5625V3.07505C4.5 1.76255 5.5875 0.675049 6.9 
+                                0.675049H17.1375C18.45 0.675049 19.5375 1.76255 19.5375 3.07505V21.4875C19.5375 
+                                22.2 19.125 22.8375 18.4875 23.1375C17.85 23.4375 17.1 23.325 16.5375 22.8375L12.4125 
+                                19.2375C12.15 19.05 11.85 19.0875 11.5875 19.2375L7.4625 22.875C7.125 23.175 6.7125 
+                                23.3625 6.3 23.3625ZM6.8625 2.36255C6.45 2.36255 6.15 2.70005 6.15 3.07505V21.5625C6.15 
+                                21.6 6.15 21.6375 6.225 21.675C6.3 21.7125 6.3375 21.675 6.3375 21.675L10.5375 
+                                17.9625C11.4 17.2875 12.6 17.2875 13.4625 17.9625L13.5375 18.0375L17.625 21.6375C17.625 
+                                21.6375 17.6625 21.675 17.7375 21.6375C17.8125 21.6 17.8125 21.5625 17.8125 
+                                21.525V3.07505C17.8125 2.66255 17.475 2.36255 17.1 2.36255H6.8625V2.36255Z"
+                                fill="black" />
+                        </svg>
+
+                    </button>
+                </form>
+                {% endif %}
+
+                {% else %}
+
+                <div class="btn-width-container text-center d-flex flex-column">
+                    <button type="button" class="unsigned-user-save-btn" data-bs-toggle="tooltip"
+                        data-bs-placement="right"
+                        data-bs-title="Per salvare devi prima accedere o creare un account. Poi farlo dal menu in alto.">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="24" height="24" fill="white" />
+                            <path d="M6.3 23.3625C6.0375 23.3625 5.8125 23.325 5.55 23.2125C4.9125 
+                        22.9125 4.5 22.275 4.5 21.5625V3.07505C4.5 1.76255 5.5875 0.675049 6.9 
+                        0.675049H17.1375C18.45 0.675049 19.5375 1.76255 19.5375 3.07505V21.4875C19.5375 
+                        22.2 19.125 22.8375 18.4875 23.1375C17.85 23.4375 17.1 23.325 16.5375 22.8375L12.4125 
+                        19.2375C12.15 19.05 11.85 19.0875 11.5875 19.2375L7.4625 22.875C7.125 23.175 6.7125 
+                        23.3625 6.3 23.3625ZM6.8625 2.36255C6.45 2.36255 6.15 2.70005 6.15 3.07505V21.5625C6.15 
+                        21.6 6.15 21.6375 6.225 21.675C6.3 21.7125 6.3375 21.675 6.3375 21.675L10.5375 
+                        17.9625C11.4 17.2875 12.6 17.2875 13.4625 17.9625L13.5375 18.0375L17.625 21.6375C17.625 
+                        21.6375 17.6625 21.675 17.7375 21.6375C17.8125 21.6 17.8125 21.5625 17.8125 
+                        21.525V3.07505C17.8125 2.66255 17.475 2.36255 17.1 2.36255H6.8625V2.36255Z" fill="black" />
+                        </svg>
+                    </button>
+                    <small class="animate__animated animated-small">Accedi
+                        per salvare gli
+                        articoli che ti
+                        interessano</small>
+                </div>
+                {% endif %}
+
+
+                <div itemprop="articleBody">
+                    {{post.corpo|safe}}
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
+
+{% endblock main %}

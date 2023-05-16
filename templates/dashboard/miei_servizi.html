@@ -1,0 +1,88 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block title %}{% endblock title %}
+
+{% block metatag %}
+
+{% endblock metatag %}
+
+{% block main %}
+<main>
+    <h2>Le tue pratiche</h2>
+    {% if servizi_attivati %}
+    <table class="sm-hide">
+        <thead>
+            <tr>
+                <th>Codice pratica</th>
+                <th class="text-center">Stato</th>
+                <th class="text-center">Notifiche</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for servizio in servizi_attivati %}
+            <tr>
+                <td>{{servizio.pratica.identificativo}}</td>
+                <td class="text-center">
+                    {% if servizio.abbonamento_attivo %}
+
+                    {% if servizio.pratica.compilazione_terminata %}
+                    <span class="success-text">Attivo</span>
+                    {% else %}
+                    <span class="danger-text">Compilazione da terminare</span>
+                    {% endif %}
+
+                    {% else %}
+                    <span class="danger-text">Abbonamento non attivo</span>
+                    {% endif %}
+                </td>
+                <td class="text-center">0</td>
+                <td class="text-center link"><a href="{{ servizio.get_absolute_url }}">Maggiori dettagli <img
+                            src="{% static 'images/icons/chevron_right.svg' %}" alt=""> </a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% for servizio in servizi_attivati %}
+    <div class="sm-show pratica-card">
+        <div class="text-center">
+            <p>Codice pratica</p>
+            <small>{{servizio.pratica.identificativo}}</small>
+        </div>
+        <div class="text-center">
+            <p>Stato</p>
+            {% if servizio.abbonamento_attivo %}
+
+            {% if servizio.pratica.compilazione_terminata %}
+            <small class="success-text">Attivo</small>
+            {% else %}
+            <small class="danger-text">Compilazione da terminare</small>
+            {% endif %}
+
+            {% else %}
+            <small class="danger-text">Abbonamento non attivo</small>
+            {% endif %}
+        </div>
+        <div class="text-center">
+            <p>Notifiche</p>
+            <small>0</small>
+        </div>
+        <div class="text-center link">
+            <a href="{{ servizio.get_absolute_url }}">Maggiori dettagli <img
+                    src="{% static 'images/icons/chevron_right.svg' %}" alt=""> </a>
+        </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <div class="alert alert-primary" role="alert">
+        <h4 class="alert-heading">Nessuna pratica</h4>
+        <p>Sembra che tu non abbia ancora attivato alcun servizio.</p>
+        <p>Una volta attivato un servizio dalla pagina "Scopri i servizi", da questa pagina potrai accedere ai dettagli
+            della tua pratica</p>
+        <hr>
+        <p class="mb-0">Scopri i servizi disponibili <a class="alert-link"
+                href="{% url 'dashboard:servizi' %}">cliccando qui</a>.</p>
+    </div>
+    {% endif %}
+</main>
+{% endblock main %}

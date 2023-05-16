@@ -1,0 +1,73 @@
+{% extends 'vetrina/base.html' %}
+{% load static %}
+
+
+{% block title %}{% endblock title %}
+
+
+{% block metatag %}
+
+{% endblock metatag %}
+
+
+{% block main %}
+<h1>Effettua una ricerca veloce tra i nostri articoli</h1>
+<form class="search-form" method="get">
+    <div class="field-container">
+        <div class="form-floating mb-3">
+            {{form.ricerca}}
+            <label class="label-container mb-2" for="{{form.ricerca.auto_id}}">{{form.ricerca.label}}</label>
+        </div>
+        {% for error in form.ricerca.errors %}
+        <p class="text-danger">{{ error }}</p>
+        {% endfor %}
+        <button class="btn-gold-outline mb-3" type="submit">Cerca</button>
+    </div>
+</form>
+
+{% if query %}
+<p>Risultati per "{{ query }}":</p>
+{% if results %}
+<section id="blog-news-content" class="container">
+    <div class="row g-5">
+        {% for post in results %}
+
+        <div class="col-lg-4 col-md-6 col-sm-12 post-card d-flex flex-column justify-content-between">
+            <div class="news_card">
+                <div class="card__header">
+                    <img src="{{post.copertina.url}}" alt="card__image" class="card__image" width="600">
+                </div>
+                <div class="card__body">
+                    <a href="{% url 'news:categoria_details' categoria_slug=post.categoria.slug %}"
+                        class="tag tag-blue">{{post.categoria.nome}}</a>
+                    <h4>{{post.titolo}}</h4>
+                    <p>{{post.meta_descrizione}}</p>
+                </div>
+                <div class="card__footer">
+                    <div class="user">
+                        <div class="user__info">
+                            <h5>{{post.autore.username}}</h5>
+                            <small>{{post.data_pubblicazione|date:'d F Y'}}</small>
+                        </div>
+                    </div>
+                    <a href="{% url 'news:articolo_details' categoria_slug=post.categoria.slug post_slug=post.slug %}"
+                        class="btn-gold-outline">Leggi</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% else %}
+<p>Nessun risultato trovato.</p>
+<p>Spiacente, nessun articolo corrisponde ai tuoi criteri. Prova con un’altra ricerca</p>
+
+<p>Si potrebbero prendere in considerazione alcuni dei nostri suggerimenti per ottenere risultati migliori:</p>
+<ul>
+    <li>Controlla la ortografia.</li>
+    <li>Prova con termini simili o sinonimi.</li>
+    <li>Provare a utilizzare più di una parola chiave.</li>
+</ul>
+{% endif %}
+{% endif %}
+{% endblock main %}

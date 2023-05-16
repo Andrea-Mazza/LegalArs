@@ -1,0 +1,34 @@
+{% extends "account/email/base_message.txt" %}
+{% load account %}
+{% load i18n %}
+
+{% block content %}
+{% autoescape off %}{% user_display user as user_display %}
+{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}
+Ciao {{ user.nome }},
+
+Grazie di aver deciso di registrarti sul nostro sito, siamo lieti di averti nella nostra community.
+
+Per completare la registrazione e attivare il tuo account, ti chiediamo di confermare il tuo indirizzo email. Fai clic sul link sottostante:
+
+{{ activate_url }}
+
+Se il link non funziona, copia e incolla l'URL nel tuo browser.
+
+Se non sei stato tu a registrarti su LegalArs o hai ricevuto questa email per errore, ti preghiamo di ignorarla.
+
+Se hai bisogno di assistenza, non esitare a contattare il nostro supporto: info@legalars.net
+
+Grazie ancora per la tua registrazione e non vediamo l'ora di darti il benvenuto!
+
+Cordiali saluti,
+
+Il team di LegalArs
+
+You're receiving this e-mail because user {{ user_display }} 
+has given your e-mail address to register an account on {{ site_domain }}.
+
+To confirm this is correct, go to {{ activate_url }}
+{% endblocktrans %}
+{% endautoescape %}
+{% endblock %}
