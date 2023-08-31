@@ -1,0 +1,13 @@
+<div class="mt-5 mb-5 alert alert-success text-center" role="alert">
+    <p>Totale spese vive: €{{totale}} (più eventuali spese vive per l'attività di notifica)</p>
+    <p>Vuoi ottenere un decreto ingiuntiivo pagando le sole spese vive? Leggi termini e condizioni.</p>
+    <p><a href="{% url 'recupero_credito:checkout' %}">Abbonati</a>
+        <a href="{% url 'recupero_credito:stripe_element' %}">Paga</a>
+    <form method="post" id="preventivo-form" action="{% url 'recupero_credito:checkout' %}">
+        {% csrf_token %}
+        <input type="hidden" name="product_id" value="{{servizio.id_prodotto_stripe}}">
+        <input type="hidden" name="somma" value="{{somma}}">
+        <button type="submit">Paga</button>
+    </form>
+    </p>
+</div>

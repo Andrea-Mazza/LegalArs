@@ -1,0 +1,18 @@
+{% load static %}
+<form method="post" id="documenti_form" enctype="multipart/form-data">
+    <input type="hidden" id="csrfmiddlewaretoken_2" name="csrfmiddlewaretoken" value="{{csrf_token}}">
+    {% for field in documenti_form %}
+    <div class="mb-3 mt-3">
+        <label class="label-container mb-2" for="{{field.auto_id}}">{{field.label}} <img class="question-mark"
+                src="{% static 'images/icons/help.svg' %}" alt="" data-bs-toggle="tooltip" data-bs-placement="top"
+                data-bs-custom-class="custom-tooltip" data-bs-title="Bisogno di aiuto? Clicca qui"></label>
+        {{field}}
+    </div>
+    <div id="{{field.name}}_error" class="error-message"></div>
+    <p class="help-text">{{field.help_text}} <span class="closeHelpText">Chiudi</span>
+    </p>
+    {% endfor %}
+    <div class="w-100 d-flex flex-row justify-content-center">
+        <input class="btn-black-outline" type="submit" value="Invia">
+    </div>
+</form>

@@ -73,7 +73,7 @@ class PraticaRecuperoCredito(models.Model):
     pagamento_iniziale = models.BooleanField(default=False)
     terminata = models.BooleanField(blank=False, default=False)
 
-    def compilazione_da_terminare(self):
+    def compilazione_terminata_method(self):
         fields = []
 
         fields.extend([
@@ -93,22 +93,30 @@ class PraticaRecuperoCredito(models.Model):
                 self.cr_data_di_nascita,
                 self.cr_comune_di_residenza,
                 self.cr_indirizzo_di_residenza,
-                self.cr_email,
-                self.cr_pec,
-                self.cr_codice_fiscale,
-                self.cr_partita_iva,
             ])
+
         elif self.cr_tipo == 'Persona Giuridica':
             fields.extend([
                 self.cr_denominazione_sociale,
                 self.cr_comune_sede_principale,
                 self.cr_indirizzo_sede_principale,
-                self.cr_email,
-                self.cr_pec,
-                self.cr_codice_fiscale,
-                self.cr_partita_iva,
             ])
-
+        if (self.cr_pec != "" and (self.cr_email is None or self.cr_email == "")):
+            fields.extend([
+                self.cr_pec
+            ])
+        elif ((self.cr_pec is None or self.cr_pec == "") and self.cr_email != ""):
+            fields.extend([
+                self.cr_email
+            ])
+        if (self.cr_codice_fiscale != "" and (self.cr_partita_iva is None or self.cr_partita_iva == "")):
+            fields.extend([
+                self.cr_codice_fiscale
+            ])
+        elif ((self.cr_codice_fiscale is None or self.cr_codice_fiscale == "") and self.cr_partita_iva != ""):
+            fields.extend([
+                self.cr_partita_iva
+            ])
         if self.db_tipo == 'Persona Fisica':
             fields.extend([
                 self.db_nome,
@@ -117,36 +125,52 @@ class PraticaRecuperoCredito(models.Model):
                 self.db_data_di_nascita,
                 self.db_indirizzo_di_residenza,
                 self.db_comune_di_residenza,
-                self.df_codice_fiscale,
-                self.df_partita_iva,
             ])
+            if (self.df_codice_fiscale != "" and (self.df_partita_iva is None or self.df_partita_iva == "")):
+                fields.extend([
+                    self.df_codice_fiscale
+                ])
+            elif ((self.df_codice_fiscale is None or self.df_codice_fiscale == "") and self.df_partita_iva != ""):
+                fields.extend([
+                    self.df_partita_iva
+                ])
         elif self.db_tipo == 'Persona Giuridica':
             fields.extend([
                 self.db_denominazione_sociale,
                 self.db_comune_sede_principale,
                 self.db_indirizzo_sede_principale,
-                self.dj_codice_fiscale,
-                self.dj_partita_iva,
             ])
+            if (self.dj_codice_fiscale != "" and (self.dj_partita_iva is None or self.dj_partita_iva == "")):
+                fields.extend([
+                    self.dj_codice_fiscale
+                ])
+            elif ((self.dj_codice_fiscale is None or self.dj_codice_fiscale == "") and self.dj_partita_iva != ""):
+                fields.extend([
+                    self.df_partita_iva
+                ])
 
         if self.firma_digitale == 'Si':
             # tutti i campi sono già controllati, non c'è bisogno di aggiungere altri
-            pass
-        elif self.firma_digitale == 'No':
             fields.extend([
                 self.carta_identita_fronte,
                 self.carta_identita_retro,
             ])
-            if not self.carta_identita_fronte or not self.carta_identita_retro:
-                return False
-        else:  # se 'firma_digitale' non è né 'Si' né 'No'
-            return False
-        return all(field is not None for field in fields)
+            # if not self.carta_identita_fronte or not self.carta_identita_retro:
+            #     return False
 
-    def save(self, *args, **kwargs):
-        if self.compilazione_da_terminare():
-            self.compilazione_terminata = True
-        super().save(*args, **kwargs)
+        elif self.firma_digitale == 'No':
+            pass
+        elif self.firma_digitale is None:
+            # gestisci il caso in cui 'firma_digitale' è None
+            return False
+        else:  # se 'firma_digitale' non è né 'Si' né 'No' né None
+            return False
+
+        for field_name in self.__dict__:
+            field_value = getattr(self, field_name)
+            if field_value is None or field_value == "":
+                print(f'{field_name} is None or empty')
+        return all(field is not None and field != "" for field in fields)
 
     @property
     def numero_pratica(self):
@@ -154,6 +178,13 @@ class PraticaRecuperoCredito(models.Model):
 
     def __str__(self):
         return "pratica numero: " + str(self.identificativo)
+
+    def save(self, *args, **kwargs):
+        if self.compilazione_terminata_method():
+            self.compilazione_terminata = True
+        elif self.compilazione_terminata_method():
+            self.compilazione_terminata = False
+        super().save(*args, **kwargs)
 
 
 class Notifica(models.Model):
